@@ -159,7 +159,7 @@
                 { name: "Cambio de Parlante / Bocina Interna", desc: "Solución a sonido distorsionado, bajo o nulo volumen.", ars: 14000, usd: 14, icon: svgAudio },
                 { name: "Cambio de Placa Lógica / Circuito Bluetooth", desc: "Arreglo de fallas de emparejamiento o encendido.", ars: 16000, usd: 16, icon: svgPin },
                 { name: "Cambio de Microbatería Interna (Auricular o Estuche)", desc: "Recupera la autonomía original de tus auriculares inalámbricos.", ars: 15000, usd: 15, icon: svgBattery },
-                { name: "Cambio de Pin / Conector de Carga de Estuche", desc: "Reparación del conector USB de la carga.", ars: 12000, usd: 12, icon: svgPin },
+                { name: "Cambio de Pin / Conector de Carga de Estuche", desc: "Reparación del conector USB de la caja de carga.", ars: 12000, usd: 12, icon: svgPin },
                 { name: "Reparación de Ficha Jack 3.5mm / Cable", desc: "Cambio de ficha o re cableado en auriculares con cable.", ars: 10000, usd: 10, icon: svgPlug }
             ],
             "Consolas": [
@@ -247,4 +247,158 @@
                 let html = `
                     <div class="back-bar">
                         <button class="btn-back" onclick="selectedService=null; render()">← Volver</button>
-                        <span 
+                        <span style="font-weight:800; font-size:0.85rem; color:var(--accent); letter-spacing:1px;">DETALLE DEL SERVICIO</span>
+                    </div>
+                    <div class="detail-box">
+                        <div class="detail-icon-large">${selectedService.icon}</div>
+                        <h3 style="color:white; margin-bottom:0.5rem; font-size:1.05rem; font-weight:800;">${selectedService.name}</h3>
+                        <p class="detail-desc">${selectedService.desc}</p>
+                        
+                        <div style="background:#0b1120; border:1px solid var(--card-border); border-radius:10px; padding:0.8rem; margin-bottom:1rem; text-align:right;">
+                            <span class="price-ars" style="font-size:1.15rem;" id="live-ars">$${totalArs.toLocaleString()}</span>
+                            <span class="price-usd" id="live-usd">(USD $${totalUsd})</span>
+                        </div>
+
+                        <input type="text" id="client-name" class="form-input" placeholder="Tu Nombre y Apellido">
+                        <input type="text" id="client-device" class="form-input" placeholder="Ej: Celular, Notebook, Auriculares, Consola...">
+                        <input type="text" id="client-obs" class="form-input" placeholder="Ej: Observaciones adicionales sobre la falla...">
+                        
+                        <div style="text-align:left; font-size:0.8rem; color:var(--text-muted); margin-bottom:0.4rem; font-weight:600;">Cantidad:</div>
+                        <div class="qty-container">
+                            <button class="qty-btn" onclick="changeQty(-1)">-</button>
+                            <span id="qty-val" style="font-weight:bold; font-size:1.1rem; color:white;">${quantity}</span>
+                            <button class="qty-btn" onclick="changeQty(1)">+</button>
+                        </div>
+
+                        <button class="btn-agregar" onclick="addToCart()">Seleccionar y Calcular Pago</button>
+
+                        <div class="guarantee-box">
+                            <span style="font-size:1.1rem;">🛡️</span>
+                            <div><strong style="color:white;">Servicio Garantizado:</strong> Repuestos de alta calidad con garantía oficial por escrito.</div>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML = html;
+            }
+        }
+
+        function selectCategory(catId) {
+            currentCategory = catId;
+            selectedService = null;
+            render();
+            window.scrollTo(0,0);
+        }
+
+        function openDetail(idx) {
+            selectedService = services[currentCategory][idx];
+            quantity = 1;
+            render();
+            window.scrollTo(0,0);
+        }
+
+        function changeQty(amount) {
+            quantity += amount;
+            if (quantity < 1) quantity = 1;
+            
+            const qtyVal = document.getElementById('qty-val');
+            if(qtyVal) qtyVal.innerText = quantity;
+
+            const liveArs = document.getElementById('live-ars');
+            const liveUsd = document.getElementById('live-usd');
+            if(liveArs && liveUsd && selectedService) {
+                liveArs.innerText = `$${(selectedService.ars * quantity).toLocaleString()}`;
+                liveUsd.innerText = `(USD $${selectedService.usd * quantity})`;
+            }
+        }
+
+        function addToCart() {
+            const nameField = document.getElementById('client-name');
+            if(nameField && !nameField.value) {
+                alert("Por favor completa al menos tu nombre.");
+                return;
+            }
+            const cartBar = document.getElementById('cart-bar');
+            if(cartBar) cartBar.style.display = 'flex';
+            
+            const cartText = document.getElementById('cart-total-text');
+            if(cartText && selectedService) {
+                cartText.innerText = `${quantity}x ${selectedService.name} ($${(selectedService.ars * quantity).toLocaleString()})`;
+            }
+            
+            openPaymentModal();
+        }
+
+        function openPaymentModal() {
+            if(!selectedService) return;
+            let totalArs = selectedService.ars * quantity;
+            let totalUsd = selectedService.usd * quantity;
+            const display = document.getElementById('modal-total-display');
+            if(display) display.innerText = `Total a abonar: $${totalArs.toLocaleString()} / USD $${totalUsd}`;
+            
+            const modal = document.getElementById('payment-modal');
+            if(modal) modal.style.display = 'flex';
+        }
+
+        function closePaymentModal() {
+            const modal = document.getElementById('payment-modal');
+            if(modal) modal.style.display = 'none';
+        }
+
+        function checkoutAction(method) {
+            const nameEl = document.getElementById('client-name');
+            const deviceEl = document.getElementById('client-device');
+            const obsEl = document.getElementById('client-obs');
+
+            const name = nameEl ? (nameEl.value || "Cliente") : "Cliente";
+            const device = deviceEl ? (deviceEl.value || "Dispositivo no especificado") : "Dispositivo no especificado";
+            const obs = obsEl ? (obsEl.value || "Ninguna") : "Ninguna";
+
+            let totalArs = selectedService.ars * quantity;
+            let totalUsd = selectedService.usd * quantity;
+
+            const msg = `Hola OmniFix! Soy ${name}. Mi equipo es un ${device}. Servicio: ${quantity}x ${selectedService.name}. Observaciones: ${obs}. Total: $${totalArs.toLocaleString()} (USD $${totalUsd}). Método de pago: ${method}.`;
+            window.open(`https://wa.me/${phoneTaller}?text=${encodeURIComponent(msg)}`, '_blank');
+            closePaymentModal();
+        }
+
+        function setRating(starCount) {
+            currentRating = starCount;
+            const stars = document.querySelectorAll('#star-container span');
+            stars.forEach((s, index) => {
+                if(index < starCount) {
+                    s.classList.add('rated');
+                } else {
+                    s.classList.remove('rated');
+                }
+            });
+        }
+
+        function submitReview() {
+            const nameEl = document.getElementById('review-name');
+            const name = nameEl ? nameEl.value : "";
+            if(currentRating === 0) {
+                alert("Por favor selecciona al menos una estrella para calificar.");
+                return;
+            }
+            if(!name) {
+                alert("Por favor ingresa tu nombre para publicar la opinión.");
+                return;
+            }
+            alert(`¡Muchas gracias ${name} por calificar con ${currentRating} estrellas! Tu opinión ha sido registrada.`);
+            currentRating = 0;
+            render();
+        }
+
+        function scrollToReview() {
+            const reviewSec = document.getElementById('review-section');
+            if(reviewSec) {
+                reviewSec.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            render();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OmniFix Reparaciones - Cruz del Eje</title>
+<style>
+:root {
+--primary: #2563eb;
+--primary-dark: #1d4ed8;
+--success: #16a34a;
+--bg: #f8fafc;
+--text: #1e293b;
+--card-bg: #ffffff;
+--border: #e2e8f0;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+body { background-color: var(--bg); color: var(--text); line-height: 1.6; padding-bottom: 50px; }
+header { background: linear-gradient(135deg, #1e3a8a, var(--primary)); color: white; padding: 2rem 1rem; text-align: center; }
+header h1 { font-size: 1.8rem; margin-bottom: 0.5rem; }
+header p { font-size: 0.95rem; opacity: 0.9; }
+.container { max-width: 600px; margin: 0 auto; padding: 1rem; }
+.section-title { font-size: 1.2rem; margin: 1.5rem 0 0.8rem 0; color: #334155; border-left: 4px solid var(--primary); padding-left: 8px; }
+.card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 1rem; margin-bottom: 0.8rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+.card-info h3 { font-size: 1rem; color: var(--text); margin-bottom: 0.2rem; }
+.card-info p { font-size: 0.85rem; color: #64748b; }
+.price { font-weight: bold; color: var(--primary); font-size: 1.05rem; margin-right: 1rem; }
+.btn-select { background: var(--primary); color: white; border: none; padding: 0.5rem 0.9rem; border-radius: 8px; cursor: pointer; font-size: 0.85rem; font-weight: 600; }
+.btn-select:active { background: var(--primary-dark); }
+.btn-select.selected { background: var(--success); }  
+.cart-bar { position: fixed; bottom: 0; left: 0; right: 0; background: white; border-top: 1px solid var(--border); padding: 1rem; box-shadow: 0 -4px 6px -1px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; z-index: 100; }
+.cart-total { font-size: 1rem; font-weight: bold; }
+.btn-checkout { background: var(--success); color: white; border: none; padding: 0.7rem 1.5rem; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 0.95rem; }
+.modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 200; justify-content: center; align-items: center; padding: 1rem; }
+.modal-content { background: white; width: 100%; max-width: 450px; border-radius: 16px; padding: 1.5rem; text-align: center; }
+.modal-content h2 { margin-bottom: 1rem; color: var(--text); }
+.form-input { width: 100%; padding: 0.7rem; margin-bottom: 1rem; border: 1px solid var(--border); border-radius: 8px; font-size: 0.95rem; }
+.btn-close { background: #64748b; color: white; border: none; padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer; margin-top: 0.5rem; }
+</style>
+</head>
+<body>
+<header>
+<h1>OmniFix Reparaciones</h1>
+<p>Servicio Técnico Profesional en Cruz del Eje</p>
+</header>
+<div class="container" id="services-list"></div>
+<div class="cart-bar" id="cart-bar" style="display:none;">
+<div>
+<span style="font-size: 0.85rem; color: #64748b; display:block;">Seleccionado:</span>
+<span class="cart-total" id="cart-total-text">0 servicios ($0)</span>
+</div>
+<button class="btn-checkout" onclick="openCheckout()">Solicitar y Pagar</button>
+</div>
+<div class="modal" id="checkout-modal">
+<div class="modal-content">
+<h2 id="modal-title">Finalizar Solicitud</h2>
+<div id="modal-body">
+<input type="text" id="client-name" class="form-input" placeholder="Tu Nombre y Apellido">
+<input type="text" id="client-device" class="form-input" placeholder="Modelo del equipo (ej: Moto G20 / Auricular TWS)">
+<p style="font-size:0.85rem; color:#64748b; margin-bottom:1rem; text-align:left;">Selecciona medio de pago simulado:</p>
+<button class="btn-checkout" style="width:100%; margin-bottom:0.5rem;" onclick="confirmOrder('Mercado Pago / Transferencia')">Pagar con Mercado Pago / Transferencia</button>
+<button class="btn-select" style="width:100%; padding:0.7rem;" onclick="confirmOrder('Efectivo en Taller')">Pagar en Efectivo al Entregar</button>
+</div>
+<div id="success-view" style="display:none;">
+<div style="font-size: 3rem; color: var(--success); margin-bottom: 0.5rem;">✅</div>
+<h3 style="color:var(--success); margin-bottom:0.5rem;">¡Solicitud Registrada con Éxito!</h3>
+<p style="font-size: 0.85rem; color:#64748b; margin-bottom:1rem;">Hemos recibido tu orden de reparación correctamente.</p>
+<div style="background: #f1f5f9; padding: 10px; border-radius: 8px; font-size: 0.85rem; text-align: left; margin-bottom: 1rem;">
+📍 <strong>Dirección de entrega (Cruz del Eje):</strong>
+
+Taller OmniFix - Calle Principal #123
+
+⏳ <em>Horario de recepción: 9:00 a 18:00 hs</em>
+</div>
+<button class="btn-checkout" style="width:100%; margin-bottom:0.5rem;" id="whatsapp-btn">📲 Enviar Comprobante por WhatsApp</button>
+<button class="btn-close" onclick="closeModal()">Volver al Inicio</button>
+</div>
+</div>
+</div>
+<script>
+const services = [
+{ category: "Celulares", name: "Cambio de Módulo / Pantalla", price: 25000, desc: "Pantalla completa original o alternativa con garantía" },
+{ category: "Celulares", name: "Cambio de Pin de Carga", price: 12000, desc: "Reparación de puerto de carga y limpieza" },
+{ category: "Celulares", name: "Cambio de Batería de Celular", price: 14000, desc: "Batería nueva con prueba de rendimiento" },
+{ category: "PCs y Notebooks", name: "Formateo y Optimización", price: 18000, desc: "Instalación de Windows, drivers y programas esenciales" },
+{ category: "PCs y Notebooks", name: "Cambio de Pasta Térmica y Limpieza", price: 15000, desc: "Mantenimiento preventivo completo" },
+{ category: "Consolas", name: "Mantenimiento Preventivo de Consola", price: 22000, desc: "Limpieza profunda y cambio de componentes térmicos" },
+{ category: "Audio y Auriculares", name: "Cambio de Batería de Auricular Inalámbrico / TWS", price: 9000, desc: "Reparación de estuche o audífono" },
+{ category: "Audio y Auriculares", name: "Cambio de Parlante / Bocina Interna", price: 8000, desc: "Solución a sonido distorsionado o sin audio" },
+{ category: "Audio y Auriculares", name: "Reparación de Placa Lógica Bluetooth", price: 11000, desc: "Falla de emparejamiento o encendido" }
+];
+let selectedServices = [];
+const phoneTaller = "5493549000000";
+function renderServices() {
+const container = document.getElementById('services-list');
+let html = '';
+let currentCat = '';
+services.forEach((s, index) => {
+if (s.category !== currentCat) {
+currentCat = s.category;
+html += <div class="section-title">${currentCat}</div>;
+}
+const isSelected = selectedServices.includes(index);
+html += <div class="card"> <div class="card-info"> <h3>${s.name}</h3> <p>${s.desc}</p> </div> <div style="display: flex; align-items: center;"> <span class="price">$${s.price.toLocaleString()}</span> <button class="btn-select ${isSelected ? 'selected' : ''}" onclick="toggleService(${index})"> ${isSelected ? '✓ Elegido' : 'Elegir'} </button> </div> </div>;
+});
+container.innerHTML = html;
+}
+function toggleService(index) {
+const pos = selectedServices.indexOf(index);
+if (pos > -1) {
+selectedServices.splice(pos, 1);
+} else {
+selectedServices.push(index);
+}
+renderServices();
+updateCartBar();
+}
+function updateCartBar() {
+const bar = document.getElementById('cart-bar');
+const totalText = document.getElementById('cart-total-text');
+if (selectedServices.length > 0) {
+bar.style.display = 'flex';
+let total = selectedServices.reduce((acc, idx) => acc + services[idx].price, 0);
+totalText.innerText = ${selectedServices.length} servicio(s) - Total: $${total.toLocaleString()};
+} else {
+bar.style.display = 'none';
+}
+}
+function openCheckout() {
+document.getElementById('checkout-modal').style.display = 'flex';
+}
+function closeModal() {
+document.getElementById('checkout-modal').style.display = 'none';
+selectedServices = [];
+renderServices();
+updateCartBar();
+document.getElementById('modal-body').style.display = 'block';
+document.getElementById('success-view').style.display = 'none';
+}
+function confirmOrder(paymentMethod) {
+const name = document.getElementById('client-name').value || "Cliente";
+const device = document.getElementById('client-device').value || "Dispositivo";
+let details = selectedServices.map(idx => services[idx].name).join(", ");
+let total = selectedServices.reduce((acc, idx) => acc + services[idx].price, 0);
+document.getElementById('modal-body').style.display = 'none';
+document.getElementById('success-view').style.display = 'block';
+const msg = Hola OmniFix! Soy ${name}. Mi equipo es un ${device}. Solicité: ${details}. Total: $${total}. Método de pago: ${paymentMethod}.;
+document.getElementById('whatsapp-btn').onclick = function() {
+window.open([https://wa.me/$](https://wa.me/$){phoneTaller}?text=${encodeURIComponent(msg)}, '_blank');
+};
+}
+renderServices();
+</script>
+</body>
+</html>

@@ -15,7 +15,6 @@
             --success: #10b981;
             --mercadopago: #009ee3;
             --paypal: #0070ba;
-            --maps-color: #ea4335;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background-color: var(--bg-dark); color: var(--text-light); line-height: 1.5; padding-bottom: 90px; }
@@ -42,7 +41,6 @@
         .icon-box { width: 56px; height: 56px; background: #0b1120; border: 1px solid #2a3650; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
         .icon-box svg { width: 32px; height: 32px; }
 
-        .card-info { flex: 1; }
         .card-title { font-size: 0.9rem; font-weight: 700; color: white; display: block; line-height: 1.3; }
         
         .card-price { text-align: right; min-width: 95px; }
@@ -55,7 +53,6 @@
 
         .detail-box { background: var(--card-dark); border: 1px solid var(--card-border); border-radius: 16px; padding: 1.5rem; text-align: center; }
         .detail-icon-large { width: 90px; height: 90px; background: #0b1120; border: 2px solid var(--accent); border-radius: 18px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem auto; }
-        .detail-icon-large svg { width: 50px; height: 50px; }
         
         .detail-desc { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.2rem; text-align: left; line-height: 1.4; }
         .form-input { width: 100%; padding: 0.75rem; margin-bottom: 0.8rem; background: #0b1120; border: 1px solid var(--card-border); border-radius: 10px; color: white; font-size: 0.9rem; text-align: left; }
@@ -124,10 +121,8 @@
     <div class="modal" id="payment-modal">
         <div class="modal-content" id="modal-body-content">
             <h3 style="color: var(--accent); margin-bottom: 0.5rem; font-size: 1.2rem;">Elige Medio de Pago</h3>
-            <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1.2rem;" id="modal-total-display">Total calculado</p>
-            
-            <button class="btn-mp" onclick="checkoutAction('Mercado Pago')">💙 Simular Pago con Mercado Pago</button>
-            <button class="btn-paypal" onclick="checkoutAction('PayPal')">💙 Simular Pago con PayPal (USD)</button>
+            <button class="btn-mp" onclick="checkoutAction('Mercado Pago')">💙 Pagar con Mercado Pago</button>
+            <button class="btn-paypal" onclick="checkoutAction('PayPal')">💙 Pagar con PayPal (USD)</button>
             <button onclick="closePaymentModal()" style="background:none; border:none; color:var(--text-muted); margin-top:10px; cursor:pointer; font-size:0.85rem;">Cancelar</button>
         </div>
     </div>
@@ -195,7 +190,7 @@
                         <div class="category-card" onclick="selectCategory('${cat.id}')">
                             <div class="card-left">
                                 <div class="icon-box">${cat.icon}</div>
-                                <span class="card-title" style="font-size:0.95rem">${cat.name}</span>
+                                <span class="card-title">${cat.name}</span>
                             </div>
                             <span class="arrow">➔</span>
                         </div>
@@ -216,23 +211,22 @@
                             <span onclick="setRating(1)">★</span><span onclick="setRating(2)">★</span><span onclick="setRating(3)">★</span><span onclick="setRating(4)">★</span><span onclick="setRating(5)">★</span>
                         </div>
                         <input type="text" id="review-name" class="form-input" placeholder="Tu Nombre">
-                        <input type="text" id="review-text" class="form-input" placeholder="Escribe tu opinión sobre nuestro servicio técnico...">
+                        <input type="text" id="review-text" class="form-input" placeholder="Escribe tu opinión...">
                         <button class="btn-submit" onclick="submitReview()">Publicar Opinión</button>
                         
                         <div class="saved-reviews">
-                            <div style="font-size:0.85rem; font-weight:bold; color:var(--accent); margin-bottom:0.4rem;">Opiniones de Clientes:</div>
-                            ${reviewsHtml || '<p style="color:var(--text-muted); font-size:0.75rem;">Sé el primero en dejar tu opinión.</p>'}
+                            <div style="font-size:0.85rem; font-weight:bold; color:var(--accent); margin-bottom:0.4rem;">Opiniones:</div>
+                            ${reviewsHtml || '<p style="color:var(--text-muted); font-size:0.75rem;">Sé el primero en opinar.</p>'}
                         </div>
                     </div>
                 `;
                 container.innerHTML = html;
-                const cartBar = document.getElementById('cart-bar');
-                if(cartBar) cartBar.style.display = 'none';
+                document.getElementById('cart-bar').style.display = 'none';
             } else if (!selectedService) {
                 let html = `
                     <div class="back-bar">
                         <button class="btn-back" onclick="currentCategory=null; render()">← Volver</button>
-                        <span style="font-weight:800; font-size:0.85rem; color:var(--accent); letter-spacing:1px;">${currentCategory.toUpperCase()}</span>
+                        <span style="font-weight:800; font-size:0.85rem; color:var(--accent);">${currentCategory.toUpperCase()}</span>
                     </div>
                     <div class="section-title">Selecciona un Servicio</div>
                 `;
@@ -242,9 +236,7 @@
                         <div class="service-card" onclick="openDetail(${idx})">
                             <div class="card-left">
                                 <div class="icon-box">${s.icon}</div>
-                                <div class="card-info">
-                                    <span class="card-title">${s.name}</span>
-                                </div>
+                                <div class="card-title">${s.name}</div>
                             </div>
                             <div style="display:flex; align-items:center;">
                                 <div class="card-price">
@@ -252,5 +244,16 @@
                                     <span class="price-usd">(USD $${s.usd})</span>
                                 </div>
                                 <span class="arrow">➔</span>
-    </div>
-        
+                            </div>
+                        </div>
+                    `;
+                });
+                container.innerHTML = html;
+                document.getElementById('cart-bar').style.display = 'none';
+            } else {
+                let totalArs = selectedService.ars * quantity;
+                let totalUsd = selectedService.usd * quantity;
+                container.innerHTML = `
+                    <div class="back-bar">
+                        <button class="btn-back" onclick="selectedService=null; render()">← Volver</button>
+             

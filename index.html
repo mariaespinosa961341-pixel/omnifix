@@ -62,19 +62,16 @@
         .btn-agregar { width: 100%; background: var(--accent); color: #0b1120; border: none; padding: 0.85rem; border-radius: 10px; font-weight: 800; cursor: pointer; font-size: 0.95rem; }
         .guarantee-box { background: #0b1120; border: 1px solid var(--card-border); border-radius: 10px; padding: 0.9rem; font-size: 0.75rem; color: var(--text-muted); text-align: left; margin-top: 1rem; display: flex; gap: 8px; align-items: flex-start; }
 
-        /* Opiniones con Estrellas interactivo */
         .review-box { background: var(--card-dark); border: 1px solid var(--card-border); border-radius: 14px; padding: 1.2rem; margin-top: 1.5rem; }
         .review-title { text-align: center; color: var(--accent); font-size: 0.95rem; margin-bottom: 0.4rem; font-weight: bold; }
         .interactive-stars { text-align: center; font-size: 1.6rem; margin-bottom: 0.8rem; cursor: pointer; color: #475569; }
         .interactive-stars span.rated { color: var(--accent); }
 
-        /* Modal de Pago */
         .modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); z-index: 200; justify-content: center; align-items: center; padding: 1rem; }
         .modal-content { background: var(--card-dark); width: 100%; max-width: 400px; border-radius: 16px; padding: 1.5rem; text-align: center; border: 1px solid var(--card-border); }
         .btn-mp { background: var(--mercadopago); color: white; width: 100%; padding: 0.85rem; border: none; border-radius: 10px; font-weight: 800; font-size: 0.95rem; cursor: pointer; margin-bottom: 0.6rem; }
         .btn-paypal { background: var(--paypal); color: white; width: 100%; padding: 0.85rem; border: none; border-radius: 10px; font-weight: 800; font-size: 0.95rem; cursor: pointer; margin-bottom: 0.6rem; }
 
-        /* Carrito flotante */
         .cart-bar { position: fixed; bottom: 0; left: 0; right: 0; background: var(--card-dark); border-top: 1px solid var(--card-border); padding: 1rem; display: flex; justify-content: space-between; align-items: center; z-index: 100; box-shadow: 0 -4px 15px rgba(0,0,0,0.4); }
         .btn-checkout { background: var(--success); color: white; border: none; padding: 0.75rem 1.3rem; border-radius: 10px; font-weight: 800; cursor: pointer; font-size: 0.9rem; }
     </style>
@@ -103,13 +100,12 @@
 
     <div class="cart-bar" id="cart-bar" style="display:none;">
         <div>
-            <span style="font-size: 0.75rem; color: var(--text-muted); display:block;" id="cart-label">Seleccionado:</span>
+            <span style="font-size: 0.75rem; color: var(--text-muted); display:block;">Seleccionado:</span>
             <span id="cart-total-text" style="font-weight: bold; color: var(--accent); font-size: 0.85rem;">0 servicios</span>
         </div>
         <button class="btn-checkout" onclick="openPaymentModal()">💳 Pagar / Solicitar</button>
     </div>
 
-    <!-- Modal de Selección de Pago -->
     <div class="modal" id="payment-modal">
         <div class="modal-content">
             <h3 style="color: var(--accent); margin-bottom: 0.5rem; font-size: 1.2rem;">Elige Medio de Pago</h3>
@@ -125,7 +121,6 @@
         const svgPhone = `<svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.8"><rect x="6" y="2" width="12" height="20" rx="2"/><line x1="10" y1="18" x2="14" y2="18"/><line x1="9" y1="6" x2="15" y2="12" stroke="#10b981" stroke-width="2"/></svg>`;
         const svgPin = `<svg viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="1.8"><rect x="5" y="6" width="14" height="10" rx="2"/><path d="M10 12h4" stroke-width="2"/><path d="M12 16v3" stroke="#10b981" stroke-width="2"/><path d="M10.5 18.5h3" stroke="#10b981" stroke-width="2"/></svg>`;
         const svgBattery = `<svg viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="1.8"><rect x="4" y="6" width="16" height="12" rx="2"/><path d="M22 10v4"/><text x="7.5" y="14.5" fill="#34d399" font-size="7" font-weight="bold">Li-ion</text></svg>`;
-        const svgCamera = `<svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.8"><circle cx="12" cy="12" r="5"/><path d="M4 8h2l2-3h8l2 3h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-9a2 2 0 0 1 2-2z"/></svg>`;
         const svgLaptop = `<svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.8"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M2 19h20"/></svg>`;
         const svgAudio = `<svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.8"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>`;
         const svgGamepad = `<svg viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="1.8"><rect x="2" y="6" width="20" height="12" rx="4"/><circle cx="8" cy="12" r="1.5" fill="#34d399"/><circle cx="16" cy="11" r="1" fill="#f59e0b"/><circle cx="16" cy="14" r="1" fill="#f59e0b"/></svg>`;
@@ -184,6 +179,7 @@
 
         function render() {
             const container = document.getElementById('main-container');
+            if (!container) return;
             
             if (!currentCategory) {
                 let html = `<div class="section-title">Categorías</div>`;
@@ -211,7 +207,8 @@
                     </div>
                 `;
                 container.innerHTML = html;
-                document.getElementById('cart-bar').style.display = 'none';
+                const cartBar = document.getElementById('cart-bar');
+                if(cartBar) cartBar.style.display = 'none';
             } else if (!selectedService) {
                 let html = `
                     <div class="back-bar">
@@ -241,9 +238,12 @@
                     `;
                 });
                 container.innerHTML = html;
-                document.getElementById('cart-bar').style.display = 'none';
+                const cartBar = document.getElementById('cart-bar');
+                if(cartBar) cartBar.style.display = 'none';
             } else {
                 let totalArs = selectedService.ars * quantity;
                 let totalUsd = selectedService.usd * quantity;
                 let html = `
-                    <div
+                    <div class="back-bar">
+                        <button class="btn-back" onclick="selectedService=null; render()">← Volver</button>
+                        <span style="font-weight:800; font-size:0.85rem; color:var(--accent); letter-spacing:1px;">DETALLE DEL SER

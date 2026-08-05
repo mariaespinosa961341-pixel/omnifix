@@ -15,7 +15,7 @@
             --border: #334155;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: var(--bg-dark); color: var(--text-light); line-height: 1.5; padding-bottom: 70px; }
+        body { background-color: var(--bg-dark); color: var(--text-light); line-height: 1.5; padding-bottom: 90px; }
         
         header { background: var(--card-dark); padding: 1.2rem 1rem; text-align: center; border-bottom: 1px solid var(--border); }
         .logo-container { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 0.3rem; }
@@ -23,7 +23,6 @@
         header h1 { font-size: 1.3rem; letter-spacing: 0.5px; }
         
         .badges { background: rgba(245, 158, 11, 0.1); padding: 8px; text-align: center; font-size: 0.8rem; color: var(--accent); border-bottom: 1px solid var(--border); }
-        .badges p { font-size: 0.75rem; color: #94a3b8; margin-top: 2px; }
         
         .container { max-width: 600px; margin: 0 auto; padding: 1rem; }
         .section-title { font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); margin: 1rem 0 0.8rem 0; font-weight: bold; }
@@ -31,30 +30,40 @@
         .category-card, .service-card { background: var(--card-dark); border: 1px solid var(--border); border-radius: 12px; padding: 1rem; margin-bottom: 0.8rem; display: flex; align-items: center; justify-content: space-between; cursor: pointer; transition: 0.2s; }
         .category-card:active, .service-card:active { background: #283548; }
         
-        .card-left { display: flex; align-items: center; gap: 12px; }
-        .card-icon { font-size: 1.5rem; }
-        .card-title { font-size: 0.95rem; font-weight: bold; color: white; }
-        .card-price { text-align: right; }
+        .card-left { display: flex; align-items: center; gap: 12px; flex: 1; }
+        .icon-box { width: 55px; height: 55px; background: #0f172a; border: 2px solid #f59e0b66; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        
+        .card-info { flex: 1; }
+        .card-title { font-size: 0.9rem; font-weight: bold; color: white; display: block; margin-bottom: 2px; }
+        .card-price { text-align: right; min-width: 90px; }
         .price-ars { font-weight: bold; color: var(--accent); font-size: 0.95rem; display: block; }
         .price-usd { font-size: 0.75rem; color: var(--text-muted); display: block; }
+        .arrow { color: var(--accent); font-size: 1.1rem; margin-left: 10px; }
 
         .back-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; background: var(--card-dark); padding: 0.8rem 1rem; border-radius: 8px; border: 1px solid var(--border); }
         .btn-back { background: none; border: none; color: var(--accent); font-weight: bold; cursor: pointer; font-size: 0.9rem; }
+
+        /* Vista de Detalle de Servicio */
+        .detail-box { background: var(--card-dark); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; text-align: center; }
+        .detail-icon-large { width: 90px; height: 90px; background: #0f172a; border: 2px solid var(--accent); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem auto; font-size: 2.5rem; }
+        .detail-desc { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.2rem; text-align: left; }
+        .form-input { width: 100%; padding: 0.7rem; margin-bottom: 0.8rem; background: #0f172a; border: 1px solid var(--border); border-radius: 8px; color: white; font-size: 0.9rem; text-align: left; }
+        
+        .qty-container { display: flex; align-items: center; justify-content: space-between; background: #0f172a; border: 1px solid var(--border); border-radius: 8px; padding: 0.5rem 1rem; margin-bottom: 1rem; }
+        .qty-btn { background: var(--card-dark); color: var(--accent); border: 1px solid var(--border); width: 30px; height: 30px; border-radius: 6px; font-weight: bold; cursor: pointer; }
+        
+        .btn-agregar { width: 100%; background: var(--accent); color: #0f172a; border: none; padding: 0.8rem; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 0.95rem; }
+        .guarantee-box { background: #0f172a; border: 1px solid var(--border); border-radius: 8px; padding: 0.8rem; font-size: 0.75rem; color: var(--text-muted); text-align: left; margin-top: 1rem; }
 
         /* Opiniones */
         .review-box { background: var(--card-dark); border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem; margin-top: 1.5rem; }
         .review-title { text-align: center; color: var(--accent); font-size: 0.95rem; margin-bottom: 0.5rem; font-weight: bold; }
         .stars { text-align: center; color: var(--accent); font-size: 1.2rem; margin-bottom: 1rem; }
-        .form-input { width: 100%; padding: 0.7rem; margin-bottom: 0.8rem; background: #0f172a; border: 1px solid var(--border); border-radius: 8px; color: white; font-size: 0.9rem; }
         .btn-submit { width: 100%; background: var(--accent); color: #0f172a; border: none; padding: 0.7rem; border-radius: 8px; font-weight: bold; cursor: pointer; }
 
         /* Carrito flotante */
-        .cart-bar { position: fixed; bottom: 0; left: 0; right: 0; background: var(--card-dark); border-top: 1px solid var(--border); padding: 1rem; display: flex; justify-content: space-between; align-items: center; z-index: 100; }
+        .cart-bar { position: fixed; bottom: 0; left: 0; right: 0; background: var(--card-dark); border-top: 1px solid var(--border); padding: 1rem; display: flex; justify-content: space-between; align-items: center; z-index: 100; box-shadow: 0 -4px 10px rgba(0,0,0,0.3); }
         .btn-checkout { background: var(--success); color: white; border: none; padding: 0.7rem 1.2rem; border-radius: 8px; font-weight: bold; cursor: pointer; }
-
-        /* Modal */
-        .modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); z-index: 200; justify-content: center; align-items: center; padding: 1rem; }
-        .modal-content { background: var(--card-dark); width: 100%; max-width: 400px; border-radius: 16px; padding: 1.5rem; text-align: center; border: 1px solid var(--border); }
     </style>
 </head>
 <body>
@@ -68,7 +77,6 @@
 
     <div class="badges">
         ⚡ Taller Abierto — Recepción y reparación de dispositivos
-        <p>🔒 Pago 100% Protegido &nbsp;|&nbsp; 🛡️ 90 Días de Garantía</p>
     </div>
 
     <div class="container" id="main-container">
@@ -80,20 +88,7 @@
             <span style="font-size: 0.8rem; color: var(--text-muted); display:block;">Seleccionado:</span>
             <span id="cart-total-text" style="font-weight: bold; color: var(--accent);">0 servicios</span>
         </div>
-        <button class="btn-checkout" onclick="openCheckout()">Solicitar y Pagar</button>
-    </div>
-
-    <!-- Modal Final -->
-    <div class="modal" id="checkout-modal">
-        <div class="modal-content">
-            <h3 style="color: var(--accent); margin-bottom: 1rem;">Finalizar Solicitud</h3>
-            <div id="modal-form">
-                <input type="text" id="client-name" class="form-input" placeholder="Tu Nombre y Apellido">
-                <input type="text" id="client-device" class="form-input" placeholder="Modelo del equipo (ej: Moto E32 / PS4)">
-                <button class="btn-submit" onclick="sendWhatsApp()">📲 Enviar Pedido por WhatsApp</button>
-                <button onclick="closeModal()" style="background:none; border:none; color:var(--text-muted); margin-top:10px; cursor:pointer;">Cancelar</button>
-            </div>
-        </div>
+        <button class="btn-checkout" onclick="sendWhatsApp()">📲 Enviar Pedido por WhatsApp</button>
     </div>
 
     <script>
@@ -107,44 +102,45 @@
 
         const services = {
             "Celulares": [
-                { name: "Cambio de Pantalla / Módulo completo", ars: 25000, usd: 25 },
-                { name: "Cambio de Pin / Puerto de Carga", ars: 18000, usd: 18 },
-                { name: "Cambio de Batería Original/Genérica", ars: 20000, usd: 20 },
-                { name: "Cambio de Tapa Trasera (Moto E32, Moto G, Samsung, Xiaomi)", ars: 18000, usd: 18 },
-                { name: "Cambio de Cristales / Lentes de Cámara", ars: 12000, usd: 12 },
-                { name: "Reparación de Auricular / Micrófono", ars: 15000, usd: 15 },
-                { name: "Formateo, Software o Desbloqueo", ars: 15000, usd: 15 }
+                { name: "Cambio de Pantalla / Módulo completo", desc: "Reemplazo de pantalla táctil y display LCD/OLED roto o sin imagen.", ars: 25000, usd: 25, icon: "📱" },
+                { name: "Cambio de Pin / Puerto de Carga", desc: "Solución a problemas de carga, falsos contactos o puerto flojo.", ars: 18000, usd: 18, icon: "⚡" },
+                { name: "Cambio de Batería Original/Genérica", desc: "Batería nueva con prueba de rendimiento y autonomía óptima.", ars: 20000, usd: 20, icon: "🔋" },
+                { name: "Cambio de Tapa Trasera", desc: "Sustitución de carcasa o tapa trasera dañada.", ars: 18000, usd: 18, icon: "📲" },
+                { name: "Cambio de Cristales / Lentes de Cámara", desc: "Reparación de cristal externo de cámaras principales.", ars: 12000, usd: 12, icon: "📷" },
+                { name: "Reparación de Auricular / Micrófono", desc: "Solución para cuando no te escuchan o escuchas bajo.", ars: 15000, usd: 15, icon: "🗣️" },
+                { name: "Formateo, Software o Desbloqueo", desc: "Optimización de sistema, limpieza de virus y cuentas.", ars: 15000, usd: 15, icon: "💻" }
             ],
             "Computadoras": [
-                { name: "Instalación de Sistema Operativo Liviano + Optimización", ars: 20000, usd: 20 },
-                { name: "Mantenimiento Preventivo (Pasta Térmica + Limpieza)", ars: 30000, usd: 30 },
-                { name: "Formateo + Windows 11 / 10 + Office", ars: 22000, usd: 22 },
-                { name: "Cambio de Disco HDD a SSD ultrarrápido", ars: 28000, usd: 28 },
-                { name: "Cambio de Pantalla de Notebook", ars: 35000, usd: 35 },
-                { name: "Cambio de Teclado de Notebook", ars: 20000, usd: 20 },
-                { name: "Reparación / Reconstrucción de Bisagras", ars: 32000, usd: 32 },
-                { name: "Armado de PC Gamer / Escritorio", ars: 40000, usd: 40 }
+                { name: "Instalación de Sistema Operativo + Optimización", desc: "Mejora radical de velocidad y limpieza de archivos basura.", ars: 20000, usd: 20, icon: "💻" },
+                { name: "Mantenimiento Preventivo (Pasta Térmica + Limpieza)", desc: "Limpieza profunda de coolers y cambio de pasta disipadora.", ars: 30000, usd: 30, icon: "❄️" },
+                { name: "Formateo + Windows 11 / 10 + Office", desc: "Instalación limpia con paquete de programas esenciales.", ars: 22000, usd: 22, icon: "🪟" },
+                { name: "Cambio de Disco HDD a SSD ultrarrápido", desc: "Tu PC encenderá y abrirá programas 10 veces más rápido.", ars: 28000, usd: 28, icon: "💾" },
+                { name: "Cambio de Pantalla de Notebook", desc: "Displays nuevos originales compatibles con tu modelo.", ars: 35000, usd: 35, icon: "🖥️" },
+                { name: "Cambio de Teclado de Notebook", desc: "Solución a teclas rotas, ausentes o que no responden.", ars: 20000, usd: 20, icon: "⌨️" },
+                { name: "Reparación / Reconstrucción de Bisagras", desc: "Reparación de estructura plástica y anclajes rotos.", ars: 32000, usd: 32, icon: "🔧" },
+                { name: "Armado de PC Gamer / Escritorio", desc: "Ensamblaje profesional y prolijo de componentes.", ars: 40000, usd: 40, icon: "🚀" }
             ],
             "Auriculares": [
-                { name: "Cambio de Parlante / Bocina Interna (Bajo / Nulo volumen)", ars: 14000, usd: 14 },
-                { name: "Cambio de Placa Lógica / Circuito Bluetooth", ars: 16000, usd: 16 },
-                { name: "Cambio de Microbatería Interna (Auricular o Estuche)", ars: 15000, usd: 15 },
-                { name: "Cambio de Pin / Conector de Carga de Estuche", ars: 12000, usd: 12 },
-                { name: "Reparación de Ficha Jack 3.5mm / Cable", ars: 10000, usd: 10 }
+                { name: "Cambio de Parlante / Bocina Interna", desc: "Solución a sonido distorsionado, bajo o nulo volumen.", ars: 14000, usd: 14, icon: "🔊" },
+                { name: "Cambio de Placa Lógica / Circuito Bluetooth", desc: "Arreglo de fallas de emparejamiento o encendido.", ars: 16000, usd: 16, icon: "📡" },
+                { name: "Cambio de Microbatería Interna (TWS / Estuche)", desc: "Recupera la autonomía original de tus auriculares inalámbricos.", ars: 15000, usd: 15, icon: "🔋" },
+                { name: "Cambio de Pin de Carga de Estuche", desc: "Reparación del conector USB de la caja de carga.", ars: 12000, usd: 12, icon: "⚡" },
+                { name: "Reparación de Ficha Jack 3.5mm / Cable", desc: "Cambio de ficha o re cableado en auriculares con cable.", ars: 10000, usd: 10, icon: "🔌" }
             ],
             "Consolas": [
-                { name: "Limpieza Profunda + Pasta Térmica (PS4 / PS5 / Xbox)", ars: 35000, usd: 35 },
-                { name: "Reparación de Joystick: Drift Analógico", ars: 18000, usd: 18 }
+                { name: "Limpieza Profunda + Pasta Térmica (PS4 / PS5 / Xbox)", desc: "Evita ruidos molestos, calentamiento y apagones repentinos.", ars: 35000, usd: 35, icon: "❄️" },
+                { name: "Reparación de Joystick: Drift Analógico", desc: "Solución definitiva al movimiento involuntario de los joysticks.", ars: 18000, usd: 18, icon: "🎮" }
             ],
             "Otros": [
-                { name: "Diagnóstico General y Presupuesto en Taller", ars: 8000, usd: 8 },
-                { name: "Reparación de Cargador o Fuente Externa", ars: 12000, usd: 12 }
+                { name: "Diagnóstico General y Presupuesto en Taller", desc: "Revisión técnica detallada para identificar fallas complejas.", ars: 8000, usd: 8, icon: "🔍" },
+                { name: "Reparación de Cargador o Fuente Externa", desc: "Arreglo de fuentes de alimentación de notebooks o consolas.", ars: 12000, usd: 12, icon: "🔌" }
             ]
         };
 
         let currentCategory = null;
         let selectedService = null;
-        const phoneTaller = "5493549000000"; // Reemplaza con tu número real
+        let quantity = 1;
+        const phoneTaller = "5493549000000";
 
         function render() {
             const container = document.getElementById('main-container');
@@ -155,10 +151,10 @@
                     html += `
                         <div class="category-card" onclick="selectCategory('${cat.id}')">
                             <div class="card-left">
-                                <span class="card-icon">${cat.icon}</span>
-                                <span class="card-title">${cat.name}</span>
+                                <div class="icon-box"><span style="font-size:1.5rem">${cat.icon}</span></div>
+                                <span class="card-title" style="font-size:1rem">${cat.name}</span>
                             </div>
-                            <span>➔</span>
+                            <span class="arrow">➔</span>
                         </div>
                     `;
                 });
@@ -167,14 +163,12 @@
                     <div class="review-box">
                         <div class="review-title">⭐ Deja tu Calificación y Opinión</div>
                         <div class="stars">★★★★★</div>
-                        <input type="text" class="form-input" placeholder="Tu Nombre">
-                        <input type="text" class="form-input" placeholder="Escribe tu opinión sobre nuestro servicio técnico...">
                         <button class="btn-submit" onclick="alert('¡Gracias por tu opinión!')">Publicar Opinión</button>
                     </div>
                 `;
                 container.innerHTML = html;
                 document.getElementById('cart-bar').style.display = 'none';
-            } else {
+            } else if (!selectedService) {
                 let html = `
                     <div class="back-bar">
                         <button class="btn-back" onclick="currentCategory=null; render()">← Volver</button>
@@ -184,47 +178,96 @@
                 `;
                 
                 services[currentCategory].forEach((s, idx) => {
-                    let isSelected = selectedService === s;
                     html += `
-                        <div class="service-card" style="border: ${isSelected ? '2px solid var(--success)' : '1px solid var(--border)'}" onclick="toggleService(${idx})">
+                        <div class="service-card" onclick="openDetail(${idx})">
                             <div class="card-left">
-                                <span class="card-title">${s.name}</span>
+                                <div class="icon-box"><span style="font-size:1.3rem">${s.icon}</span></div>
+                                <div class="card-info">
+                                    <span class="card-title">${s.name}</span>
+                                </div>
                             </div>
-                            <div class="card-price">
-                                <span class="price-ars">$${s.ars.toLocaleString()}</span>
-                                <span class="price-usd">(USD $${s.usd})</span>
+                            <div style="display:flex; align-items:center;">
+                                <div class="card-price">
+                                    <span class="price-ars">$${s.ars.toLocaleString()}</span>
+                                    <span class="price-usd">(USD $${s.usd})</span>
+                                </div>
+                                <span class="arrow">➔</span>
                             </div>
                         </div>
                     `;
                 });
+                container.innerHTML = html;
+                document.getElementById('cart-bar').style.display = 'none';
+            } else {
+                let totalArs = selectedService.ars * quantity;
+                let totalUsd = selectedService.usd * quantity;
+                let html = `
+                    <div class="back-bar">
+                        <button class="btn-back" onclick="selectedService=null; render()">← Volver</button>
+                        <span style="font-weight:bold; font-size:0.9rem; color:var(--accent);">DETALLE DEL SERVICIO</span>
+                    </div>
+                    <div class="detail-box">
+                        <div class="detail-icon-large">${selectedService.icon}</div>
+                        <h3 style="color:white; margin-bottom:0.5rem; font-size:1.1rem;">${selectedService.name}</h3>
+                        <p class="detail-desc">${selectedService.desc}</p>
+                        
+                        <div style="background:#0f172a; border:1px solid var(--border); border-radius:10px; padding:0.8rem; margin-bottom:1rem; text-align:right;">
+                            <span class="price-ars" style="font-size:1.2rem;">$${selectedService.ars.toLocaleString()}</span>
+                            <span class="price-usd">(USD $${selectedService.usd})</span>
+                        </div>
+
+                        <input type="text" id="client-name" class="form-input" placeholder="Tu Nombre y Apellido">
+                        <input type="text" id="client-device" class="form-input" placeholder="Modelo exacto (ej: Moto E32, PS4, Lenovo)">
+                        <input type="text" id="client-obs" class="form-input" placeholder="Observaciones o fallas (Opcional)">
+                        
+                        <div style="text-align:left; font-size:0.8rem; color:var(--text-muted); margin-bottom:0.3rem;">Cantidad de aparatos:</div>
+                        <div class="qty-container">
+                            <button class="qty-btn" onclick="changeQty(-1)">-</button>
+                            <span id="qty-val" style="font-weight:bold; font-size:1.1rem;">${quantity}</span>
+                            <button class="qty-btn" onclick="changeQty(1)">+</button>
+                        </div>
+
+                        <button class="btn-agregar" onclick="addToCart()">Agregar ($${totalArs.toLocaleString()} / USD $${totalUsd})</button>
+
+                        <div class="guarantee-box">
+                            🛡️ <strong>Servicio Garantizado:</strong> Repuestos probados y de alta calidad. Incluye recibo técnico y garantía por escrito.
+                        </div>
+                    </div>
+                `;
                 container.innerHTML = html;
             }
         }
 
         function selectCategory(catId) {
             currentCategory = catId;
+            selectedService = null;
             render();
         }
 
-        function toggleService(idx) {
+        function openDetail(idx) {
             selectedService = services[currentCategory][idx];
+            quantity = 1;
             render();
+        }
+
+        function changeQty(amount) {
+            quantity += amount;
+            if (quantity < 1) quantity = 1;
+            render();
+        }
+
+        function addToCart() {
             document.getElementById('cart-bar').style.display = 'flex';
-            document.getElementById('cart-total-text').innerText = selectedService.name;
-        }
-
-        function openCheckout() {
-            document.getElementById('checkout-modal').style.display = 'flex';
-        }
-
-        function closeModal() {
-            document.getElementById('checkout-modal').style.display = 'none';
+            document.getElementById('cart-total-text').innerText = `${quantity}x ${selectedService.name}`;
+            alert("¡Servicio seleccionado! Toca el botón verde abajo para enviar tu pedido por WhatsApp.");
         }
 
         function sendWhatsApp() {
             const name = document.getElementById('client-name').value || "Cliente";
             const device = document.getElementById('client-device').value || "Dispositivo";
-            const msg = `Hola OmniFix! Soy ${name}. Mi equipo es un ${device}. Quiero solicitar el servicio de: ${selectedService.name} por un valor de $${selectedService.ars}.`;
+            const obs = document.getElementById('client-obs').value || "Ninguna";
+            let totalArs = selectedService.ars * quantity;
+            const msg = `Hola OmniFix! Soy ${name}. Mi equipo es un ${device}. Servicio: ${quantity}x ${selectedService.name}. Obs: ${obs}. Total: $${totalArs.toLocaleString()}.`;
             window.open(`https://wa.me/${phoneTaller}?text=${encodeURIComponent(msg)}`, '_blank');
         }
 

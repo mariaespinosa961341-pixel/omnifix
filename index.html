@@ -13,6 +13,8 @@
             --text-light: #ffffff;
             --text-muted: #94a3b8;
             --success: #10b981;
+            --mercadopago: #009ee3;
+            --paypal: #0070ba;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background-color: var(--bg-dark); color: var(--text-light); line-height: 1.5; padding-bottom: 90px; }
@@ -24,26 +26,55 @@
         
         .badges { background: #d97706; color: #111; padding: 6px; text-align: center; font-size: 0.8rem; font-weight: bold; }
         .sub-badges { background: var(--card-dark); padding: 7px; text-align: center; font-size: 0.75rem; color: #34d399; border-bottom: 1px solid var(--card-border); display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
-        .rating-banner { background: var(--card-dark); text-align: center; padding: 6px; font-size: 0.75rem; color: var(--accent); border-bottom: 1px solid var(--card-border); font-weight: bold; }
+        .rating-banner { background: var(--card-dark); text-align: center; padding: 6px; font-size: 0.75rem; color: var(--accent); border-bottom: 1px solid var(--card-border); font-weight: bold; cursor: pointer; }
 
         .container { max-width: 600px; margin: 0 auto; padding: 1rem; }
         .section-title { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1.2px; color: var(--accent); margin: 0.8rem 0; font-weight: 800; }
         
-        .category-card { background: var(--card-dark); border: 1px solid var(--card-border); border-radius: 14px; padding: 0.9rem 1rem; margin-bottom: 0.75rem; display: flex; align-items: center; justify-content: space-between; text-decoration: none; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.2); }
-        .category-card:active { background: #1a2642; }
+        .category-card, .service-card { background: var(--card-dark); border: 1px solid var(--card-border); border-radius: 14px; padding: 0.9rem 1rem; margin-bottom: 0.75rem; display: flex; align-items: center; justify-content: space-between; cursor: pointer; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.2); }
+        .category-card:active, .service-card:active { background: #1a2642; }
         
         .card-left { display: flex; align-items: center; gap: 14px; flex: 1; }
         .icon-box { width: 56px; height: 56px; background: #0b1120; border: 1px solid #2a3650; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
         .icon-box svg { width: 32px; height: 32px; }
 
+        .card-info { flex: 1; }
         .card-title { font-size: 0.9rem; font-weight: 700; color: white; display: block; line-height: 1.3; }
+        
+        .card-price { text-align: right; min-width: 95px; }
+        .price-ars { font-weight: 800; color: var(--accent); font-size: 0.95rem; display: block; }
+        .price-usd { font-size: 0.72rem; color: #34d399; display: block; font-weight: 600; }
         .arrow { color: var(--accent); font-size: 1.2rem; margin-left: 12px; font-weight: bold; }
+
+        .back-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; background: var(--card-dark); padding: 0.8rem 1rem; border-radius: 10px; border: 1px solid var(--card-border); }
+        .btn-back { background: none; border: none; color: var(--accent); font-weight: bold; cursor: pointer; font-size: 0.9rem; }
+
+        .detail-box { background: var(--card-dark); border: 1px solid var(--card-border); border-radius: 16px; padding: 1.5rem; text-align: center; }
+        .detail-icon-large { width: 90px; height: 90px; background: #0b1120; border: 2px solid var(--accent); border-radius: 18px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem auto; }
+        .detail-icon-large svg { width: 50px; height: 50px; }
+        
+        .detail-desc { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.2rem; text-align: left; line-height: 1.4; }
+        .form-input { width: 100%; padding: 0.75rem; margin-bottom: 0.8rem; background: #0b1120; border: 1px solid var(--card-border); border-radius: 10px; color: white; font-size: 0.9rem; text-align: left; }
+        
+        .qty-container { display: flex; align-items: center; justify-content: space-between; background: #0b1120; border: 1px solid var(--card-border); border-radius: 10px; padding: 0.5rem 1rem; margin-bottom: 1rem; }
+        .qty-btn { background: var(--card-dark); color: var(--accent); border: 1px solid var(--card-border); width: 34px; height: 34px; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 1.1rem; }
+        
+        .btn-agregar { width: 100%; background: var(--accent); color: #0b1120; border: none; padding: 0.85rem; border-radius: 10px; font-weight: 800; cursor: pointer; font-size: 0.95rem; }
+        .guarantee-box { background: #0b1120; border: 1px solid var(--card-border); border-radius: 10px; padding: 0.9rem; font-size: 0.75rem; color: var(--text-muted); text-align: left; margin-top: 1rem; display: flex; gap: 8px; align-items: flex-start; }
 
         .review-box { background: var(--card-dark); border: 1px solid var(--card-border); border-radius: 14px; padding: 1.2rem; margin-top: 1.5rem; }
         .review-title { text-align: center; color: var(--accent); font-size: 0.95rem; margin-bottom: 0.4rem; font-weight: bold; }
-        .interactive-stars { text-align: center; font-size: 1.6rem; margin-bottom: 0.8rem; cursor: pointer; color: var(--accent); }
-        .form-input { width: 100%; padding: 0.75rem; margin-bottom: 0.8rem; background: #0b1120; border: 1px solid var(--card-border); border-radius: 10px; color: white; font-size: 0.9rem; }
+        .interactive-stars { text-align: center; font-size: 1.8rem; margin-bottom: 0.8rem; cursor: pointer; color: #475569; }
+        .interactive-stars span.rated { color: var(--accent); }
         .btn-submit { background: var(--accent); color: #0b1120; border: none; width: 100%; padding: 0.75rem; border-radius: 10px; font-weight: bold; cursor: pointer; }
+
+        .modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); z-index: 200; justify-content: center; align-items: center; padding: 1rem; }
+        .modal-content { background: var(--card-dark); width: 100%; max-width: 400px; border-radius: 16px; padding: 1.5rem; text-align: center; border: 1px solid var(--card-border); }
+        .btn-mp { background: var(--mercadopago); color: white; width: 100%; padding: 0.85rem; border: none; border-radius: 10px; font-weight: 800; font-size: 0.95rem; cursor: pointer; margin-bottom: 0.6rem; }
+        .btn-paypal { background: var(--paypal); color: white; width: 100%; padding: 0.85rem; border: none; border-radius: 10px; font-weight: 800; font-size: 0.95rem; cursor: pointer; margin-bottom: 0.6rem; }
+
+        .cart-bar { position: fixed; bottom: 0; left: 0; right: 0; background: var(--card-dark); border-top: 1px solid var(--card-border); padding: 1rem; display: flex; justify-content: space-between; align-items: center; z-index: 100; box-shadow: 0 -4px 15px rgba(0,0,0,0.4); }
+        .btn-checkout { background: var(--success); color: white; border: none; padding: 0.75rem 1.3rem; border-radius: 10px; font-weight: 800; cursor: pointer; font-size: 0.9rem; }
     </style>
 </head>
 <body>
@@ -62,69 +93,158 @@
         <span>🔒 Pago 100% Protegido</span>
         <span>🛡️ 90 Días de Garantía Escrita</span>
     </div>
-    <div class="rating-banner">⭐ Calificado con excelencia</div>
+    <div class="rating-banner" onclick="scrollToReview()">⭐ Dejanos tu Opinión</div>
 
-    <div class="container">
-        <div class="section-title">Categorías</div>
+    <div class="container" id="main-container">
+        <!-- Renderizado dinámico -->
+    </div>
 
-        <a href="#celulares" class="category-card">
-            <div class="card-left">
-                <div class="icon-box">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.8"><rect x="6" y="2" width="12" height="20" rx="2"/><line x1="10" y1="18" x2="14" y2="18"/></svg>
-                </div>
-                <span class="card-title">CELULARES Y TABLETS</span>
-            </div>
-            <span class="arrow">➔</span>
-        </a>
+    <div class="cart-bar" id="cart-bar" style="display:none;">
+        <div>
+            <span style="font-size: 0.75rem; color: var(--text-muted); display:block;">Seleccionado:</span>
+            <span id="cart-total-text" style="font-weight: bold; color: var(--accent); font-size: 0.85rem;">0 servicios</span>
+        </div>
+        <button class="btn-checkout" onclick="openPaymentModal()">💳 Pagar / Solicitar</button>
+    </div>
 
-        <a href="#computadoras" class="category-card">
-            <div class="card-left">
-                <div class="icon-box">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.8"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M2 19h20"/></svg>
-                </div>
-                <span class="card-title">COMPUTADORAS Y LAPTOPS</span>
-            </div>
-            <span class="arrow">➔</span>
-        </a>
-
-        <a href="#auriculares" class="category-card">
-            <div class="card-left">
-                <div class="icon-box">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.8"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
-                </div>
-                <span class="card-title">AURICULARES Y AUDIO</span>
-            </div>
-            <span class="arrow">➔</span>
-        </a>
-
-        <a href="#consolas" class="category-card">
-            <div class="card-left">
-                <div class="icon-box">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="1.8"><rect x="2" y="6" width="20" height="12" rx="4"/><circle cx="8" cy="12" r="1.5" fill="#34d399"/><circle cx="16" cy="11" r="1" fill="#f59e0b"/></svg>
-                </div>
-                <span class="card-title">CONSOLAS Y JOYSTICKS</span>
-            </div>
-            <span class="arrow">➔</span>
-        </a>
-
-        <a href="#otros" class="category-card">
-            <div class="card-left">
-                <div class="icon-box">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.8"><path d="M6 3v6M18 3v6M4 9h16v3a8 8 0 0 1-16 0V9zM12 17v4"/></svg>
-                </div>
-                <span class="card-title">OTROS DISPOSITIVOS</span>
-            </div>
-            <span class="arrow">➔</span>
-        </a>
-
-        <div class="review-box">
-            <div class="review-title">⭐ Deja tu Calificación y Opinión</div>
-            <div class="interactive-stars">★★★★★</div>
-            <input type="text" class="form-input" placeholder="Tu Nombre">
-            <input type="text" class="form-input" placeholder="Escribe tu opinión...">
-            <button class="btn-submit" onclick="alert('¡Gracias por tu opinión!')">Publicar Opinión</button>
+    <div class="modal" id="payment-modal">
+        <div class="modal-content">
+            <h3 style="color: var(--accent); margin-bottom: 0.5rem; font-size: 1.2rem;">Elige Medio de Pago</h3>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1.2rem;" id="modal-total-display">Total calculado</p>
+            
+            <button class="btn-mp" onclick="checkoutAction('Mercado Pago')">💙 Pagar con Mercado Pago</button>
+            <button class="btn-paypal" onclick="checkoutAction('PayPal')">💙 Pagar con PayPal (USD)</button>
+            <button onclick="closePaymentModal()" style="background:none; border:none; color:var(--text-muted); margin-top:10px; cursor:pointer; font-size:0.85rem;">Cancelar</button>
         </div>
     </div>
 
-</body>
-</html>
+    <script>
+        const svgPhone = `<svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.8"><rect x="6" y="2" width="12" height="20" rx="2"/><line x1="10" y1="18" x2="14" y2="18"/><line x1="9" y1="6" x2="15" y2="12" stroke="#10b981" stroke-width="2"/></svg>`;
+        const svgPin = `<svg viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="1.8"><rect x="5" y="6" width="14" height="10" rx="2"/><path d="M10 12h4" stroke-width="2"/><path d="M12 16v3" stroke="#10b981" stroke-width="2"/><path d="M10.5 18.5h3" stroke="#10b981" stroke-width="2"/></svg>`;
+        const svgBattery = `<svg viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="1.8"><rect x="4" y="6" width="16" height="12" rx="2"/><path d="M22 10v4"/><text x="7.5" y="14.5" fill="#34d399" font-size="7" font-weight="bold">Li-ion</text></svg>`;
+        const svgLaptop = `<svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.8"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M2 19h20"/></svg>`;
+        const svgAudio = `<svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.8"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>`;
+        const svgGamepad = `<svg viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="1.8"><rect x="2" y="6" width="20" height="12" rx="4"/><circle cx="8" cy="12" r="1.5" fill="#34d399"/><circle cx="16" cy="11" r="1" fill="#f59e0b"/><circle cx="16" cy="14" r="1" fill="#f59e0b"/></svg>`;
+        const svgPlug = `<svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.8"><path d="M6 3v6M18 3v6M4 9h16v3a8 8 0 0 1-16 0V9zM12 17v4"/></svg>`;
+
+        const categories = [
+            { id: "Celulares", name: "CELULARES Y TABLETS", icon: svgPhone },
+            { id: "Computadoras", name: "COMPUTADORAS Y LAPTOPS", icon: svgLaptop },
+            { id: "Auriculares", name: "AURICULARES Y AUDIO", icon: svgAudio },
+            { id: "Consolas", name: "CONSOLAS Y JOYSTICKS", icon: svgGamepad },
+            { id: "Otros", name: "OTROS DISPOSITIVOS", icon: svgPlug }
+        ];
+
+        const services = {
+            "Celulares": [
+                { name: "Cambio de Pantalla / Módulo completo", desc: "Reemplazo de pantalla táctil y display LCD/OLED roto o sin imagen.", ars: 25000, usd: 25, icon: svgPhone },
+                { name: "Cambio de Pin / Puerto de Carga", desc: "Solución a problemas de carga, falsos contactos o puerto flojo.", ars: 18000, usd: 18, icon: svgPin },
+                { name: "Cambio de Batería Original/Genérica", desc: "Batería nueva con prueba de rendimiento y autonomía óptima.", ars: 20000, usd: 20, icon: svgBattery },
+                { name: "Cambio de Tapa Trasera", desc: "Sustitución de carcasa o tapa trasera dañada.", ars: 18000, usd: 18, icon: svgPhone },
+                { name: "Cambio de Cristales / Lentes de Cámara", desc: "Reparación de cristal externo de cámaras principales.", ars: 12000, usd: 12, icon: svgPin },
+                { name: "Reparación de Auricular / Micrófono", desc: "Solución para cuando no te escuchan o escuchas bajo.", ars: 15000, usd: 15, icon: svgAudio },
+                { name: "Formateo, Software o Desbloqueo", desc: "Optimización de sistema, limpieza de virus y cuentas.", ars: 15000, usd: 15, icon: svgLaptop }
+            ],
+            "Computadoras": [
+                { name: "Instalación de Sistema Operativo Liviano + Optimización", desc: "Mejora radical de velocidad y limpieza de archivos basura.", ars: 20000, usd: 20, icon: svgLaptop },
+                { name: "Mantenimiento Preventivo (Pasta Térmica + Limpieza)", desc: "Limpieza profunda de coolers y cambio de pasta disipadora.", ars: 30000, usd: 30, icon: svgPlug },
+                { name: "Formateo + Windows 11 / 10 + Office", desc: "Instalación limpia con paquete de programas esenciales.", ars: 22000, usd: 22, icon: svgLaptop },
+                { name: "Cambio de Disco HDD a SSD ultrarrápido", desc: "Tu PC encenderá y abrirá programas 10 veces más rápido.", ars: 28000, usd: 28, icon: svgBattery },
+                { name: "Cambio de Pantalla de Notebook", desc: "Displays nuevos originales compatibles con tu modelo.", ars: 35000, usd: 35, icon: svgPhone },
+                { name: "Cambio de Teclado de Notebook", desc: "Solución a teclas rotas, ausentes o que no responden.", ars: 20000, usd: 20, icon: svgLaptop },
+                { name: "Reparación / Reconstrucción de Bisagras", desc: "Reparación de estructura plástica y anclajes rotos.", ars: 32000, usd: 32, icon: svgPlug },
+                { name: "Armado de PC Gamer / Escritorio", desc: "Ensamblaje profesional y prolijo de componentes.", ars: 40000, usd: 40, icon: svgLaptop }
+            ],
+            "Auriculares": [
+                { name: "Cambio de Parlante / Bocina Interna", desc: "Solución a sonido distorsionado, bajo o nulo volumen.", ars: 14000, usd: 14, icon: svgAudio },
+                { name: "Cambio de Placa Lógica / Circuito Bluetooth", desc: "Arreglo de fallas de emparejamiento o encendido.", ars: 16000, usd: 16, icon: svgPin },
+                { name: "Cambio de Microbatería Interna (Auricular o Estuche)", desc: "Recupera la autonomía original de tus auriculares inalámbricos.", ars: 15000, usd: 15, icon: svgBattery },
+                { name: "Cambio de Pin / Conector de Carga de Estuche", desc: "Reparación del conector USB de la caja de carga.", ars: 12000, usd: 12, icon: svgPin },
+                { name: "Reparación de Ficha Jack 3.5mm / Cable", desc: "Cambio de ficha o re cableado en auriculares con cable.", ars: 10000, usd: 10, icon: svgPlug }
+            ],
+            "Consolas": [
+                { name: "Limpieza Profunda + Pasta Térmica (PS4 / PS5 / Xbox)", desc: "Evita ruidos molestos, calentamiento y apagones repentinos.", ars: 35000, usd: 35, icon: svgPlug },
+                { name: "Reparación de Joystick: Drift Analógico", desc: "Solución definitiva al movimiento involuntario de los joysticks.", ars: 18000, usd: 18, icon: svgGamepad }
+            ],
+            "Otros": [
+                { name: "Diagnóstico General y Presupuesto en Taller", desc: "Revisión técnica detallada para identificar fallas complejas.", ars: 8000, usd: 8, icon: svgPlug },
+                { name: "Reparación de Cargador o Fuente Externa", desc: "Arreglo de fuentes de alimentación de notebooks o consolas.", ars: 12000, usd: 12, icon: svgPin }
+            ]
+        };
+
+        let currentCategory = null;
+        let selectedService = null;
+        let quantity = 1;
+        let currentRating = 0;
+        const phoneTaller = "5493549000000";
+
+        function render() {
+            const container = document.getElementById('main-container');
+            if (!container) return;
+            
+            if (!currentCategory) {
+                let html = `<div class="section-title">Categorías</div>`;
+                categories.forEach(cat => {
+                    html += `
+                        <div class="category-card" onclick="selectCategory('${cat.id}')">
+                            <div class="card-left">
+                                <div class="icon-box">${cat.icon}</div>
+                                <span class="card-title" style="font-size:0.95rem">${cat.name}</span>
+                            </div>
+                            <span class="arrow">➔</span>
+                        </div>
+                    `;
+                });
+
+                html += `
+                    <div class="review-box" id="review-section">
+                        <div class="review-title">⭐ Deja tu Calificación y Opinión</div>
+                        <div class="interactive-stars" id="star-container">
+                            <span onclick="setRating(1)">★</span><span onclick="setRating(2)">★</span><span onclick="setRating(3)">★</span><span onclick="setRating(4)">★</span><span onclick="setRating(5)">★</span>
+                        </div>
+                        <input type="text" id="review-name" class="form-input" placeholder="Tu Nombre">
+                        <input type="text" id="review-text" class="form-input" placeholder="Escribe tu opinión sobre nuestro servicio técnico...">
+                        <button class="btn-submit" onclick="submitReview()">Publicar Opinión</button>
+                    </div>
+                `;
+                container.innerHTML = html;
+                const cartBar = document.getElementById('cart-bar');
+                if(cartBar) cartBar.style.display = 'none';
+            } else if (!selectedService) {
+                let html = `
+                    <div class="back-bar">
+                        <button class="btn-back" onclick="currentCategory=null; render()">← Volver</button>
+                        <span style="font-weight:800; font-size:0.85rem; color:var(--accent); letter-spacing:1px;">${currentCategory.toUpperCase()}</span>
+                    </div>
+                    <div class="section-title">Selecciona un Servicio</div>
+                `;
+                
+                services[currentCategory].forEach((s, idx) => {
+                    html += `
+                        <div class="service-card" onclick="openDetail(${idx})">
+                            <div class="card-left">
+                                <div class="icon-box">${s.icon}</div>
+                                <div class="card-info">
+                                    <span class="card-title">${s.name}</span>
+                                </div>
+                            </div>
+                            <div style="display:flex; align-items:center;">
+                                <div class="card-price">
+                                    <span class="price-ars">$${s.ars.toLocaleString()}</span>
+                                    <span class="price-usd">(USD $${s.usd})</span>
+                                </div>
+                                <span class="arrow">➔</span>
+                            </div>
+                        </div>
+                    `;
+                });
+                container.innerHTML = html;
+                const cartBar = document.getElementById('cart-bar');
+                if(cartBar) cartBar.style.display = 'none';
+            } else {
+                let totalArs = selectedService.ars * quantity;
+                let totalUsd = selectedService.usd * quantity;
+                let html = `
+                    <div class="back-bar">
+                        <button class="btn-back" onclick="selectedService=null; render()">← Volver</button>
+                      

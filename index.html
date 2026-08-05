@@ -184,22 +184,8 @@
         let currentRating = 0;
         const phoneTaller = "5493549589088";
 
-        // Carga segura con validación para evitar bloqueos por memoria corrupta
-        const savedCart = localStorage.getItem('omni_last_service');
-        if (savedCart) {
-            try {
-                const parsed = JSON.parse(savedCart);
-                if (parsed && parsed.category && services[parsed.category]) {
-                    currentCategory = parsed.category;
-                    selectedService = parsed.service;
-                    quantity = parsed.qty || 1;
-                } else {
-                    localStorage.removeItem('omni_last_service');
-                }
-            } catch(e) {
-                localStorage.removeItem('omni_last_service');
-            }
-        }
+        // Limpiamos cualquier rastro viejo para asegurar que siempre inicie en categorías
+        localStorage.removeItem('omni_last_service');
 
         function render() {
             const container = document.getElementById('main-container');
@@ -248,7 +234,7 @@
             } else if (!selectedService) {
                 let html = `
                     <div class="back-bar">
-                        <button class="btn-back" onclick="currentCategory=null; saveState(); render()">← Volver</button>
+                        <button class="btn-back" onclick="currentCategory=null; render()">← Volver</button>
                         <span style="font-weight:800; font-size:0.85rem; color:var(--accent); letter-spacing:1px;">${currentCategory.toUpperCase()}</span>
                     </div>
                     <div class="section-title">Selecciona un Servicio</div>
@@ -258,4 +244,12 @@
                     html += `
                         <div class="service-card" onclick="openDetail(${idx})">
                             <div class="card-left">
-       
+                                <div class="icon-box">${s.icon}</div>
+                                <div class="card-info">
+                                    <span class="card-title">${s.name}</span>
+                                </div>
+                            </div>
+                            <div style="display:flex; align-items:center;">
+                                <div class="card-price">
+                                    <span class="price-ars">$${s.ars.toLocaleString()}</span>
+                                    <span class="price-usd">(USD $${s.us

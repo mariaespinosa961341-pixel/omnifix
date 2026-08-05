@@ -105,9 +105,49 @@
         <button class="banner-btn" onclick="scrollToReview()">⭐ Dejar Opinión</button>
     </div>
 
+    <!-- Contenedor con las categorías ya listas por defecto -->
     <div class="container" id="main-container">
-        <!-- Cargando categorías por defecto para evitar pantallas negras -->
-        <div style="text-align:center; padding: 2rem; color: #94a3b8;">Cargando servicios...</div>
+        <div class="section-title">Categorías de Servicios</div>
+        
+        <div class="category-card" onclick="selectCategory('Celulares')">
+            <div class="card-left">
+                <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.8"><rect x="6" y="2" width="12" height="20" rx="2"/><line x1="10" y1="18" x2="14" y2="18"/><line x1="9" y1="6" x2="15" y2="12" stroke="#10b981" stroke-width="2"/></svg></div>
+                <span class="card-title">CELULARES Y TABLETS</span>
+            </div>
+            <span class="arrow">➔</span>
+        </div>
+
+        <div class="category-card" onclick="selectCategory('Computadoras')">
+            <div class="card-left">
+                <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.8"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M2 19h20"/></svg></div>
+                <span class="card-title">COMPUTADORAS Y LAPTOPS</span>
+            </div>
+            <span class="arrow">➔</span>
+        </div>
+
+        <div class="category-card" onclick="selectCategory('Auriculares')">
+            <div class="card-left">
+                <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.8"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg></div>
+                <span class="card-title">AURICULARES Y AUDIO</span>
+            </div>
+            <span class="arrow">➔</span>
+        </div>
+
+        <div class="category-card" onclick="selectCategory('Consolas')">
+            <div class="card-left">
+                <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="1.8"><rect x="2" y="6" width="20" height="12" rx="4"/><circle cx="8" cy="12" r="1.5" fill="#34d399"/><circle cx="16" cy="11" r="1" fill="#f59e0b"/><circle cx="16" cy="14" r="1" fill="#f59e0b"/></svg></div>
+                <span class="card-title">CONSOLAS Y JOYSTICKS</span>
+            </div>
+            <span class="arrow">➔</span>
+        </div>
+
+        <div class="category-card" onclick="selectCategory('Otros')">
+            <div class="card-left">
+                <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.8"><path d="M6 3v6M18 3v6M4 9h16v3a8 8 0 0 1-16 0V9zM12 17v4"/></svg></div>
+                <span class="card-title">OTROS DISPOSITIVOS</span>
+            </div>
+            <span class="arrow">➔</span>
+        </div>
     </div>
 
     <div class="cart-bar" id="cart-bar" style="display:none;">
@@ -128,133 +168,123 @@
     </div>
 
     <script>
-        const svgPhone = '<svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.8"><rect x="6" y="2" width="12" height="20" rx="2"/><line x1="10" y1="18" x2="14" y2="18"/><line x1="9" y1="6" x2="15" y2="12" stroke="#10b981" stroke-width="2"/></svg>';
-        const svgPin = '<svg viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="1.8"><rect x="5" y="6" width="14" height="10" rx="2"/><path d="M10 12h4" stroke-width="2"/><path d="M12 16v3" stroke="#10b981" stroke-width="2"/><path d="M10.5 18.5h3" stroke="#10b981" stroke-width="2"/></svg>';
-        const svgBattery = '<svg viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="1.8"><rect x="4" y="6" width="16" height="12" rx="2"/><path d="M22 10v4"/><text x="7.5" y="14.5" fill="#34d399" font-size="7" font-weight="bold">Li-ion</text></svg>';
-        const svgLaptop = '<svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.8"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M2 19h20"/></svg>';
-        const svgAudio = '<svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.8"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>';
-        const svgGamepad = '<svg viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="1.8"><rect x="2" y="6" width="20" height="12" rx="4"/><circle cx="8" cy="12" r="1.5" fill="#34d399"/><circle cx="16" cy="11" r="1" fill="#f59e0b"/><circle cx="16" cy="14" r="1" fill="#f59e0b"/></svg>';
-        const svgPlug = '<svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.8"><path d="M6 3v6M18 3v6M4 9h16v3a8 8 0 0 1-16 0V9zM12 17v4"/></svg>';
-
-        const categories = [
-            { id: "Celulares", name: "CELULARES Y TABLETS", icon: svgPhone },
-            { id: "Computadoras", name: "COMPUTADORAS Y LAPTOPS", icon: svgLaptop },
-            { id: "Auriculares", name: "AURICULARES Y AUDIO", icon: svgAudio },
-            { id: "Consolas", name: "CONSOLAS Y JOYSTICKS", icon: svgGamepad },
-            { id: "Otros", name: "OTROS DISPOSITIVOS", icon: svgPlug }
-        ];
-
         const services = {
             "Celulares": [
-                { name: "Cambio de Pantalla / Módulo completo", desc: "Reemplazo de pantalla táctil y display roto o sin imagen.", ars: 25000, usd: 25, icon: svgPhone },
-                { name: "Cambio de Pin / Puerto de Carga", desc: "Solución a problemas de carga, falsos contactos o puerto flojo.", ars: 18000, usd: 18, icon: svgPin },
-                { name: "Cambio de Batería Original/Genérica", desc: "Batería nueva con prueba de rendimiento y autonomía óptima.", ars: 20000, usd: 20, icon: svgBattery },
-                { name: "Cambio de Tapa Trasera", desc: "Sustitución de carcasa o tapa trasera dañada.", ars: 18000, usd: 18, icon: svgPhone },
-                { name: "Reparación de Auricular / Micrófono", desc: "Solución para cuando no te escuchan o escuchas bajo.", ars: 15000, usd: 15, icon: svgAudio },
-                { name: "Formateo, Software o Desbloqueo", desc: "Optimización de sistema, limpieza de virus y cuentas.", ars: 15000, usd: 15, icon: svgLaptop }
+                { name: "Cambio de Pantalla / Módulo completo", desc: "Reemplazo de pantalla táctil y display roto o sin imagen.", ars: 25000, usd: 25 },
+                { name: "Cambio de Pin / Puerto de Carga", desc: "Solución a problemas de carga, falsos contactos o puerto flojo.", ars: 18000, usd: 18 },
+                { name: "Cambio de Batería Original/Genérica", desc: "Batería nueva con prueba de rendimiento y autonomía óptima.", ars: 20000, usd: 20 },
+                { name: "Cambio de Tapa Trasera", desc: "Sustitución de carcasa o tapa trasera dañada.", ars: 18000, usd: 18 },
+                { name: "Reparación de Auricular / Micrófono", desc: "Solución para cuando no te escuchan o escuchas bajo.", ars: 15000, usd: 15 },
+                { name: "Formateo, Software o Desbloqueo", desc: "Optimización de sistema, limpieza de virus y cuentas.", ars: 15000, usd: 15 }
             ],
             "Computadoras": [
-                { name: "Instalación de Sistema Operativo + Optimización", desc: "Mejora radical de velocidad y limpieza de archivos basura.", ars: 20000, usd: 20, icon: svgLaptop },
-                { name: "Mantenimiento Preventivo (Pasta Térmica + Limpieza)", desc: "Limpieza profunda de coolers y cambio de pasta disipadora.", ars: 30000, usd: 30, icon: svgPlug },
-                { name: "Cambio de Disco HDD a SSD ultrarrápido", desc: "Tu PC encenderá y abrirá programas 10 veces más rápido.", ars: 28000, usd: 28, icon: svgBattery },
-                { name: "Cambio de Pantalla o Teclado de Notebook", desc: "Displays y teclados nuevos compatibles con tu modelo.", ars: 35000, usd: 35, icon: svgPhone },
-                { name: "Reparación / Reconstrucción de Bisagras", desc: "Reparación de estructura plástica y anclajes rotos.", ars: 32000, usd: 32, icon: svgPlug }
+                { name: "Instalación de Sistema Operativo + Optimización", desc: "Mejora radical de velocidad y limpieza de archivos basura.", ars: 20000, usd: 20 },
+                { name: "Mantenimiento Preventivo (Pasta Térmica + Limpieza)", desc: "Limpieza profunda de coolers y cambio de pasta disipadora.", ars: 30000, usd: 30 },
+                { name: "Cambio de Disco HDD a SSD ultrarrápido", desc: "Tu PC encenderá y abrirá programas 10 veces más rápido.", ars: 28000, usd: 28 },
+                { name: "Cambio de Pantalla o Teclado de Notebook", desc: "Displays y teclados nuevos compatibles con tu modelo.", ars: 35000, usd: 35 },
+                { name: "Reparación / Reconstrucción de Bisagras", desc: "Reparación de estructura plástica y anclajes rotos.", ars: 32000, usd: 32 }
             ],
             "Auriculares": [
-                { name: "Cambio de Parlante / Bocina Interna", desc: "Solución a sonido distorsionado, bajo o nulo volumen.", ars: 14000, usd: 14, icon: svgAudio },
-                { name: "Cambio de Microbatería Interna (Auricular o Estuche)", desc: "Recupera la autonomía original de tus auriculares inalámbricos.", ars: 15000, usd: 15, icon: svgBattery }
+                { name: "Cambio de Parlante / Bocina Interna", desc: "Solución a sonido distorsionado, bajo o nulo volumen.", ars: 14000, usd: 14 },
+                { name: "Cambio de Microbatería Interna (Auricular o Estuche)", desc: "Recupera la autonomía original de tus auriculares inalámbricos.", ars: 15000, usd: 15 }
             ],
             "Consolas": [
-                { name: "Limpieza Profunda + Pasta Térmica (PS4 / PS5 / Xbox)", desc: "Evita ruidos molestos, calentamiento y apagones repentinos.", ars: 35000, usd: 35, icon: svgPlug },
-                { name: "Reparación de Joystick: Drift Analógico", desc: "Solución definitiva al movimiento involuntario de los joysticks.", ars: 18000, usd: 18, icon: svgGamepad }
+                { name: "Limpieza Profunda + Pasta Térmica (PS4 / PS5 / Xbox)", desc: "Evita ruidos molestos, calentamiento y apagones repentinos.", ars: 35000, usd: 35 },
+                { name: "Reparación de Joystick: Drift Analógico", desc: "Solución definitiva al movimiento involuntario de los joysticks.", ars: 18000, usd: 18 }
             ],
             "Otros": [
-                { name: "Diagnóstico General y Presupuesto en Taller", desc: "Revisión técnica detallada para identificar fallas complejas.", ars: 8000, usd: 8, icon: svgPlug }
+                { name: "Diagnóstico General y Presupuesto en Taller", desc: "Revisión técnica detallada para identificar fallas complejas.", ars: 8000, usd: 8 }
             ]
         };
 
         let currentCategory = null;
         let selectedService = null;
         let quantity = 1;
-        let currentRating = 0;
         const phoneTaller = "5493549589088";
 
-        function render() {
+        function selectCategory(catId) {
+            currentCategory = catId;
+            selectedService = null;
+            renderServices();
+            window.scrollTo(0,0);
+        }
+
+        function renderServices() {
             const container = document.getElementById('main-container');
-            if (!container) return;
+            let html = `
+                <div class="back-bar">
+                    <button class="btn-back" onclick="location.reload()">← Volver</button>
+                    <span style="font-weight:800; font-size:0.85rem; color:var(--accent);">${currentCategory.toUpperCase()}</span>
+                </div>
+                <div class="section-title">Selecciona un Servicio</div>
+            `;
             
-            if (!currentCategory) {
-                let html = '<div class="section-title">Categorías de Servicios</div>';
-                categories.forEach(cat => {
-                    html += `
-                        <div class="category-card" onclick="selectCategory('${cat.id}')">
-                            <div class="card-left">
-                                <div class="icon-box">${cat.icon}</div>
-                                <span class="card-title">${cat.name}</span>
+            services[currentCategory].forEach((s, idx) => {
+                html += `
+                    <div class="service-card" onclick="openDetail(${idx})">
+                        <div class="card-left">
+                            <div class="card-title">${s.name}</div>
+                        </div>
+                        <div style="display:flex; align-items:center;">
+                            <div class="card-price">
+                                <span class="price-ars">$${s.ars.toLocaleString()}</span>
+                                <span class="price-usd">(USD $${s.usd})</span>
                             </div>
                             <span class="arrow">➔</span>
                         </div>
-                    `;
-                });
-
-                let reviewsHtml = '';
-                let storedReviews = JSON.parse(localStorage.getItem('omni_reviews') || '[]');
-                storedReviews.forEach(r => {
-                    let starsStr = '★'.repeat(r.rating);
-                    reviewsHtml += `<div class="review-item"><strong>${r.name}</strong> <span style="color:var(--accent)">${starsStr}</span><br>${r.text}</div>`;
-                });
-
-                html += `
-                    <div class="review-box" id="review-section">
-                        <div class="review-title">⭐ Deja tu Calificación y Opinión</div>
-                        <div class="interactive-stars" id="star-container">
-                            <span onclick="setRating(1)">★</span><span onclick="setRating(2)">★</span><span onclick="setRating(3)">★</span><span onclick="setRating(4)">★</span><span onclick="setRating(5)">★</span>
-                        </div>
-                        <input type="text" id="review-name" class="form-input" placeholder="Tu Nombre">
-                        <input type="text" id="review-text" class="form-input" placeholder="Escribe tu opinión...">
-                        <button class="btn-submit" onclick="submitReview()">Publicar Opinión</button>
-                        
-                        <div class="saved-reviews">
-                            <div style="font-size:0.85rem; font-weight:bold; color:var(--accent); margin-bottom:0.4rem;">Opiniones:</div>
-                            ${reviewsHtml || '<p style="color:var(--text-muted); font-size:0.75rem;">Sé el primero en opinar.</p>'}
-                        </div>
                     </div>
                 `;
-                container.innerHTML = html;
-                document.getElementById('cart-bar').style.display = 'none';
-            } else if (!selectedService) {
-                let html = `
-                    <div class="back-bar">
-                        <button class="btn-back" onclick="currentCategory=null; render()">← Volver</button>
-                        <span style="font-weight:800; font-size:0.85rem; color:var(--accent);">${currentCategory.toUpperCase()}</span>
-                    </div>
-                    <div class="section-title">Selecciona un Servicio</div>
-                `;
-                
-                services[currentCategory].forEach((s, idx) => {
-                    html += `
-                        <div class="service-card" onclick="openDetail(${idx})">
-                            <div class="card-left">
-                                <div class="icon-box">${s.icon}</div>
-                                <div class="card-title">${s.name}</div>
-                            </div>
-                            <div style="display:flex; align-items:center;">
-                                <div class="card-price">
-                                    <span class="price-ars">$${s.ars.toLocaleString()}</span>
-                                    <span class="price-usd">(USD $${s.usd})</span>
-                                </div>
-                                <span class="arrow">➔</span>
-                            </div>
-                        </div>
-                    `;
-                });
-                container.innerHTML = html;
-                document.getElementById('cart-bar').style.display = 'none';
-            } else {
-                let totalArs = selectedService.ars * quantity;
-                let totalUsd = selectedService.usd * quantity;
-                container.innerHTML = `
-                    <div class="back-bar">
-                        <button class="btn-back" onclick="selectedService=null; render()">← Volver</button>
-                        <span style="font-weight:800; font-size:0.85rem; color:var(--accent);">DETALLE</span>
+            });
+            container.innerHTML = html;
+            document.getElementById('cart-bar').style.display = 'none';
+        }
+
+        function openDetail(idx) {
+            selectedService = services[currentCategory][idx];
+            quantity = 1;
+            const container = document.getElementById('main-container');
+            let totalArs = selectedService.ars * quantity;
+            let totalUsd = selectedService.usd * quantity;
             
+            container.innerHTML = `
+                <div class="back-bar">
+                    <button class="btn-back" onclick="selectCategory('${currentCategory}')">← Volver</button>
+                    <span style="font-weight:800; font-size:0.85rem; color:var(--accent);">DETALLE</span>
+                </div>
+                <div class="detail-box">
+                    <h3 style="color:white; margin-bottom:0.5rem; font-size:1.05rem;">${selectedService.name}</h3>
+                    <p class="detail-desc">${selectedService.desc}</p>
+                    
+                    <div style="background:#0b1120; border:1px solid var(--card-border); border-radius:10px; padding:0.8rem; margin-bottom:1rem; text-align:right;">
+                        <span class="price-ars" style="font-size:1.15rem;" id="live-ars">$${totalArs.toLocaleString()}</span>
+                        <span class="price-usd" id="live-usd">(USD $${totalUsd})</span>
+                    </div>
+
+                    <input type="text" id="client-name" class="form-input" placeholder="Tu Nombre y Apellido">
+                    <input type="text" id="client-device" class="form-input" placeholder="Ej: Celular, Notebook...">
+                    <input type="text" id="client-obs" class="form-input" placeholder="Observaciones adicionales...">
+                    
+                    <div style="text-align:left; font-size:0.8rem; color:var(--text-muted); margin-bottom:0.4rem; font-weight:600;">Cantidad:</div>
+                    <div class="qty-container">
+                        <button class="qty-btn" onclick="changeQty(-1)">-</button>
+                        <span id="qty-val" style="font-weight:bold; font-size:1.1rem; color:white;">${quantity}</span>
+                        <button class="qty-btn" onclick="changeQty(1)">+</button>
+                    </div>
+
+                    <button class="btn-agregar" onclick="addToCart()">Seleccionar y Calcular Pago</button>
+                </div>
+            `;
+        }
+
+        function changeQty(amount) {
+            quantity += amount;
+            if (quantity < 1) quantity = 1;
+            document.getElementById('qty-val').innerText = quantity;
+            document.getElementById('live-ars').innerText = `$${(selectedService.ars * quantity).toLocaleString()}`;
+            document.getElementById('live-usd').innerText = `(USD $${selectedService.usd * quantity})`;
+        }
+
+        function addToCart() {
+            const nameField = document.getElementById('client-name');
+            if(nameField && !nameField.value) {
+                alert("Por favor completa al menos tu nombre.

@@ -66,6 +66,7 @@
         .review-title { text-align: center; color: var(--accent); font-size: 0.95rem; margin-bottom: 0.4rem; font-weight: bold; }
         .interactive-stars { text-align: center; font-size: 1.6rem; margin-bottom: 0.8rem; cursor: pointer; color: #475569; }
         .interactive-stars span.rated { color: var(--accent); }
+        .btn-submit { background: var(--accent); color: #0b1120; border: none; width: 100%; padding: 0.75rem; border-radius: 10px; font-weight: bold; cursor: pointer; }
 
         .modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); z-index: 200; justify-content: center; align-items: center; padding: 1rem; }
         .modal-content { background: var(--card-dark); width: 100%; max-width: 400px; border-radius: 16px; padding: 1.5rem; text-align: center; border: 1px solid var(--card-border); }
@@ -87,15 +88,15 @@
         </div>
     </header>
 
-    <div class="badges">⚡ Taller Abierto — Recepción y reparación de dispositivos</div>
+    <div class="badges">⚡ Taller Abierto — Cruz del Eje, Córdoba</div>
     <div class="sub-badges">
         <span>🔒 Pago 100% Protegido</span>
         <span>🛡️ 90 Días de Garantía Escrita</span>
     </div>
-    <div class="rating-banner" onclick="scrollToReview()">⭐ Sé el primero en opinar</div>
+    <div class="rating-banner" onclick="scrollToReview()">⭐ Dejanos tu Opinión</div>
 
     <div class="container" id="main-container">
-        <!-- Se renderiza inmediatamente con JS puro -->
+        <!-- Renderizado dinámico inmediato -->
     </div>
 
     <div class="cart-bar" id="cart-bar" style="display:none;">
@@ -139,7 +140,7 @@
                 { name: "Cambio de Pantalla / Módulo completo", desc: "Reemplazo de pantalla táctil y display LCD/OLED roto o sin imagen.", ars: 25000, usd: 25, icon: svgPhone },
                 { name: "Cambio de Pin / Puerto de Carga", desc: "Solución a problemas de carga, falsos contactos o puerto flojo.", ars: 18000, usd: 18, icon: svgPin },
                 { name: "Cambio de Batería Original/Genérica", desc: "Batería nueva con prueba de rendimiento y autonomía óptima.", ars: 20000, usd: 20, icon: svgBattery },
-                { name: "Cambio de Tapa Trasera (Moto E32, Moto G, Samsung, Xiaomi)", desc: "Sustitución de carcasa o tapa trasera dañada.", ars: 18000, usd: 18, icon: svgPhone },
+                { name: "Cambio de Tapa Trasera", desc: "Sustitución de carcasa o tapa trasera dañada.", ars: 18000, usd: 18, icon: svgPhone },
                 { name: "Cambio de Cristales / Lentes de Cámara", desc: "Reparación de cristal externo de cámaras principales.", ars: 12000, usd: 12, icon: svgPin },
                 { name: "Reparación de Auricular / Micrófono", desc: "Solución para cuando no te escuchan o escuchas bajo.", ars: 15000, usd: 15, icon: svgAudio },
                 { name: "Formateo, Software o Desbloqueo", desc: "Optimización de sistema, limpieza de virus y cuentas.", ars: 15000, usd: 15, icon: svgLaptop }
@@ -155,11 +156,11 @@
                 { name: "Armado de PC Gamer / Escritorio", desc: "Ensamblaje profesional y prolijo de componentes.", ars: 40000, usd: 40, icon: svgLaptop }
             ],
             "Auriculares": [
-                { name: "Cambio de Parlante / Bocina Interna (Bajo / Nulo volumen)", desc: "Solución a sonido distorsionado, bajo o nulo volumen.", ars: 14000, usd: 14, icon: svgAudio },
+                { name: "Cambio de Parlante / Bocina Interna", desc: "Solución a sonido distorsionado, bajo o nulo volumen.", ars: 14000, usd: 14, icon: svgAudio },
                 { name: "Cambio de Placa Lógica / Circuito Bluetooth", desc: "Arreglo de fallas de emparejamiento o encendido.", ars: 16000, usd: 16, icon: svgPin },
                 { name: "Cambio de Microbatería Interna (Auricular o Estuche)", desc: "Recupera la autonomía original de tus auriculares inalámbricos.", ars: 15000, usd: 15, icon: svgBattery },
                 { name: "Cambio de Pin / Conector de Carga de Estuche", desc: "Reparación del conector USB de la caja de carga.", ars: 12000, usd: 12, icon: svgPin },
-                { name: "Reparación de Ficha Jack 3.5mm / Cable (Auriculares de cable)", desc: "Cambio de ficha o re cableado en auriculares con cable.", ars: 10000, usd: 10, icon: svgPlug }
+                { name: "Reparación de Ficha Jack 3.5mm / Cable", desc: "Cambio de ficha o re cableado en auriculares con cable.", ars: 10000, usd: 10, icon: svgPlug }
             ],
             "Consolas": [
                 { name: "Limpieza Profunda + Pasta Térmica (PS4 / PS5 / Xbox)", desc: "Evita ruidos molestos, calentamiento y apagones repentinos.", ars: 35000, usd: 35, icon: svgPlug },
@@ -246,4 +247,4 @@
                 let html = `
                     <div class="back-bar">
                         <button class="btn-back" onclick="selectedService=null; render()">← Volver</button>
-                        <span style="font-weight:800; font-size:0.85r
+            

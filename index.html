@@ -23,6 +23,7 @@
         header h1 { font-size: 1.3rem; letter-spacing: 0.5px; }
         
         .badges { background: rgba(245, 158, 11, 0.1); padding: 8px; text-align: center; font-size: 0.8rem; color: var(--accent); border-bottom: 1px solid var(--border); }
+        .badges p { font-size: 0.75rem; color: #94a3b8; margin-top: 2px; }
         
         .container { max-width: 600px; margin: 0 auto; padding: 1rem; }
         .section-title { font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); margin: 1rem 0 0.8rem 0; font-weight: bold; }
@@ -66,11 +67,12 @@
     </header>
 
     <div class="badges">
-        ⚡ Taller Abierto — Recepción y reparación en Cruz del Eje
+        ⚡ Taller Abierto — Recepción y reparación de dispositivos
+        <p>🔒 Pago 100% Protegido &nbsp;|&nbsp; 🛡️ 90 Días de Garantía</p>
     </div>
 
     <div class="container" id="main-container">
-        <!-- Contenido dinámico (Categorías o Servicios) -->
+        <!-- Contenido dinámico -->
     </div>
 
     <div class="cart-bar" id="cart-bar" style="display:none;">
@@ -87,7 +89,7 @@
             <h3 style="color: var(--accent); margin-bottom: 1rem;">Finalizar Solicitud</h3>
             <div id="modal-form">
                 <input type="text" id="client-name" class="form-input" placeholder="Tu Nombre y Apellido">
-                <input type="text" id="client-device" class="form-input" placeholder="Modelo del equipo (ej: Moto E32)">
+                <input type="text" id="client-device" class="form-input" placeholder="Modelo del equipo (ej: Moto E32 / PS4)">
                 <button class="btn-submit" onclick="sendWhatsApp()">📲 Enviar Pedido por WhatsApp</button>
                 <button onclick="closeModal()" style="background:none; border:none; color:var(--text-muted); margin-top:10px; cursor:pointer;">Cancelar</button>
             </div>
@@ -108,22 +110,35 @@
                 { name: "Cambio de Pantalla / Módulo completo", ars: 25000, usd: 25 },
                 { name: "Cambio de Pin / Puerto de Carga", ars: 18000, usd: 18 },
                 { name: "Cambio de Batería Original/Genérica", ars: 20000, usd: 20 },
-                { name: "Cambio de Tapa Trasera", ars: 18000, usd: 18 }
+                { name: "Cambio de Tapa Trasera (Moto E32, Moto G, Samsung, Xiaomi)", ars: 18000, usd: 18 },
+                { name: "Cambio de Cristales / Lentes de Cámara", ars: 12000, usd: 12 },
+                { name: "Reparación de Auricular / Micrófono", ars: 15000, usd: 15 },
+                { name: "Formateo, Software o Desbloqueo", ars: 15000, usd: 15 }
             ],
             "Computadoras": [
-                { name: "Formateo y Optimización Windows", ars: 18000, usd: 18 },
-                { name: "Cambio de Pasta Térmica y Limpieza", ars: 15000, usd: 15 }
+                { name: "Instalación de Sistema Operativo Liviano + Optimización", ars: 20000, usd: 20 },
+                { name: "Mantenimiento Preventivo (Pasta Térmica + Limpieza)", ars: 30000, usd: 30 },
+                { name: "Formateo + Windows 11 / 10 + Office", ars: 22000, usd: 22 },
+                { name: "Cambio de Disco HDD a SSD ultrarrápido", ars: 28000, usd: 28 },
+                { name: "Cambio de Pantalla de Notebook", ars: 35000, usd: 35 },
+                { name: "Cambio de Teclado de Notebook", ars: 20000, usd: 20 },
+                { name: "Reparación / Reconstrucción de Bisagras", ars: 32000, usd: 32 },
+                { name: "Armado de PC Gamer / Escritorio", ars: 40000, usd: 40 }
             ],
             "Auriculares": [
-                { name: "Cambio de Batería de Auricular TWS", ars: 9000, usd: 9 },
-                { name: "Reparación de Placa Bluetooth", ars: 11000, usd: 11 }
+                { name: "Cambio de Parlante / Bocina Interna (Bajo / Nulo volumen)", ars: 14000, usd: 14 },
+                { name: "Cambio de Placa Lógica / Circuito Bluetooth", ars: 16000, usd: 16 },
+                { name: "Cambio de Microbatería Interna (Auricular o Estuche)", ars: 15000, usd: 15 },
+                { name: "Cambio de Pin / Conector de Carga de Estuche", ars: 12000, usd: 12 },
+                { name: "Reparación de Ficha Jack 3.5mm / Cable", ars: 10000, usd: 10 }
             ],
             "Consolas": [
-                { name: "Mantenimiento Preventivo de Consola", ars: 22000, usd: 22 },
-                { name: "Reparación de Joystick / Drift", ars: 12000, usd: 12 }
+                { name: "Limpieza Profunda + Pasta Térmica (PS4 / PS5 / Xbox)", ars: 35000, usd: 35 },
+                { name: "Reparación de Joystick: Drift Analógico", ars: 18000, usd: 18 }
             ],
             "Otros": [
-                { name: "Reparación de Electrónica General", ars: 15000, usd: 15 }
+                { name: "Diagnóstico General y Presupuesto en Taller", ars: 8000, usd: 8 },
+                { name: "Reparación de Cargador o Fuente Externa", ars: 12000, usd: 12 }
             ]
         };
 
@@ -148,13 +163,12 @@
                     `;
                 });
 
-                // Sección de Opiniones abajo
                 html += `
                     <div class="review-box">
                         <div class="review-title">⭐ Deja tu Calificación y Opinión</div>
                         <div class="stars">★★★★★</div>
                         <input type="text" class="form-input" placeholder="Tu Nombre">
-                        <input type="text" class="form-input" placeholder="Escribe tu opinión...">
+                        <input type="text" class="form-input" placeholder="Escribe tu opinión sobre nuestro servicio técnico...">
                         <button class="btn-submit" onclick="alert('¡Gracias por tu opinión!')">Publicar Opinión</button>
                     </div>
                 `;

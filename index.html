@@ -184,9 +184,6 @@
         let currentRating = 0;
         const phoneTaller = "5493549589088";
 
-        // Limpiamos cualquier rastro viejo para asegurar que siempre inicie en categorías
-        localStorage.removeItem('omni_last_service');
-
         function render() {
             const container = document.getElementById('main-container');
             if (!container) return;
@@ -252,4 +249,8 @@
                             <div style="display:flex; align-items:center;">
                                 <div class="card-price">
                                     <span class="price-ars">$${s.ars.toLocaleString()}</span>
-                                    <span class="price-usd">(USD $${s.us
+                                    <span class="price-usd">(USD $${s.usd})</span>
+                                </div>
+                                <span class="arrow">➔</span>
+    </div>
+        

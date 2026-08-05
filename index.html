@@ -26,7 +26,7 @@
         
         .badges { background: #d97706; color: #111; padding: 6px; text-align: center; font-size: 0.8rem; font-weight: bold; }
         .sub-badges { background: var(--card-dark); padding: 7px; text-align: center; font-size: 0.75rem; color: #34d399; border-bottom: 1px solid var(--card-border); display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
-        .rating-banner { background: var(--card-dark); text-align: center; padding: 6px; font-size: 0.75rem; color: var(--accent); border-bottom: 1px solid var(--card-border); font-weight: bold; }
+        .rating-banner { background: var(--card-dark); text-align: center; padding: 6px; font-size: 0.75rem; color: var(--accent); border-bottom: 1px solid var(--card-border); font-weight: bold; cursor: pointer; }
 
         .container { max-width: 600px; margin: 0 auto; padding: 1rem; }
         .section-title { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1.2px; color: var(--accent); margin: 0.8rem 0; font-weight: 800; }
@@ -92,7 +92,7 @@
         <span>🔒 Pago 100% Protegido</span>
         <span>🛡️ 90 Días de Garantía Escrita</span>
     </div>
-    <div class="rating-banner">⭐ Calificado con excelencia por nuestros clientes</div>
+    <div class="rating-banner" onclick="scrollToReview()">⭐ Sé el primero en opinar</div>
 
     <div class="container" id="main-container">
         <!-- Contenido dinámico -->
@@ -118,6 +118,7 @@
     </div>
 
     <script>
+        // SVGs exactos idénticos a los de tus capturas
         const svgPhone = `<svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.8"><rect x="6" y="2" width="12" height="20" rx="2"/><line x1="10" y1="18" x2="14" y2="18"/><line x1="9" y1="6" x2="15" y2="12" stroke="#10b981" stroke-width="2"/></svg>`;
         const svgPin = `<svg viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="1.8"><rect x="5" y="6" width="14" height="10" rx="2"/><path d="M10 12h4" stroke-width="2"/><path d="M12 16v3" stroke="#10b981" stroke-width="2"/><path d="M10.5 18.5h3" stroke="#10b981" stroke-width="2"/></svg>`;
         const svgBattery = `<svg viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="1.8"><rect x="4" y="6" width="16" height="12" rx="2"/><path d="M22 10v4"/><text x="7.5" y="14.5" fill="#34d399" font-size="7" font-weight="bold">Li-ion</text></svg>`;
@@ -196,7 +197,7 @@
                 });
 
                 html += `
-                    <div class="review-box">
+                    <div class="review-box" id="review-section">
                         <div class="review-title">⭐ Deja tu Calificación y Opinión</div>
                         <div class="interactive-stars" id="star-container">
                             <span onclick="setRating(1)">★</span><span onclick="setRating(2)">★</span><span onclick="setRating(3)">★</span><span onclick="setRating(4)">★</span><span onclick="setRating(5)">★</span>
@@ -246,4 +247,4 @@
                 let html = `
                     <div class="back-bar">
                         <button class="btn-back" onclick="selectedService=null; render()">← Volver</button>
-                        <span style="font-weight:800; font-size:0.85rem; color:var(--accent); letter-spacing:1px;">DETALLE DEL SER
+                        <span styl

@@ -1,4 +1,4 @@
-de<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -15,6 +15,7 @@ de<!DOCTYPE html>
             --success: #10b981;
             --mercadopago: #009ee3;
             --paypal: #0070ba;
+            --maps-color: #ea4335;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background-color: var(--bg-dark); color: var(--text-light); line-height: 1.5; padding-bottom: 90px; }
@@ -26,7 +27,10 @@ de<!DOCTYPE html>
         
         .badges { background: #d97706; color: #111; padding: 6px; text-align: center; font-size: 0.8rem; font-weight: bold; }
         .sub-badges { background: var(--card-dark); padding: 7px; text-align: center; font-size: 0.75rem; color: #34d399; border-bottom: 1px solid var(--card-border); display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
-        .rating-banner { background: var(--card-dark); text-align: center; padding: 6px; font-size: 0.75rem; color: var(--accent); border-bottom: 1px solid var(--card-border); font-weight: bold; cursor: pointer; }
+        
+        .action-banners { display: flex; border-bottom: 1px solid var(--card-border); }
+        .banner-btn { flex: 1; background: var(--card-dark); text-align: center; padding: 8px; font-size: 0.75rem; font-weight: bold; cursor: pointer; border: none; color: var(--accent); display: flex; align-items: center; justify-content: center; gap: 5px; text-decoration: none; }
+        .banner-btn:nth-child(1) { border-right: 1px solid var(--card-border); color: #38bdf8; }
 
         .container { max-width: 600px; margin: 0 auto; padding: 1rem; }
         .section-title { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1.2px; color: var(--accent); margin: 0.8rem 0; font-weight: 800; }
@@ -67,11 +71,15 @@ de<!DOCTYPE html>
         .interactive-stars { text-align: center; font-size: 1.8rem; margin-bottom: 0.8rem; cursor: pointer; color: #475569; }
         .interactive-stars span.rated { color: var(--accent); }
         .btn-submit { background: var(--accent); color: #0b1120; border: none; width: 100%; padding: 0.75rem; border-radius: 10px; font-weight: bold; cursor: pointer; }
+        
+        .saved-reviews { margin-top: 1rem; text-align: left; border-top: 1px solid var(--card-border); padding-top: 0.8rem; }
+        .review-item { background: #0b1120; padding: 0.6rem; border-radius: 8px; margin-bottom: 0.5rem; font-size: 0.8rem; }
 
-        .modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); z-index: 200; justify-content: center; align-items: center; padding: 1rem; }
-        .modal-content { background: var(--card-dark); width: 100%; max-width: 400px; border-radius: 16px; padding: 1.5rem; text-align: center; border: 1px solid var(--card-border); }
+        .modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.85); z-index: 200; justify-content: center; align-items: center; padding: 1rem; overflow-y: auto; }
+        .modal-content { background: var(--card-dark); width: 100%; max-width: 420px; border-radius: 16px; padding: 1.5rem; text-align: center; border: 1px solid var(--card-border); max-height: 90vh; overflow-y: auto; }
         .btn-mp { background: var(--mercadopago); color: white; width: 100%; padding: 0.85rem; border: none; border-radius: 10px; font-weight: 800; font-size: 0.95rem; cursor: pointer; margin-bottom: 0.6rem; }
         .btn-paypal { background: var(--paypal); color: white; width: 100%; padding: 0.85rem; border: none; border-radius: 10px; font-weight: 800; font-size: 0.95rem; cursor: pointer; margin-bottom: 0.6rem; }
+        .btn-maps-modal { background: #25d366; color: white; width: 100%; padding: 0.85rem; border: none; border-radius: 10px; font-weight: 800; font-size: 0.95rem; cursor: pointer; margin-top: 0.8rem; text-decoration: none; display: inline-block; }
 
         .cart-bar { position: fixed; bottom: 0; left: 0; right: 0; background: var(--card-dark); border-top: 1px solid var(--card-border); padding: 1rem; display: flex; justify-content: space-between; align-items: center; z-index: 100; box-shadow: 0 -4px 15px rgba(0,0,0,0.4); }
         .btn-checkout { background: var(--success); color: white; border: none; padding: 0.75rem 1.3rem; border-radius: 10px; font-weight: 800; cursor: pointer; font-size: 0.9rem; }
@@ -88,12 +96,18 @@ de<!DOCTYPE html>
         </div>
     </header>
 
-    <div class="badges">⚡ Taller Abierto — Cruz del Eje, Córdoba</div>
+    <div class="badges">⚡ Taller Abierto — Cruz del Eje, Córdoba (Casa Blanca)</div>
     <div class="sub-badges">
-        <span>🔒 Pago 100% Protegido</span>
-        <span>🛡️ 90 Días de Garantía Escrita</span>
+        <span>🔒 Pago Protegido</span>
+        <span>🛡️ 90 Días de Garantía</span>
     </div>
-    <div class="rating-banner" onclick="scrollToReview()">⭐ Dejanos tu Opinión</div>
+    
+    <div class="action-banners">
+        <a href="https://maps.app.goo.gl/xCGTk8NVPKTzx6h38" target="_blank" class="banner-btn">
+            📍 Ver Ubicación en Maps
+        </a>
+        <button class="banner-btn" onclick="scrollToReview()">⭐ Dejar Opinión</button>
+    </div>
 
     <div class="container" id="main-container">
         <!-- Renderizado dinámico -->
@@ -108,12 +122,12 @@ de<!DOCTYPE html>
     </div>
 
     <div class="modal" id="payment-modal">
-        <div class="modal-content">
+        <div class="modal-content" id="modal-body-content">
             <h3 style="color: var(--accent); margin-bottom: 0.5rem; font-size: 1.2rem;">Elige Medio de Pago</h3>
             <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1.2rem;" id="modal-total-display">Total calculado</p>
             
-            <button class="btn-mp" onclick="checkoutAction('Mercado Pago')">💙 Pagar con Mercado Pago</button>
-            <button class="btn-paypal" onclick="checkoutAction('PayPal')">💙 Pagar con PayPal (USD)</button>
+            <button class="btn-mp" onclick="checkoutAction('Mercado Pago')">💙 Simular Pago con Mercado Pago</button>
+            <button class="btn-paypal" onclick="checkoutAction('PayPal')">💙 Simular Pago con PayPal (USD)</button>
             <button onclick="closePaymentModal()" style="background:none; border:none; color:var(--text-muted); margin-top:10px; cursor:pointer; font-size:0.85rem;">Cancelar</button>
         </div>
     </div>
@@ -137,38 +151,30 @@ de<!DOCTYPE html>
 
         const services = {
             "Celulares": [
-                { name: "Cambio de Pantalla / Módulo completo", desc: "Reemplazo de pantalla táctil y display LCD/OLED roto o sin imagen.", ars: 25000, usd: 25, icon: svgPhone },
+                { name: "Cambio de Pantalla / Módulo completo", desc: "Reemplazo de pantalla táctil y display roto o sin imagen.", ars: 25000, usd: 25, icon: svgPhone },
                 { name: "Cambio de Pin / Puerto de Carga", desc: "Solución a problemas de carga, falsos contactos o puerto flojo.", ars: 18000, usd: 18, icon: svgPin },
                 { name: "Cambio de Batería Original/Genérica", desc: "Batería nueva con prueba de rendimiento y autonomía óptima.", ars: 20000, usd: 20, icon: svgBattery },
                 { name: "Cambio de Tapa Trasera", desc: "Sustitución de carcasa o tapa trasera dañada.", ars: 18000, usd: 18, icon: svgPhone },
-                { name: "Cambio de Cristales / Lentes de Cámara", desc: "Reparación de cristal externo de cámaras principales.", ars: 12000, usd: 12, icon: svgPin },
                 { name: "Reparación de Auricular / Micrófono", desc: "Solución para cuando no te escuchan o escuchas bajo.", ars: 15000, usd: 15, icon: svgAudio },
                 { name: "Formateo, Software o Desbloqueo", desc: "Optimización de sistema, limpieza de virus y cuentas.", ars: 15000, usd: 15, icon: svgLaptop }
             ],
             "Computadoras": [
-                { name: "Instalación de Sistema Operativo Liviano + Optimización", desc: "Mejora radical de velocidad y limpieza de archivos basura.", ars: 20000, usd: 20, icon: svgLaptop },
+                { name: "Instalación de Sistema Operativo + Optimización", desc: "Mejora radical de velocidad y limpieza de archivos basura.", ars: 20000, usd: 20, icon: svgLaptop },
                 { name: "Mantenimiento Preventivo (Pasta Térmica + Limpieza)", desc: "Limpieza profunda de coolers y cambio de pasta disipadora.", ars: 30000, usd: 30, icon: svgPlug },
-                { name: "Formateo + Windows 11 / 10 + Office", desc: "Instalación limpia con paquete de programas esenciales.", ars: 22000, usd: 22, icon: svgLaptop },
                 { name: "Cambio de Disco HDD a SSD ultrarrápido", desc: "Tu PC encenderá y abrirá programas 10 veces más rápido.", ars: 28000, usd: 28, icon: svgBattery },
-                { name: "Cambio de Pantalla de Notebook", desc: "Displays nuevos originales compatibles con tu modelo.", ars: 35000, usd: 35, icon: svgPhone },
-                { name: "Cambio de Teclado de Notebook", desc: "Solución a teclas rotas, ausentes o que no responden.", ars: 20000, usd: 20, icon: svgLaptop },
-                { name: "Reparación / Reconstrucción de Bisagras", desc: "Reparación de estructura plástica y anclajes rotos.", ars: 32000, usd: 32, icon: svgPlug },
-                { name: "Armado de PC Gamer / Escritorio", desc: "Ensamblaje profesional y prolijo de componentes.", ars: 40000, usd: 40, icon: svgLaptop }
+                { name: "Cambio de Pantalla o Teclado de Notebook", desc: "Displays y teclados nuevos compatibles con tu modelo.", ars: 35000, usd: 35, icon: svgPhone },
+                { name: "Reparación / Reconstrucción de Bisagras", desc: "Reparación de estructura plástica y anclajes rotos.", ars: 32000, usd: 32, icon: svgPlug }
             ],
             "Auriculares": [
                 { name: "Cambio de Parlante / Bocina Interna", desc: "Solución a sonido distorsionado, bajo o nulo volumen.", ars: 14000, usd: 14, icon: svgAudio },
-                { name: "Cambio de Placa Lógica / Circuito Bluetooth", desc: "Arreglo de fallas de emparejamiento o encendido.", ars: 16000, usd: 16, icon: svgPin },
-                { name: "Cambio de Microbatería Interna (Auricular o Estuche)", desc: "Recupera la autonomía original de tus auriculares inalámbricos.", ars: 15000, usd: 15, icon: svgBattery },
-                { name: "Cambio de Pin / Conector de Carga de Estuche", desc: "Reparación del conector USB de la caja de carga.", ars: 12000, usd: 12, icon: svgPin },
-                { name: "Reparación de Ficha Jack 3.5mm / Cable", desc: "Cambio de ficha o re cableado en auriculares con cable.", ars: 10000, usd: 10, icon: svgPlug }
+                { name: "Cambio de Microbatería Interna (Auricular o Estuche)", desc: "Recupera la autonomía original de tus auriculares inalámbricos.", ars: 15000, usd: 15, icon: svgBattery }
             ],
             "Consolas": [
                 { name: "Limpieza Profunda + Pasta Térmica (PS4 / PS5 / Xbox)", desc: "Evita ruidos molestos, calentamiento y apagones repentinos.", ars: 35000, usd: 35, icon: svgPlug },
                 { name: "Reparación de Joystick: Drift Analógico", desc: "Solución definitiva al movimiento involuntario de los joysticks.", ars: 18000, usd: 18, icon: svgGamepad }
             ],
             "Otros": [
-                { name: "Diagnóstico General y Presupuesto en Taller", desc: "Revisión técnica detallada para identificar fallas complejas.", ars: 8000, usd: 8, icon: svgPlug },
-                { name: "Reparación de Cargador o Fuente Externa", desc: "Arreglo de fuentes de alimentación de notebooks o consolas.", ars: 12000, usd: 12, icon: svgPin }
+                { name: "Diagnóstico General y Presupuesto en Taller", desc: "Revisión técnica detallada para identificar fallas complejas.", ars: 8000, usd: 8, icon: svgPlug }
             ]
         };
 
@@ -176,14 +182,24 @@ de<!DOCTYPE html>
         let selectedService = null;
         let quantity = 1;
         let currentRating = 0;
-        const phoneTaller = "543549589088";
+        const phoneTaller = "5493549589088";
+
+        const savedCart = localStorage.getItem('omni_last_service');
+        if (savedCart) {
+            try {
+                const parsed = JSON.parse(savedCart);
+                currentCategory = parsed.category;
+                selectedService = parsed.service;
+                quantity = parsed.qty;
+            } catch(e) {}
+        }
 
         function render() {
             const container = document.getElementById('main-container');
             if (!container) return;
             
             if (!currentCategory) {
-                let html = `<div class="section-title">Categorías</div>`;
+                let html = `<div class="section-title">Categorías de Servicios</div>`;
                 categories.forEach(cat => {
                     html += `
                         <div class="category-card" onclick="selectCategory('${cat.id}')">
@@ -196,6 +212,13 @@ de<!DOCTYPE html>
                     `;
                 });
 
+                let reviewsHtml = '';
+                let storedReviews = JSON.parse(localStorage.getItem('omni_reviews') || '[]');
+                storedReviews.forEach(r => {
+                    let starsStr = '★'.repeat(r.rating);
+                    reviewsHtml += `<div class="review-item"><strong>${r.name}</strong> <span style="color:var(--accent)">${starsStr}</span><br>${r.text}</div>`;
+                });
+
                 html += `
                     <div class="review-box" id="review-section">
                         <div class="review-title">⭐ Deja tu Calificación y Opinión</div>
@@ -205,6 +228,11 @@ de<!DOCTYPE html>
                         <input type="text" id="review-name" class="form-input" placeholder="Tu Nombre">
                         <input type="text" id="review-text" class="form-input" placeholder="Escribe tu opinión sobre nuestro servicio técnico...">
                         <button class="btn-submit" onclick="submitReview()">Publicar Opinión</button>
+                        
+                        <div class="saved-reviews">
+                            <div style="font-size:0.85rem; font-weight:bold; color:var(--accent); margin-bottom:0.4rem;">Opiniones de Clientes:</div>
+                            ${reviewsHtml || '<p style="color:var(--text-muted); font-size:0.75rem;">Sé el primero en dejar tu opinión.</p>'}
+                        </div>
                     </div>
                 `;
                 container.innerHTML = html;
@@ -213,7 +241,7 @@ de<!DOCTYPE html>
             } else if (!selectedService) {
                 let html = `
                     <div class="back-bar">
-                        <button class="btn-back" onclick="currentCategory=null; render()">← Volver</button>
+                        <button class="btn-back" onclick="currentCategory=null; saveState(); render()">← Volver</button>
                         <span style="font-weight:800; font-size:0.85rem; color:var(--accent); letter-spacing:1px;">${currentCategory.toUpperCase()}</span>
                     </div>
                     <div class="section-title">Selecciona un Servicio</div>
@@ -229,176 +257,4 @@ de<!DOCTYPE html>
                                 </div>
                             </div>
                             <div style="display:flex; align-items:center;">
-                                <div class="card-price">
-                                    <span class="price-ars">$${s.ars.toLocaleString()}</span>
-                                    <span class="price-usd">(USD $${s.usd})</span>
-                                </div>
-                                <span class="arrow">➔</span>
-                            </div>
-                        </div>
-                    `;
-                });
-                container.innerHTML = html;
-                const cartBar = document.getElementById('cart-bar');
-                if(cartBar) cartBar.style.display = 'none';
-            } else {
-                let totalArs = selectedService.ars * quantity;
-                let totalUsd = selectedService.usd * quantity;
-                let html = `
-                    <div class="back-bar">
-                        <button class="btn-back" onclick="selectedService=null; render()">← Volver</button>
-                        <span style="font-weight:800; font-size:0.85rem; color:var(--accent); letter-spacing:1px;">DETALLE DEL SERVICIO</span>
-                    </div>
-                    <div class="detail-box">
-                        <div class="detail-icon-large">${selectedService.icon}</div>
-                        <h3 style="color:white; margin-bottom:0.5rem; font-size:1.05rem; font-weight:800;">${selectedService.name}</h3>
-                        <p class="detail-desc">${selectedService.desc}</p>
-                        
-                        <div style="background:#0b1120; border:1px solid var(--card-border); border-radius:10px; padding:0.8rem; margin-bottom:1rem; text-align:right;">
-                            <span class="price-ars" style="font-size:1.15rem;" id="live-ars">$${totalArs.toLocaleString()}</span>
-                            <span class="price-usd" id="live-usd">(USD $${totalUsd})</span>
-                        </div>
-
-                        <input type="text" id="client-name" class="form-input" placeholder="Tu Nombre y Apellido">
-                        <input type="text" id="client-device" class="form-input" placeholder="Ej: Celular, Notebook, Auriculares, Consola...">
-                        <input type="text" id="client-obs" class="form-input" placeholder="Ej: Observaciones adicionales sobre la falla...">
-                        
-                        <div style="text-align:left; font-size:0.8rem; color:var(--text-muted); margin-bottom:0.4rem; font-weight:600;">Cantidad:</div>
-                        <div class="qty-container">
-                            <button class="qty-btn" onclick="changeQty(-1)">-</button>
-                            <span id="qty-val" style="font-weight:bold; font-size:1.1rem; color:white;">${quantity}</span>
-                            <button class="qty-btn" onclick="changeQty(1)">+</button>
-                        </div>
-
-                        <button class="btn-agregar" onclick="addToCart()">Seleccionar y Calcular Pago</button>
-
-                        <div class="guarantee-box">
-                            <span style="font-size:1.1rem;">🛡️</span>
-                            <div><strong style="color:white;">Servicio Garantizado:</strong> Repuestos de alta calidad con garantía oficial por escrito.</div>
-                        </div>
-                    </div>
-                `;
-                container.innerHTML = html;
-            }
-        }
-
-        function selectCategory(catId) {
-            currentCategory = catId;
-            selectedService = null;
-            render();
-            window.scrollTo(0,0);
-        }
-
-        function openDetail(idx) {
-            selectedService = services[currentCategory][idx];
-            quantity = 1;
-            render();
-            window.scrollTo(0,0);
-        }
-
-        function changeQty(amount) {
-            quantity += amount;
-            if (quantity < 1) quantity = 1;
-            
-            const qtyVal = document.getElementById('qty-val');
-            if(qtyVal) qtyVal.innerText = quantity;
-
-            const liveArs = document.getElementById('live-ars');
-            const liveUsd = document.getElementById('live-usd');
-            if(liveArs && liveUsd && selectedService) {
-                liveArs.innerText = `$${(selectedService.ars * quantity).toLocaleString()}`;
-                liveUsd.innerText = `(USD $${selectedService.usd * quantity})`;
-            }
-        }
-
-        function addToCart() {
-            const nameField = document.getElementById('client-name');
-            if(nameField && !nameField.value) {
-                alert("Por favor completa al menos tu nombre.");
-                return;
-            }
-            const cartBar = document.getElementById('cart-bar');
-            if(cartBar) cartBar.style.display = 'flex';
-            
-            const cartText = document.getElementById('cart-total-text');
-            if(cartText && selectedService) {
-                cartText.innerText = `${quantity}x ${selectedService.name} ($${(selectedService.ars * quantity).toLocaleString()})`;
-            }
-            
-            openPaymentModal();
-        }
-
-        function openPaymentModal() {
-            if(!selectedService) return;
-            let totalArs = selectedService.ars * quantity;
-            let totalUsd = selectedService.usd * quantity;
-            const display = document.getElementById('modal-total-display');
-            if(display) display.innerText = `Total a abonar: $${totalArs.toLocaleString()} / USD $${totalUsd}`;
-            
-            const modal = document.getElementById('payment-modal');
-            if(modal) modal.style.display = 'flex';
-        }
-
-        function closePaymentModal() {
-            const modal = document.getElementById('payment-modal');
-            if(modal) modal.style.display = 'none';
-        }
-
-        function checkoutAction(method) {
-            const nameEl = document.getElementById('client-name');
-            const deviceEl = document.getElementById('client-device');
-            const obsEl = document.getElementById('client-obs');
-
-            const name = nameEl ? (nameEl.value || "Cliente") : "Cliente";
-            const device = deviceEl ? (deviceEl.value || "Dispositivo no especificado") : "Dispositivo no especificado";
-            const obs = obsEl ? (obsEl.value || "Ninguna") : "Ninguna";
-
-            let totalArs = selectedService.ars * quantity;
-            let totalUsd = selectedService.usd * quantity;
-
-            const msg = `Hola OmniFix! Soy ${name}. Mi equipo es un ${device}. Servicio: ${quantity}x ${selectedService.name}. Observaciones: ${obs}. Total: $${totalArs.toLocaleString()} (USD $${totalUsd}). Método de pago: ${method}.`;
-            window.open(`https://wa.me/${phoneTaller}?text=${encodeURIComponent(msg)}`, '_blank');
-            closePaymentModal();
-        }
-
-        function setRating(starCount) {
-            currentRating = starCount;
-            const stars = document.querySelectorAll('#star-container span');
-            stars.forEach((s, index) => {
-                if(index < starCount) {
-                    s.classList.add('rated');
-                } else {
-                    s.classList.remove('rated');
-                }
-            });
-        }
-
-        function submitReview() {
-            const nameEl = document.getElementById('review-name');
-            const name = nameEl ? nameEl.value : "";
-            if(currentRating === 0) {
-                alert("Por favor selecciona al menos una estrella para calificar.");
-                return;
-            }
-            if(!name) {
-                alert("Por favor ingresa tu nombre para publicar la opinión.");
-                return;
-            }
-            alert(`¡Muchas gracias ${name} por calificar con ${currentRating} estrellas! Tu opinión ha sido registrada.`);
-            currentRating = 0;
-            render();
-        }
-
-        function scrollToReview() {
-            const reviewSec = document.getElementById('review-section');
-            if(reviewSec) {
-                reviewSec.scrollIntoView({ behavior: 'smooth' });
-            }
-        }
-
-        document.addEventListener("DOMContentLoaded", function() {
-            render();
-        });
-    </script>
-</body>
-</html>
+             

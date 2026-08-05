@@ -61,8 +61,7 @@
         .qty-btn { background: var(--card-dark); color: var(--accent); border: 1px solid var(--card-border); width: 34px; height: 34px; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 1.1rem; }
         
         .btn-agregar { width: 100%; background: var(--accent); color: #0b1120; border: none; padding: 0.85rem; border-radius: 10px; font-weight: 800; cursor: pointer; font-size: 0.95rem; }
-        .guarantee-box { background: #0b1120; border: 1px solid var(--card-border); border-radius: 10px; padding: 0.9rem; font-size: 0.75rem; color: var(--text-muted); text-align: left; margin-top: 1rem; display: flex; gap: 8px; align-items: flex-start; }
-
+        
         .review-box { background: var(--card-dark); border: 1px solid var(--card-border); border-radius: 14px; padding: 1.2rem; margin-top: 1.5rem; }
         .review-title { text-align: center; color: var(--accent); font-size: 0.95rem; margin-bottom: 0.4rem; font-weight: bold; }
         .interactive-stars { text-align: center; font-size: 1.8rem; margin-bottom: 0.8rem; cursor: pointer; color: #475569; }
@@ -107,7 +106,8 @@
     </div>
 
     <div class="container" id="main-container">
-        <!-- Renderizado dinámico -->
+        <!-- Cargando categorías por defecto para evitar pantallas negras -->
+        <div style="text-align:center; padding: 2rem; color: #94a3b8;">Cargando servicios...</div>
     </div>
 
     <div class="cart-bar" id="cart-bar" style="display:none;">
@@ -256,4 +256,5 @@
                 container.innerHTML = `
                     <div class="back-bar">
                         <button class="btn-back" onclick="selectedService=null; render()">← Volver</button>
-             
+                        <span style="font-weight:800; font-size:0.85rem; color:var(--accent);">DETALLE</span>
+            

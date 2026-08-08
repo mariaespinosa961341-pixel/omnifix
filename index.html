@@ -104,7 +104,63 @@
     </div>
 
     <div class="container" id="main-container">
-        <!-- Contenido generado dinámicamente con control total de eventos -->
+        <!-- Las categorías están escritas de forma fija para garantizar que aparezcan siempre al instante -->
+        <div class="section-title">Categorías de Servicios</div>
+        
+        <div class="category-card" onclick="selectCategory('Celulares')">
+            <div class="card-left">
+                <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.8"><rect x="6" y="2" width="12" height="20" rx="2"/><line x1="10" y1="18" x2="14" y2="18"/><line x1="9" y1="6" x2="15" y2="12" stroke="#10b981" stroke-width="2"/></svg></div>
+                <span class="card-title">CELULARES Y TABLETS</span>
+            </div>
+            <span class="arrow">➔</span>
+        </div>
+
+        <div class="category-card" onclick="selectCategory('Computadoras')">
+            <div class="card-left">
+                <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.8"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M2 19h20"/></svg></div>
+                <span class="card-title">COMPUTADORAS Y LAPTOPS</span>
+            </div>
+            <span class="arrow">➔</span>
+        </div>
+
+        <div class="category-card" onclick="selectCategory('Auriculares')">
+            <div class="card-left">
+                <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.8"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg></div>
+                <span class="card-title">AURICULARES Y AUDIO</span>
+            </div>
+            <span class="arrow">➔</span>
+        </div>
+
+        <div class="category-card" onclick="selectCategory('Consolas')">
+            <div class="card-left">
+                <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="1.8"><rect x="2" y="6" width="20" height="12" rx="4"/><circle cx="8" cy="12" r="1.5" fill="#34d399"/><circle cx="16" cy="11" r="1" fill="#f59e0b"/><circle cx="16" cy="14" r="1" fill="#f59e0b"/></svg></div>
+                <span class="card-title">CONSOLAS Y JOYSTICKS</span>
+            </div>
+            <span class="arrow">➔</span>
+        </div>
+
+        <div class="category-card" onclick="selectCategory('Otros')">
+            <div class="card-left">
+                <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.8"><path d="M6 3v6M18 3v6M4 9h16v3a8 8 0 0 1-16 0V9zM12 17v4"/></svg></div>
+                <span class="card-title">OTROS DISPOSITIVOS</span>
+            </div>
+            <span class="arrow">➔</span>
+        </div>
+
+        <div class="review-box" id="review-section">
+            <div class="review-title">⭐ Deja tu Calificación y Opinión</div>
+            <div class="interactive-stars" id="star-container">
+                <span onclick="setRating(1)">★</span><span onclick="setRating(2)">★</span><span onclick="setRating(3)">★</span><span onclick="setRating(4)">★</span><span onclick="setRating(5)">★</span>
+            </div>
+            <input type="text" id="review-name" class="form-input" placeholder="Tu Nombre">
+            <input type="text" id="review-text" class="form-input" placeholder="Escribe tu opinión sobre el servicio...">
+            <button class="btn-submit" onclick="submitReview()">Publicar Opinión</button>
+            
+            <div class="saved-reviews">
+                <div style="font-size:0.85rem; font-weight:bold; color:var(--accent); margin-bottom:0.4rem;">Opiniones de Clientes:</div>
+                <div id="reviews-list"><p style="color:var(--text-muted); font-size:0.75rem;">Sé el primero en dejar tu opinión.</p></div>
+            </div>
+        </div>
     </div>
 
     <div class="cart-bar" id="cart-bar" style="display:none;">
@@ -127,20 +183,6 @@
     </div>
 
     <script>
-        const svgPhone = '<svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.8"><rect x="6" y="2" width="12" height="20" rx="2"/><line x1="10" y1="18" x2="14" y2="18"/><line x1="9" y1="6" x2="15" y2="12" stroke="#10b981" stroke-width="2"/></svg>';
-        const svgLaptop = '<svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.8"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M2 19h20"/></svg>';
-        const svgAudio = '<svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.8"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>';
-        const svgGamepad = '<svg viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="1.8"><rect x="2" y="6" width="20" height="12" rx="4"/><circle cx="8" cy="12" r="1.5" fill="#34d399"/><circle cx="16" cy="11" r="1" fill="#f59e0b"/><circle cx="16" cy="14" r="1" fill="#f59e0b"/></svg>';
-        const svgPlug = '<svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.8"><path d="M6 3v6M18 3v6M4 9h16v3a8 8 0 0 1-16 0V9zM12 17v4"/></svg>';
-
-        const categories = [
-            { id: "Celulares", name: "CELULARES Y TABLETS", icon: svgPhone },
-            { id: "Computadoras", name: "COMPUTADORAS Y LAPTOPS", icon: svgLaptop },
-            { id: "Auriculares", name: "AURICULARES Y AUDIO", icon: svgAudio },
-            { id: "Consolas", name: "CONSOLAS Y JOYSTICKS", icon: svgGamepad },
-            { id: "Otros", name: "OTROS DISPOSITIVOS", icon: svgPlug }
-        ];
-
         const services = {
             "Celulares": [
                 { name: "Cambio de Pantalla / Módulo completo", desc: "Reemplazo de pantalla táctil y display roto o sin imagen.", ars: 25000, usd: 25 },
@@ -176,96 +218,70 @@
         let currentRating = 0;
         const phoneTaller = "5493549589088";
 
-        function render() {
-            const container = document.getElementById('main-container');
-            if (!container) return;
+        function loadReviews() {
+            const listEl = document.getElementById('reviews-list');
+            if(!listEl) return;
+            let storedReviews = JSON.parse(localStorage.getItem('omni_reviews') || '[]');
+            if(storedReviews.length === 0) {
+                listEl.innerHTML = '<p style="color:var(--text-muted); font-size:0.75rem;">Sé el primero en dejar tu opinión.</p>';
+                return;
+            }
+            let reviewsHtml = '';
+            storedReviews.forEach(r => {
+                let starsStr = '★'.repeat(r.rating);
+                reviewsHtml += `<div class="review-item"><strong>${r.name}</strong> <span style="color:var(--accent)">${starsStr}</span><br>${r.text}</div>`;
+            });
+            listEl.innerHTML = reviewsHtml;
+        }
 
-            if (!currentCategory) {
-                let html = '<div class="section-title">Categorías de Servicios</div>';
-                categories.forEach(cat => {
-                    html += `
-                        <div class="category-card" onclick="selectCategory('${cat.id}')">
-                            <div class="card-left">
-                                <div class="icon-box">${cat.icon}</div>
-                                <span class="card-title">${cat.name}</span>
+        function selectCategory(catId) {
+            currentCategory = catId;
+            selectedService = null;
+            const container = document.getElementById('main-container');
+            let html = `
+                <div class="back-bar">
+                    <button class="btn-back" onclick="location.reload()">← Volver</button>
+                    <span style="font-weight:800; font-size:0.85rem; color:var(--accent);">${currentCategory.toUpperCase()}</span>
+                </div>
+                <div class="section-title">Selecciona un Servicio</div>
+            `;
+            
+            services[currentCategory].forEach((s, idx) => {
+                html += `
+                    <div class="service-card" onclick="openDetail(${idx})">
+                        <div class="card-left">
+                            <div class="card-title">${s.name}</div>
+                        </div>
+                        <div style="display:flex; align-items:center;">
+                            <div class="card-price">
+                                <span class="price-ars">$${s.ars.toLocaleString()}</span>
+                                <span class="price-usd">(USD $${s.usd})</span>
                             </div>
                             <span class="arrow">➔</span>
                         </div>
-                    `;
-                });
-
-                let reviewsHtml = '';
-                let storedReviews = JSON.parse(localStorage.getItem('omni_reviews') || '[]');
-                if(storedReviews.length === 0) {
-                    reviewsHtml = '<p style="color:var(--text-muted); font-size:0.75rem;">Sé el primero en dejar tu opinión.</p>';
-                } else {
-                    storedReviews.forEach(r => {
-                        let starsStr = '★'.repeat(r.rating);
-                        reviewsHtml += `<div class="review-item"><strong>${r.name}</strong> <span style="color:var(--accent)">${starsStr}</span><br>${r.text}</div>`;
-                    });
-                }
-
-                html += `
-                    <div class="review-box" id="review-section">
-                        <div class="review-title">⭐ Deja tu Calificación y Opinión</div>
-                        <div class="interactive-stars" id="star-container">
-                            <span onclick="setRating(1)">★</span><span onclick="setRating(2)">★</span><span onclick="setRating(3)">★</span><span onclick="setRating(4)">★</span><span onclick="setRating(5)">★</span>
-                        </div>
-                        <input type="text" id="review-name" class="form-input" placeholder="Tu Nombre">
-                        <input type="text" id="review-text" class="form-input" placeholder="Escribe tu opinión sobre el servicio...">
-                        <button class="btn-submit" onclick="submitReview()">Publicar Opinión</button>
-                        
-                        <div class="saved-reviews">
-                            <div style="font-size:0.85rem; font-weight:bold; color:var(--accent); margin-bottom:0.4rem;">Opiniones de Clientes:</div>
-                            <div id="reviews-list">${reviewsHtml}</div>
-                        </div>
                     </div>
                 `;
-                container.innerHTML = html;
-                document.getElementById('cart-bar').style.display = 'none';
-            } else if (!selectedService) {
-                let html = `
-                    <div class="back-bar">
-                        <button class="btn-back" onclick="currentCategory=null; render()">← Volver</button>
-                        <span style="font-weight:800; font-size:0.85rem; color:var(--accent);">${currentCategory.toUpperCase()}</span>
-                    </div>
-                    <div class="section-title">Selecciona un Servicio</div>
-                `;
-                
-                services[currentCategory].forEach((s, idx) => {
-                    html += `
-                        <div class="service-card" onclick="openDetail(${idx})">
-                            <div class="card-left">
-                                <div class="card-title">${s.name}</div>
-                            </div>
-                            <div style="display:flex; align-items:center;">
-                                <div class="card-price">
-                                    <span class="price-ars">$${s.ars.toLocaleString()}</span>
-                                    <span class="price-usd">(USD $${s.usd})</span>
-                                </div>
-                                <span class="arrow">➔</span>
-                            </div>
-                        </div>
-                    `;
-                });
-                container.innerHTML = html;
-                document.getElementById('cart-bar').style.display = 'none';
-            } else {
-                let totalArs = selectedService.ars * quantity;
-                let totalUsd = selectedService.usd * quantity;
-                container.innerHTML = `
-                    <div class="back-bar">
-                        <button class="btn-back" onclick="selectedService=null; render()">← Volver</button>
-                        <span style="font-weight:800; font-size:0.85rem; color:var(--accent);">DETALLE</span>
-                    </div>
-                    <div class="detail-box">
-                        <h3 style="color:white; margin-bottom:0.5rem; font-size:1.05rem;">${selectedService.name}</h3>
-                        <p class="detail-desc">${selectedService.desc}</p>
-                        
-                        <div style="background:#0b1120; border:1px solid var(--card-border); border-radius:10px; padding:0.8rem; margin-bottom:1rem; text-align:right;">
-                            <span class="price-ars" style="font-size:1.15rem;" id="live-ars">$${totalArs.toLocaleString()}</span>
-                            <span class="price-usd" id="live-usd">(USD $${totalUsd})</span>
-                        </div>
+            });
+            container.innerHTML = html;
+            document.getElementById('cart-bar').style.display = 'none';
+            window.scrollTo(0,0);
+        }
 
-                        <input type="text" id="client-name" class="form-input" placeholder="Tu Nombre y Apellido">
-                        <input type="text" id="client-device" c
+        function openDetail(idx) {
+            selectedService = services[currentCategory][idx];
+            quantity = 1;
+            const container = document.getElementById('main-container');
+            let totalArs = selectedService.ars * quantity;
+            let totalUsd = selectedService.usd * quantity;
+            
+            container.innerHTML = `
+                <div class="back-bar">
+                    <button class="btn-back" onclick="selectCategory('${currentCategory}')">← Volver</button>
+                    <span style="font-weight:800; font-size:0.85rem; color:var(--accent);">DETALLE</span>
+                </div>
+                <div class="detail-box">
+                    <h3 style="color:white; margin-bottom:0.5rem; font-size:1.05rem;">${selectedService.name}</h3>
+                    <p class="detail-desc">${selectedService.desc}</p>
+                    
+                    <div style="background:#0b1120; border:1px solid var(--card-border); border-radius:10px; padding:0.8rem; margin-bottom:1rem; text-align:right;">
+                        <span class="price-ars" style="font-size:1.15rem;" id="live-ars">$${totalArs

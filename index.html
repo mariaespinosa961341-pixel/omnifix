@@ -3,569 +3,491 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>OmniFix Reparaciones - Cruz del Eje</title>
 
 <style>
-
-:root {
-    --bg-dark: #0b1120;
-    --card-dark: #131c31;
-    --card-border: #1e293b;
-    --accent: #f59e0b;
-    --text-light: #ffffff;
-    --text-muted: #94a3b8;
-    --success: #10b981;
-    --mercadopago: #009ee3;
-    --paypal: #0070ba;
+:root{
+    --bg-dark:#0b1120;
+    --card-dark:#131c31;
+    --card-border:#1e293b;
+    --accent:#f59e0b;
+    --text-light:#fff;
+    --text-muted:#94a3b8;
+    --success:#10b981;
+    --mercadopago:#009ee3;
+    --paypal:#0070ba;
 }
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
 }
 
-html {
-    scroll-behavior: smooth;
+body{
+    background:var(--bg-dark);
+    color:var(--text-light);
+    line-height:1.5;
+    padding-bottom:90px;
 }
 
-body {
-    background: var(--bg-dark);
-    color: var(--text-light);
-    line-height: 1.5;
-    padding-bottom: 90px;
+header{
+    background:var(--card-dark);
+    padding:1.2rem 1rem;
+    text-align:center;
+    border-bottom:2px solid #000;
 }
 
-/* =========================
-   HEADER
-========================= */
-
-header {
-    background: var(--card-dark);
-    padding: 1.2rem 1rem;
-    text-align: center;
-    border-bottom: 2px solid #000;
+.logo-container{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
 }
 
-.logo-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
+.logo-circle{
+    width:50px;
+    height:50px;
+    background:#131c31;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border:2px solid var(--accent);
 }
 
-.logo-circle {
-    width: 50px;
-    height: 50px;
-    background: #131c31;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid var(--accent);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
-    flex-shrink: 0;
+header h1{
+    font-size:1.35rem;
+    font-weight:800;
 }
 
-header h1 {
-    font-size: 1.35rem;
-    font-weight: 800;
-    letter-spacing: 0.5px;
-    color: white;
+.badges{
+    background:#d97706;
+    color:#111;
+    padding:6px;
+    text-align:center;
+    font-size:.8rem;
+    font-weight:bold;
 }
 
-/* =========================
-   BARRAS
-========================= */
-
-.badges {
-    background: #d97706;
-    color: #111;
-    padding: 7px;
-    text-align: center;
-    font-size: 0.8rem;
-    font-weight: bold;
+.sub-badges{
+    background:var(--card-dark);
+    padding:7px;
+    text-align:center;
+    font-size:.75rem;
+    color:#34d399;
+    border-bottom:1px solid var(--card-border);
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
 }
 
-.sub-badges {
-    background: var(--card-dark);
-    padding: 8px;
-    text-align: center;
-    font-size: 0.75rem;
-    color: #34d399;
-    border-bottom: 1px solid var(--card-border);
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    flex-wrap: wrap;
+.action-banners{
+    display:flex;
+    border-bottom:1px solid var(--card-border);
 }
 
-.action-banners {
-    display: flex;
-    border-bottom: 1px solid var(--card-border);
+.banner-btn{
+    flex:1;
+    background:var(--card-dark);
+    text-align:center;
+    padding:9px 5px;
+    font-size:.75rem;
+    font-weight:bold;
+    cursor:pointer;
+    border:none;
+    color:var(--accent);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:5px;
+    text-decoration:none;
 }
 
-.banner-btn {
-    flex: 1;
-    background: var(--card-dark);
-    text-align: center;
-    padding: 9px 5px;
-    font-size: 0.75rem;
-    font-weight: bold;
-    cursor: pointer;
-    border: none;
-    color: var(--accent);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    text-decoration: none;
+.banner-btn:first-child{
+    border-right:1px solid var(--card-border);
+    color:#38bdf8;
 }
 
-.banner-btn:first-child {
-    border-right: 1px solid var(--card-border);
-    color: #38bdf8;
+.container{
+    max-width:600px;
+    margin:auto;
+    padding:1rem;
 }
 
-/* =========================
-   CONTENEDOR
-========================= */
-
-.container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 1rem;
+.section-title{
+    font-size:.9rem;
+    text-transform:uppercase;
+    letter-spacing:1.2px;
+    color:var(--accent);
+    margin:.8rem 0;
+    font-weight:800;
 }
 
-.section-title {
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 1.2px;
-    color: var(--accent);
-    margin: 0.8rem 0;
-    font-weight: 800;
-}
-
-/* =========================
-   CATEGORÍAS / SERVICIOS
-========================= */
+/* TARJETAS */
 
 .category-card,
-.service-card {
-    width: 100%;
-    background: var(--card-dark);
-    border: 1px solid var(--card-border);
-    border-radius: 14px;
-    padding: 0.9rem 1rem;
-    margin-bottom: 0.75rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    cursor: pointer;
-    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.2);
-    transition: 0.15s;
-    color: white;
-    text-align: left;
+.service-card{
+    width:100%;
+    background:var(--card-dark);
+    border:1px solid var(--card-border);
+    border-radius:14px;
+    padding:.9rem 1rem;
+    margin-bottom:.75rem;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    cursor:pointer;
+    color:white;
+    box-shadow:0 4px 6px -1px rgba(0,0,0,.2);
+    transition:.15s;
 }
 
 .category-card:hover,
-.service-card:hover {
-    border-color: var(--accent);
-    transform: translateY(-1px);
+.service-card:hover{
+    border-color:var(--accent);
 }
 
 .category-card:active,
-.service-card:active {
-    background: #1a2642;
-    transform: scale(0.99);
+.service-card:active{
+    background:#1a2642;
+    transform:scale(.99);
 }
 
-.card-left {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    flex: 1;
-    min-width: 0;
+.card-left{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    flex:1;
+    min-width:0;
 }
 
-.icon-box {
-    width: 56px;
-    height: 56px;
-    background: #0b1120;
-    border: 1px solid #2a3650;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
+.icon-box{
+    width:56px;
+    height:56px;
+    background:#0b1120;
+    border:1px solid #2a3650;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
 }
 
-.icon-box svg {
-    width: 32px;
-    height: 32px;
+.icon-box svg{
+    width:32px;
+    height:32px;
 }
 
-.card-title {
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: white;
-    line-height: 1.3;
+.card-title{
+    font-size:.9rem;
+    font-weight:700;
+    color:white;
+    line-height:1.3;
 }
 
-.card-price {
-    text-align: right;
-    min-width: 95px;
-    flex-shrink: 0;
+.card-price{
+    text-align:right;
+    min-width:90px;
 }
 
-.price-ars {
-    font-weight: 800;
-    color: var(--accent);
-    font-size: 0.95rem;
-    display: block;
+.price-ars{
+    font-weight:800;
+    color:var(--accent);
+    font-size:.95rem;
+    display:block;
 }
 
-.price-usd {
-    font-size: 0.72rem;
-    color: #34d399;
-    display: block;
-    font-weight: 600;
+.price-usd{
+    font-size:.72rem;
+    color:#34d399;
+    display:block;
+    font-weight:600;
 }
 
-.arrow {
-    color: var(--accent);
-    font-size: 1.2rem;
-    margin-left: 12px;
-    font-weight: bold;
-    flex-shrink: 0;
+.arrow{
+    color:var(--accent);
+    font-size:1.2rem;
+    margin-left:12px;
+    font-weight:bold;
 }
 
-/* =========================
-   VOLVER
-========================= */
+/* VOLVER */
 
-.back-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-    background: var(--card-dark);
-    padding: 0.8rem 1rem;
-    border-radius: 10px;
-    border: 1px solid var(--card-border);
+.back-bar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:1rem;
+    background:var(--card-dark);
+    padding:.8rem 1rem;
+    border-radius:10px;
+    border:1px solid var(--card-border);
 }
 
-.btn-back {
-    background: none;
-    border: none;
-    color: var(--accent);
-    font-weight: bold;
-    cursor: pointer;
-    font-size: 0.9rem;
+.btn-back{
+    background:none;
+    border:none;
+    color:var(--accent);
+    font-weight:bold;
+    cursor:pointer;
+    font-size:.9rem;
 }
 
-/* =========================
-   DETALLE DEL SERVICIO
-========================= */
+/* DETALLE */
 
-.detail-box {
-    background: var(--card-dark);
-    border: 1px solid var(--card-border);
-    border-radius: 16px;
-    padding: 1.5rem;
-    text-align: center;
+.detail-box{
+    background:var(--card-dark);
+    border:1px solid var(--card-border);
+    border-radius:16px;
+    padding:1.5rem;
+    text-align:center;
 }
 
-.detail-icon {
-    width: 80px;
-    height: 80px;
-    background: #0b1120;
-    border: 2px solid var(--accent);
-    border-radius: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 1rem;
+.detail-icon{
+    width:80px;
+    height:80px;
+    background:#0b1120;
+    border:2px solid var(--accent);
+    border-radius:18px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:0 auto 1rem;
 }
 
-.detail-icon svg {
-    width: 45px;
-    height: 45px;
+.detail-icon svg{
+    width:45px;
+    height:45px;
 }
 
-.detail-box h2 {
-    font-size: 1.1rem;
-    margin-bottom: 0.7rem;
+.detail-box h2{
+    font-size:1.1rem;
+    margin-bottom:.7rem;
 }
 
-.detail-desc {
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    margin-bottom: 1.2rem;
-    text-align: left;
-    line-height: 1.5;
+.detail-desc{
+    font-size:.85rem;
+    color:var(--text-muted);
+    margin-bottom:1.2rem;
+    text-align:left;
 }
 
-.total-box {
-    background: #0b1120;
-    border: 1px solid var(--card-border);
-    border-radius: 10px;
-    padding: 0.8rem;
-    margin-bottom: 1rem;
-    text-align: right;
+.total-box{
+    background:#0b1120;
+    border:1px solid var(--card-border);
+    border-radius:10px;
+    padding:.8rem;
+    margin-bottom:1rem;
 }
 
-.form-input {
-    width: 100%;
-    padding: 0.75rem;
-    margin-bottom: 0.8rem;
-    background: #0b1120;
-    border: 1px solid var(--card-border);
-    border-radius: 10px;
-    color: white;
-    font-size: 0.9rem;
-    outline: none;
+.form-input{
+    width:100%;
+    padding:.75rem;
+    margin-bottom:.8rem;
+    background:#0b1120;
+    border:1px solid var(--card-border);
+    border-radius:10px;
+    color:white;
+    font-size:.9rem;
+    outline:none;
 }
 
-.form-input:focus {
-    border-color: var(--accent);
+.form-input:focus{
+    border-color:var(--accent);
 }
 
-.form-input::placeholder {
-    color: #64748b;
+.qty-container{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background:#0b1120;
+    border:1px solid var(--card-border);
+    border-radius:10px;
+    padding:.5rem 1rem;
+    margin-bottom:1rem;
 }
 
-.qty-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: #0b1120;
-    border: 1px solid var(--card-border);
-    border-radius: 10px;
-    padding: 0.5rem 1rem;
-    margin-bottom: 1rem;
+.qty-btn{
+    background:var(--card-dark);
+    color:var(--accent);
+    border:1px solid var(--card-border);
+    width:38px;
+    height:38px;
+    border-radius:8px;
+    font-weight:bold;
+    cursor:pointer;
+    font-size:1.2rem;
 }
 
-.qty-btn {
-    background: var(--card-dark);
-    color: var(--accent);
-    border: 1px solid var(--card-border);
-    width: 38px;
-    height: 38px;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    font-size: 1.2rem;
+.btn-agregar{
+    width:100%;
+    background:var(--accent);
+    color:#0b1120;
+    border:none;
+    padding:.85rem;
+    border-radius:10px;
+    font-weight:800;
+    cursor:pointer;
+    font-size:.95rem;
 }
 
-.btn-agregar {
-    width: 100%;
-    background: var(--accent);
-    color: #0b1120;
-    border: none;
-    padding: 0.85rem;
-    border-radius: 10px;
-    font-weight: 800;
-    cursor: pointer;
-    font-size: 0.95rem;
+/* OPINIONES */
+
+.review-box{
+    background:var(--card-dark);
+    border:1px solid var(--card-border);
+    border-radius:14px;
+    padding:1.2rem;
+    margin-top:1.5rem;
 }
 
-/* =========================
-   OPINIONES
-========================= */
-
-.review-box {
-    background: var(--card-dark);
-    border: 1px solid var(--card-border);
-    border-radius: 14px;
-    padding: 1.2rem;
-    margin-top: 1.5rem;
+.review-title{
+    text-align:center;
+    color:var(--accent);
+    font-size:.95rem;
+    margin-bottom:.4rem;
+    font-weight:bold;
 }
 
-.review-title {
-    text-align: center;
-    color: var(--accent);
-    font-size: 0.95rem;
-    margin-bottom: 0.4rem;
-    font-weight: bold;
+.interactive-stars{
+    text-align:center;
+    font-size:1.8rem;
+    margin-bottom:.8rem;
+    cursor:pointer;
+    color:#475569;
 }
 
-.interactive-stars {
-    text-align: center;
-    font-size: 1.8rem;
-    margin-bottom: 0.8rem;
-    cursor: pointer;
-    color: #475569;
+.interactive-stars span.rated{
+    color:var(--accent);
 }
 
-.interactive-stars span {
-    margin: 0 2px;
+.btn-submit{
+    background:var(--accent);
+    color:#0b1120;
+    border:none;
+    width:100%;
+    padding:.75rem;
+    border-radius:10px;
+    font-weight:bold;
+    cursor:pointer;
 }
 
-.interactive-stars span.rated {
-    color: var(--accent);
+.saved-reviews{
+    margin-top:1rem;
+    border-top:1px solid var(--card-border);
+    padding-top:.8rem;
 }
 
-.btn-submit {
-    background: var(--accent);
-    color: #0b1120;
-    border: none;
-    width: 100%;
-    padding: 0.75rem;
-    border-radius: 10px;
-    font-weight: bold;
-    cursor: pointer;
+.review-item{
+    background:#0b1120;
+    padding:.7rem;
+    border-radius:8px;
+    margin-bottom:.5rem;
+    font-size:.8rem;
 }
 
-.saved-reviews {
-    margin-top: 1rem;
-    text-align: left;
-    border-top: 1px solid var(--card-border);
-    padding-top: 0.8rem;
+/* MODAL */
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.85);
+    z-index:200;
+    justify-content:center;
+    align-items:center;
+    padding:1rem;
 }
 
-.review-item {
-    background: #0b1120;
-    padding: 0.7rem;
-    border-radius: 8px;
-    margin-bottom: 0.5rem;
-    font-size: 0.8rem;
-}
-
-/* =========================
-   MODAL
-========================= */
-
-.modal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.85);
-    z-index: 200;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem;
-}
-
-.modal-content {
-    background: var(--card-dark);
-    width: 100%;
-    max-width: 420px;
-    border-radius: 16px;
-    padding: 1.5rem;
-    text-align: center;
-    border: 1px solid var(--card-border);
+.modal-content{
+    background:var(--card-dark);
+    width:100%;
+    max-width:420px;
+    border-radius:16px;
+    padding:1.5rem;
+    text-align:center;
+    border:1px solid var(--card-border);
 }
 
 .btn-mp,
-.btn-paypal,
-.btn-whatsapp-modal {
-    width: 100%;
-    padding: 0.85rem;
-    border: none;
-    border-radius: 10px;
-    font-weight: 800;
-    font-size: 0.95rem;
-    cursor: pointer;
-    margin-bottom: 0.6rem;
+.btn-paypal{
+    width:100%;
+    padding:.85rem;
+    border:none;
+    border-radius:10px;
+    font-weight:800;
+    font-size:.95rem;
+    cursor:pointer;
+    margin-bottom:.6rem;
+    color:white;
 }
 
-.btn-mp {
-    background: var(--mercadopago);
-    color: white;
+.btn-mp{
+    background:var(--mercadopago);
 }
 
-.btn-paypal {
-    background: var(--paypal);
-    color: white;
+.btn-paypal{
+    background:var(--paypal);
 }
 
-.btn-whatsapp-modal {
-    background: #25d366;
-    color: white;
+/* CARRITO */
+
+.cart-bar{
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    background:var(--card-dark);
+    border-top:1px solid var(--card-border);
+    padding:.8rem 1rem;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    z-index:100;
+    box-shadow:0 -4px 15px rgba(0,0,0,.4);
 }
 
-/* =========================
-   CARRITO
-========================= */
-
-.cart-bar {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: var(--card-dark);
-    border-top: 1px solid var(--card-border);
-    padding: 0.8rem 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-    z-index: 100;
-    box-shadow: 0 -4px 15px rgba(0,0,0,0.4);
+.btn-checkout{
+    background:var(--success);
+    color:white;
+    border:none;
+    padding:.75rem 1.3rem;
+    border-radius:10px;
+    font-weight:800;
+    cursor:pointer;
 }
 
-.btn-checkout {
-    background: var(--success);
-    color: white;
-    border: none;
-    padding: 0.75rem 1.3rem;
-    border-radius: 10px;
-    font-weight: 800;
-    cursor: pointer;
-    font-size: 0.9rem;
-}
+@media(max-width:400px){
 
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media (max-width: 400px) {
-
-    header h1 {
-        font-size: 1.05rem;
+    header h1{
+        font-size:1.05rem;
     }
 
-    .card-title {
-        font-size: 0.82rem;
+    .card-title{
+        font-size:.82rem;
     }
 
-    .card-price {
-        min-width: 78px;
+    .card-price{
+        min-width:78px;
     }
 
-    .price-ars {
-        font-size: 0.85rem;
+    .price-ars{
+        font-size:.82rem;
     }
-
-    .arrow {
-        margin-left: 7px;
-    }
-
-    .icon-box {
-        width: 52px;
-        height: 52px;
-    }
-
 }
-
 </style>
 </head>
 
 <body>
 
-<!-- =========================
-     HEADER
-========================= -->
-
 <header>
-
     <div class="logo-container">
 
         <div class="logo-circle">
-
             <svg width="28" height="28"
                  viewBox="0 0 24 24"
                  fill="none"
@@ -577,464 +499,358 @@ header h1 {
                       height="20"
                       rx="2"/>
 
-                <line x1="12"
-                      y1="18"
-                      x2="12"
-                      y2="18.01"/>
-
+                <line x1="12" y1="18"
+                      x2="12" y2="18.01"/>
             </svg>
-
         </div>
 
         <h1>OMNIFIX REPARACIONES</h1>
 
     </div>
-
 </header>
-
 
 <div class="badges">
     ⚡ Taller Abierto — Cruz del Eje, Córdoba (Casa Blanca)
 </div>
 
-
 <div class="sub-badges">
-
-    <span>🔒 Pago 100% Protegido</span>
-
-    <span>🛡️ 90 Días de Garantía Escrita</span>
-
+    <span>🔒 Pago Protegido</span>
+    <span>🛡️ 90 Días de Garantía</span>
 </div>
-
 
 <div class="action-banners">
 
-    <a
-        href="https://maps.app.goo.gl/xCGTk8NVPKTzx6h38"
-        target="_blank"
-        class="banner-btn">
-
+    <a href="https://maps.app.goo.gl/xCGTk8NVPKTzx6h38"
+       target="_blank"
+       class="banner-btn">
         📍 Ver Ubicación en Maps
-
     </a>
 
-    <button
-        class="banner-btn"
-        onclick="scrollToReview()">
-
-        ⭐ Dejanos tu Opinión
-
+    <button class="banner-btn"
+            onclick="scrollToReview()">
+        ⭐ Dejar Opinión
     </button>
 
 </div>
-
-
-<!-- =========================
-     CONTENEDOR PRINCIPAL
-========================= -->
 
 <div class="container">
 
-    <!-- PANTALLA PRINCIPAL -->
+<!-- =========================
+     HOME
+========================= -->
 
-    <div id="home-view">
+<div id="home-view">
 
-        <div class="section-title">
-            Categorías de Servicios
+<div class="section-title">
+    Categorías de Servicios
+</div>
+
+<!-- CELULARES -->
+
+<button class="category-card"
+        type="button"
+        onclick="selectCategory('Celulares')">
+
+    <div class="card-left">
+
+        <div class="icon-box">
+            <svg viewBox="0 0 24 24"
+                 fill="none"
+                 stroke="#f59e0b"
+                 stroke-width="1.8">
+
+                <rect x="6" y="2"
+                      width="12"
+                      height="20"
+                      rx="2"/>
+
+                <line x1="10" y1="18"
+                      x2="14" y2="18"/>
+            </svg>
         </div>
 
-
-        <!-- CELULARES -->
-
-        <button
-            type="button"
-            class="category-card"
-            onclick="selectCategory('Celulares')">
-
-            <div class="card-left">
-
-                <div class="icon-box">
-
-                    <svg viewBox="0 0 24 24"
-                         fill="none"
-                         stroke="#f59e0b"
-                         stroke-width="1.8">
-
-                        <rect x="6" y="2"
-                              width="12"
-                              height="20"
-                              rx="2"/>
-
-                        <line x1="10"
-                              y1="18"
-                              x2="14"
-                              y2="18"/>
-
-                    </svg>
-
-                </div>
-
-                <span class="card-title">
-                    CELULARES Y TABLETS
-                </span>
-
-            </div>
-
-            <span class="arrow">➔</span>
-
-        </button>
-
-
-        <!-- COMPUTADORAS -->
-
-        <button
-            type="button"
-            class="category-card"
-            onclick="selectCategory('Computadoras')">
-
-            <div class="card-left">
-
-                <div class="icon-box">
-
-                    <svg viewBox="0 0 24 24"
-                         fill="none"
-                         stroke="#f59e0b"
-                         stroke-width="1.8">
-
-                        <rect x="3" y="5"
-                              width="18"
-                              height="12"
-                              rx="2"/>
-
-                        <path d="M2 19h20"/>
-
-                    </svg>
-
-                </div>
-
-                <span class="card-title">
-                    COMPUTADORAS Y LAPTOPS
-                </span>
-
-            </div>
-
-            <span class="arrow">➔</span>
-
-        </button>
-
-
-        <!-- AURICULARES -->
-
-        <button
-            type="button"
-            class="category-card"
-            onclick="selectCategory('Auriculares')">
-
-            <div class="card-left">
-
-                <div class="icon-box">
-
-                    <svg viewBox="0 0 24 24"
-                         fill="none"
-                         stroke="#f59e0b"
-                         stroke-width="1.8">
-
-                        <path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
-
-                        <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/>
-
-                        <path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
-
-                    </svg>
-
-                </div>
-
-                <span class="card-title">
-                    AURICULARES Y AUDIO
-                </span>
-
-            </div>
-
-            <span class="arrow">➔</span>
-
-        </button>
-
-
-        <!-- CONSOLAS -->
-
-        <button
-            type="button"
-            class="category-card"
-            onclick="selectCategory('Consolas')">
-
-            <div class="card-left">
-
-                <div class="icon-box">
-
-                    <svg viewBox="0 0 24 24"
-                         fill="none"
-                         stroke="#34d399"
-                         stroke-width="1.8">
-
-                        <rect x="2"
-                              y="6"
-                              width="20"
-                              height="12"
-                              rx="4"/>
-
-                        <circle cx="8"
-                                cy="12"
-                                r="1.5"
-                                fill="#34d399"/>
-
-                        <circle cx="16"
-                                cy="11"
-                                r="1"
-                                fill="#f59e0b"/>
-
-                        <circle cx="16"
-                                cy="14"
-                                r="1"
-                                fill="#f59e0b"/>
-
-                    </svg>
-
-                </div>
-
-                <span class="card-title">
-                    CONSOLAS Y JOYSTICKS
-                </span>
-
-            </div>
-
-            <span class="arrow">➔</span>
-
-        </button>
-
-
-        <!-- OTROS -->
-
-        <button
-            type="button"
-            class="category-card"
-            onclick="selectCategory('Otros')">
-
-            <div class="card-left">
-
-                <div class="icon-box">
-
-                    <svg viewBox="0 0 24 24"
-                         fill="none"
-                         stroke="#f59e0b"
-                         stroke-width="1.8">
-
-                        <path d="M6 3v6"/>
-                        <path d="M18 3v6"/>
-
-                        <path d="M4 9h16v3a8 8 0 0 1-16 0V9z"/>
-
-                        <path d="M12 17v4"/>
-
-                    </svg>
-
-                </div>
-
-                <span class="card-title">
-                    OTROS DISPOSITIVOS
-                </span>
-
-            </div>
-
-            <span class="arrow">➔</span>
-
-        </button>
-
-
-        <!-- OPINIONES -->
-
-        <div
-            class="review-box"
-            id="review-section">
-
-            <div class="review-title">
-                ⭐ Deja tu Calificación y Opinión
-            </div>
-
-            <div
-                class="interactive-stars"
-                id="star-container">
-
-                <span onclick="setRating(1)">★</span>
-                <span onclick="setRating(2)">★</span>
-                <span onclick="setRating(3)">★</span>
-                <span onclick="setRating(4)">★</span>
-                <span onclick="setRating(5)">★</span>
-
-            </div>
-
-            <input
-                type="text"
-                id="review-name"
-                class="form-input"
-                placeholder="Tu Nombre">
-
-            <textarea
-                id="review-text"
-                class="form-input"
-                placeholder="Escribe tu opinión sobre el servicio..."
-                rows="3"></textarea>
-
-            <button
-                class="btn-submit"
-                onclick="submitReview()">
-
-                Publicar Opinión
-
-            </button>
-
-            <div class="saved-reviews">
-
-                <div style="font-size:0.85rem;
-                            font-weight:bold;
-                            color:var(--accent);
-                            margin-bottom:0.4rem;">
-
-                    Opiniones de Clientes:
-
-                </div>
-
-                <div id="reviews-list"></div>
-
-            </div>
-
-        </div>
+        <span class="card-title">
+            CELULARES Y TABLETS
+        </span>
 
     </div>
 
+    <span class="arrow">➔</span>
 
-    <!-- VISTA DINÁMICA -->
+</button>
 
-    <div
-        id="dynamic-view"
-        style="display:none;">
+<!-- COMPUTADORAS -->
+
+<button class="category-card"
+        type="button"
+        onclick="selectCategory('Computadoras')">
+
+    <div class="card-left">
+
+        <div class="icon-box">
+            <svg viewBox="0 0 24 24"
+                 fill="none"
+                 stroke="#f59e0b"
+                 stroke-width="1.8">
+
+                <rect x="3" y="5"
+                      width="18"
+                      height="12"
+                      rx="2"/>
+
+                <path d="M2 19h20"/>
+            </svg>
+        </div>
+
+        <span class="card-title">
+            COMPUTADORAS Y LAPTOPS
+        </span>
+
+    </div>
+
+    <span class="arrow">➔</span>
+
+</button>
+
+<!-- AURICULARES -->
+
+<button class="category-card"
+        type="button"
+        onclick="selectCategory('Auriculares')">
+
+    <div class="card-left">
+
+        <div class="icon-box">
+            <svg viewBox="0 0 24 24"
+                 fill="none"
+                 stroke="#f59e0b"
+                 stroke-width="1.8">
+
+                <path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
+
+                <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/>
+
+                <path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
+            </svg>
+        </div>
+
+        <span class="card-title">
+            AURICULARES Y AUDIO
+        </span>
+
+    </div>
+
+    <span class="arrow">➔</span>
+
+</button>
+
+<!-- CONSOLAS -->
+
+<button class="category-card"
+        type="button"
+        onclick="selectCategory('Consolas')">
+
+    <div class="card-left">
+
+        <div class="icon-box">
+            <svg viewBox="0 0 24 24"
+                 fill="none"
+                 stroke="#34d399"
+                 stroke-width="1.8">
+
+                <rect x="2" y="6"
+                      width="20"
+                      height="12"
+                      rx="4"/>
+
+                <circle cx="8" cy="12"
+                        r="1.5"
+                        fill="#34d399"/>
+
+                <circle cx="16" cy="11"
+                        r="1"
+                        fill="#f59e0b"/>
+
+                <circle cx="16" cy="14"
+                        r="1"
+                        fill="#f59e0b"/>
+            </svg>
+        </div>
+
+        <span class="card-title">
+            CONSOLAS Y JOYSTICKS
+        </span>
+
+    </div>
+
+    <span class="arrow">➔</span>
+
+</button>
+
+<!-- OTROS -->
+
+<button class="category-card"
+        type="button"
+        onclick="selectCategory('Otros')">
+
+    <div class="card-left">
+
+        <div class="icon-box">
+            <svg viewBox="0 0 24 24"
+                 fill="none"
+                 stroke="#f59e0b"
+                 stroke-width="1.8">
+
+                <path d="M6 3v6"/>
+                <path d="M18 3v6"/>
+                <path d="M4 9h16v3a8 8 0 0 1-16 0V9z"/>
+                <path d="M12 17v4"/>
+
+            </svg>
+        </div>
+
+        <span class="card-title">
+            OTROS DISPOSITIVOS
+        </span>
+
+    </div>
+
+    <span class="arrow">➔</span>
+
+</button>
+
+<!-- OPINIONES -->
+
+<div class="review-box"
+     id="review-section">
+
+    <div class="review-title">
+        ⭐ Deja tu Calificación y Opinión
+    </div>
+
+    <div class="interactive-stars"
+         id="star-container">
+
+        <span onclick="setRating(1)">★</span>
+        <span onclick="setRating(2)">★</span>
+        <span onclick="setRating(3)">★</span>
+        <span onclick="setRating(4)">★</span>
+        <span onclick="setRating(5)">★</span>
+
+    </div>
+
+    <input type="text"
+           id="review-name"
+           class="form-input"
+           placeholder="Tu Nombre">
+
+    <input type="text"
+           id="review-text"
+           class="form-input"
+           placeholder="Escribe tu opinión sobre el servicio...">
+
+    <button class="btn-submit"
+            onclick="submitReview()">
+        Publicar Opinión
+    </button>
+
+    <div class="saved-reviews">
+
+        <div style="font-size:.85rem;
+                    font-weight:bold;
+                    color:var(--accent);
+                    margin-bottom:.4rem;">
+            Opiniones de Clientes:
+        </div>
+
+        <div id="reviews-list"></div>
 
     </div>
 
 </div>
 
+</div>
+
 
 <!-- =========================
-     BARRA DEL CARRITO
+     VISTA DINÁMICA
 ========================= -->
 
-<div
-    class="cart-bar"
-    id="cart-bar"
-    style="display:none;">
+<div id="dynamic-view"
+     style="display:none;">
+</div>
+
+</div>
+
+
+<!-- =========================
+     CARRITO
+========================= -->
+
+<div class="cart-bar"
+     id="cart-bar"
+     style="display:none;">
 
     <div>
 
-        <span style="
-            font-size:0.75rem;
-            color:var(--text-muted);
-            display:block;">
-
+        <span style="font-size:.75rem;
+                     color:var(--text-muted);
+                     display:block;">
             Seleccionado:
-
         </span>
 
-        <span
-            id="cart-total-text"
-            style="
-            font-weight:bold;
-            color:var(--accent);
-            font-size:0.85rem;">
-
+        <span id="cart-total-text"
+              style="font-weight:bold;
+                     color:var(--accent);">
             0 servicios
-
         </span>
 
     </div>
 
-    <button
-        class="btn-checkout"
-        onclick="openPaymentModal()">
-
+    <button class="btn-checkout"
+            onclick="openPaymentModal()">
         💳 Pagar / Solicitar
-
     </button>
 
 </div>
 
 
 <!-- =========================
-     MODAL DE PAGO
+     MODAL
 ========================= -->
 
-<div
-    class="modal"
-    id="payment-modal">
+<div class="modal"
+     id="payment-modal">
 
     <div class="modal-content">
 
-        <h3 style="
-            color:var(--accent);
-            margin-bottom:0.5rem;
-            font-size:1.2rem;">
-
-            Solicitar Reparación
-
+        <h3 style="color:var(--accent);">
+            Elige Medio de Pago
         </h3>
 
-        <p
-            id="modal-total-display"
-            style="
-            font-size:0.8rem;
-            color:var(--text-muted);
-            margin-bottom:1rem;">
-
+        <p id="modal-total-display"
+           style="font-size:.8rem;
+                  color:var(--text-muted);
+                  margin:10px 0 15px;">
         </p>
 
-
-        <button
-            class="btn-mp"
-            onclick="sendWhatsApp('Mercado Pago')">
-
-            💙 Solicitar por Mercado Pago
-
+        <button class="btn-mp"
+                onclick="checkoutAction('Mercado Pago')">
+            💙 Pagar con Mercado Pago
         </button>
 
-
-        <button
-            class="btn-paypal"
-            onclick="sendWhatsApp('PayPal')">
-
-            💙 Solicitar por PayPal (USD)
-
+        <button class="btn-paypal"
+                onclick="checkoutAction('PayPal')">
+            💙 Pagar con PayPal (USD)
         </button>
 
-
-        <button
-            class="btn-whatsapp-modal"
-            onclick="sendWhatsApp('Efectivo / Consulta')">
-
-            💬 Consultar por WhatsApp
-
-        </button>
-
-
-        <button
-            onclick="closePaymentModal()"
-            style="
-            background:none;
-            border:none;
-            color:var(--text-muted);
-            margin-top:10px;
-            cursor:pointer;
-            font-size:0.85rem;">
-
+        <button onclick="closePaymentModal()"
+                style="background:none;
+                       border:none;
+                       color:var(--text-muted);
+                       cursor:pointer;
+                       margin-top:10px;">
             Cancelar
-
         </button>
 
     </div>
@@ -1044,6 +860,211 @@ header h1 {
 
 <script>
 
-/* =====================================================
-   TODOS LOS SERVICIOS
-===========================
+/* =========================================================
+   SERVICIOS
+========================================================= */
+
+const services = {
+
+"Celulares":[
+
+{
+name:"Cambio de Pantalla / Módulo completo",
+desc:"Reemplazo de pantalla táctil y display LCD/OLED roto, dañado o sin imagen.",
+ars:25000,
+usd:25
+},
+
+{
+name:"Cambio de Pin / Puerto de Carga",
+desc:"Reparación o reemplazo del conector de carga cuando el celular no carga o tiene falso contacto.",
+ars:18000,
+usd:18
+},
+
+{
+name:"Cambio de Batería Original/Genérica",
+desc:"Reemplazo de batería agotada, hinchada o con poca autonomía.",
+ars:20000,
+usd:20
+},
+
+{
+name:"Cambio de Tapa Trasera",
+desc:"Reemplazo de tapa trasera o carcasa dañada.",
+ars:18000,
+usd:18
+},
+
+{
+name:"Cambio de Cristales / Lentes de Cámara",
+desc:"Reemplazo del cristal protector de las cámaras traseras.",
+ars:12000,
+usd:12
+},
+
+{
+name:"Reparación de Auricular / Micrófono",
+desc:"Reparación cuando no se escucha, se escucha bajo o el micrófono no funciona correctamente.",
+ars:15000,
+usd:15
+},
+
+{
+name:"Formateo, Software o Desbloqueo",
+desc:"Formateo, instalación de sistema, optimización y solución de problemas de software.",
+ars:15000,
+usd:15
+},
+
+{
+name:"Reparación de Botones",
+desc:"Reparación de botones de encendido, volumen y otros controles físicos.",
+ars:15000,
+usd:15
+},
+
+{
+name:"Reparación de Cámara",
+desc:"Reparación o reemplazo de cámara frontal o trasera.",
+ars:18000,
+usd:18
+},
+
+{
+name:"Reparación por Humedad",
+desc:"Limpieza y diagnóstico de equipos afectados por agua o humedad.",
+ars:20000,
+usd:20
+}
+
+],
+
+
+"Computadoras":[
+
+{
+name:"Instalación de Sistema Operativo + Optimización",
+desc:"Instalación del sistema y optimización general para mejorar el rendimiento.",
+ars:20000,
+usd:20
+},
+
+{
+name:"Mantenimiento Preventivo",
+desc:"Limpieza interna, limpieza de coolers y cambio de pasta térmica.",
+ars:30000,
+usd:30
+},
+
+{
+name:"Formateo + Windows 11 / 10 + Office",
+desc:"Instalación completa del sistema operativo y programas básicos.",
+ars:22000,
+usd:22
+},
+
+{
+name:"Cambio de Disco HDD a SSD",
+desc:"Instalación de SSD para mejorar considerablemente la velocidad de la computadora.",
+ars:28000,
+usd:28
+},
+
+{
+name:"Cambio de Pantalla de Notebook",
+desc:"Reemplazo de pantalla dañada, rota, con líneas o sin imagen.",
+ars:35000,
+usd:35
+},
+
+{
+name:"Cambio de Teclado de Notebook",
+desc:"Reemplazo de teclado dañado o con teclas que no funcionan.",
+ars:20000,
+usd:20
+},
+
+{
+name:"Reparación / Reconstrucción de Bisagras",
+desc:"Reparación de bisagras, estructura y anclajes de notebooks.",
+ars:32000,
+usd:32
+},
+
+{
+name:"Armado de PC Gamer / Escritorio",
+desc:"Armado y montaje de componentes para PC de escritorio.",
+ars:40000,
+usd:40
+},
+
+{
+name:"Limpieza Interna de PC",
+desc:"Limpieza de polvo y suciedad acumulada en componentes internos.",
+ars:18000,
+usd:18
+},
+
+{
+name:"Instalación de Programas",
+desc:"Instalación y configuración de programas solicitados por el cliente.",
+ars:12000,
+usd:12
+}
+
+],
+
+
+"Auriculares":[
+
+{
+name:"Cambio de Parlante / Bocina Interna",
+desc:"Reemplazo de parlante cuando se escucha distorsionado, bajo o directamente no emite sonido.",
+ars:14000,
+usd:14
+},
+
+{
+name:"Cambio de Placa Lógica / Circuito Bluetooth",
+desc:"Reparación o reemplazo de la placa electrónica del auricular.",
+ars:16000,
+usd:16
+},
+
+{
+name:"Cambio de Microbatería Interna",
+desc:"Cambio de batería interna del auricular o estuche.",
+ars:15000,
+usd:15
+},
+
+{
+name:"Cambio de Pin / Conector de Carga",
+desc:"Reparación del conector de carga del estuche.",
+ars:12000,
+usd:12
+},
+
+{
+name:"Reparación de Ficha Jack 3.5mm / Cable",
+desc:"Reparación de cable, ficha o conexión de audio.",
+ars:10000,
+usd:10
+},
+
+{
+name:"Problemas de Bluetooth",
+desc:"Diagnóstico y reparación de problemas de conexión Bluetooth.",
+ars:14000,
+usd:14
+}
+
+],
+
+
+"Consolas":[
+
+{
+name:"Limpieza Profunda + Pasta Térmica",
+desc:"Servicio para PS4, PS5, Xbox y otras consolas. Limpieza interna y cambio de pasta térmica

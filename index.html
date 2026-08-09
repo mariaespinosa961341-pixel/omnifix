@@ -1,540 +1,527 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OmniFix Reparaciones - Cruz del Eje</title>
-
-<style>
-:root{
-    --bg-dark:#0b1120;
-    --card-dark:#131c31;
-    --card-border:#1e293b;
-    --accent:#f59e0b;
-    --text-light:#fff;
-    --text-muted:#94a3b8;
-    --success:#10b981;
-    --mercadopago:#009ee3;
-    --paypal:#0070ba;
-}
-
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-    font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
-}
-
-body{
-    background:var(--bg-dark);
-    color:var(--text-light);
-    line-height:1.5;
-    padding-bottom:90px;
-}
-
-button{
-    font-family:inherit;
-}
-
-header{
-    background:var(--card-dark);
-    padding:1.2rem 1rem;
-    text-align:center;
-    border-bottom:2px solid #000;
-}
-
-.logo-container{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:12px;
-}
-
-.logo-circle{
-    width:50px;
-    height:50px;
-    background:#131c31;
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border:2px solid var(--accent);
-}
-
-header h1{
-    font-size:1.35rem;
-    font-weight:800;
-}
-
-.badges{
-    background:#d97706;
-    color:#111;
-    padding:6px;
-    text-align:center;
-    font-size:.8rem;
-    font-weight:bold;
-}
-
-.sub-badges{
-    background:var(--card-dark);
-    padding:7px;
-    text-align:center;
-    font-size:.75rem;
-    color:#34d399;
-    border-bottom:1px solid var(--card-border);
-    display:flex;
-    justify-content:center;
-    gap:15px;
-    flex-wrap:wrap;
-}
-
-.action-banners{
-    display:flex;
-    border-bottom:1px solid var(--card-border);
-}
-
-.banner-btn{
-    flex:1;
-    background:var(--card-dark);
-    text-align:center;
-    padding:10px 5px;
-    font-size:.75rem;
-    font-weight:bold;
-    cursor:pointer;
-    border:0;
-    color:var(--accent);
-    text-decoration:none;
-}
-
-.banner-btn:first-child{
-    border-right:1px solid var(--card-border);
-    color:#38bdf8;
-}
-
-.container{
-    max-width:600px;
-    margin:auto;
-    padding:1rem;
-}
-
-.section-title{
-    font-size:.9rem;
-    text-transform:uppercase;
-    letter-spacing:1.2px;
-    color:var(--accent);
-    margin:.8rem 0;
-    font-weight:800;
-}
-
-/* CATEGORIAS */
-
-.category-card,
-.service-card{
-    width:100%;
-    background:var(--card-dark);
-    border:1px solid var(--card-border);
-    border-radius:14px;
-    padding:.9rem 1rem;
-    margin-bottom:.75rem;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    cursor:pointer;
-    color:white;
-    text-align:left;
-    transition:.15s;
-    -webkit-tap-highlight-color:transparent;
-}
-
-.category-card:hover,
-.service-card:hover{
-    border-color:var(--accent);
-}
-
-.category-card:active,
-.service-card:active{
-    background:#1a2642;
-    transform:scale(.99);
-}
-
-.card-left{
-    display:flex;
-    align-items:center;
-    gap:14px;
-    flex:1;
-    min-width:0;
-}
-
-.icon-box{
-    width:56px;
-    height:56px;
-    background:#0b1120;
-    border:1px solid #2a3650;
-    border-radius:12px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    flex-shrink:0;
-}
-
-.icon-box svg{
-    width:32px;
-    height:32px;
-}
-
-.card-title{
-    font-size:.9rem;
-    font-weight:700;
-    color:white;
-    line-height:1.3;
-}
-
-.arrow{
-    color:var(--accent);
-    font-size:1.2rem;
-    margin-left:12px;
-    font-weight:bold;
-}
-
-/* SERVICIOS */
-
-.service-info{
-    flex:1;
-    min-width:0;
-}
-
-.service-name{
-    font-size:.9rem;
-    font-weight:700;
-    color:white;
-}
-
-.service-short{
-    font-size:.72rem;
-    color:var(--text-muted);
-    margin-top:3px;
-}
-
-.card-price{
-    text-align:right;
-    min-width:95px;
-}
-
-.price-ars{
-    font-weight:800;
-    color:var(--accent);
-    font-size:.95rem;
-    display:block;
-}
-
-.price-usd{
-    font-size:.72rem;
-    color:#34d399;
-    display:block;
-    font-weight:600;
-}
-
-/* VOLVER */
-
-.back-bar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:1rem;
-    background:var(--card-dark);
-    padding:.8rem 1rem;
-    border-radius:10px;
-    border:1px solid var(--card-border);
-}
-
-.btn-back{
-    background:none;
-    border:0;
-    color:var(--accent);
-    font-weight:bold;
-    cursor:pointer;
-    font-size:.9rem;
-    padding:8px;
-}
-
-/* DETALLE */
-
-.detail-box{
-    background:var(--card-dark);
-    border:1px solid var(--card-border);
-    border-radius:16px;
-    padding:1.5rem;
-    text-align:center;
-}
-
-.detail-icon{
-    width:80px;
-    height:80px;
-    background:#0b1120;
-    border:2px solid var(--accent);
-    border-radius:18px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    margin:0 auto 1rem;
-    font-size:38px;
-}
-
-.detail-box h2{
-    font-size:1.1rem;
-    margin-bottom:.7rem;
-}
-
-.detail-desc{
-    font-size:.85rem;
-    color:var(--text-muted);
-    margin-bottom:1.2rem;
-    text-align:left;
-    line-height:1.5;
-}
-
-.total-box{
-    background:#0b1120;
-    border:1px solid var(--card-border);
-    border-radius:10px;
-    padding:.8rem;
-    margin-bottom:1rem;
-    text-align:right;
-}
-
-.form-input{
-    width:100%;
-    padding:.75rem;
-    margin-bottom:.8rem;
-    background:#0b1120;
-    border:1px solid var(--card-border);
-    border-radius:10px;
-    color:white;
-    font-size:.9rem;
-    outline:none;
-}
-
-.form-input:focus{
-    border-color:var(--accent);
-}
-
-.qty-container{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    background:#0b1120;
-    border:1px solid var(--card-border);
-    border-radius:10px;
-    padding:.5rem 1rem;
-    margin-bottom:1rem;
-}
-
-.qty-btn{
-    background:var(--card-dark);
-    color:var(--accent);
-    border:1px solid var(--card-border);
-    width:40px;
-    height:40px;
-    border-radius:8px;
-    font-weight:bold;
-    cursor:pointer;
-    font-size:1.2rem;
-}
-
-.btn-agregar{
-    width:100%;
-    background:var(--accent);
-    color:#0b1120;
-    border:0;
-    padding:.85rem;
-    border-radius:10px;
-    font-weight:800;
-    cursor:pointer;
-    font-size:.95rem;
-}
-
-/* OPINIONES */
-
-.review-box{
-    background:var(--card-dark);
-    border:1px solid var(--card-border);
-    border-radius:14px;
-    padding:1.2rem;
-    margin-top:1.5rem;
-}
-
-.review-title{
-    text-align:center;
-    color:var(--accent);
-    font-size:.95rem;
-    margin-bottom:.4rem;
-    font-weight:bold;
-}
-
-.interactive-stars{
-    text-align:center;
-    font-size:1.8rem;
-    margin-bottom:.8rem;
-    cursor:pointer;
-    color:#475569;
-}
-
-.interactive-stars span{
-    margin:0 2px;
-}
-
-.interactive-stars span.rated{
-    color:var(--accent);
-}
-
-.btn-submit{
-    background:var(--accent);
-    color:#0b1120;
-    border:0;
-    width:100%;
-    padding:.75rem;
-    border-radius:10px;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-.saved-reviews{
-    margin-top:1rem;
-    text-align:left;
-    border-top:1px solid var(--card-border);
-    padding-top:.8rem;
-}
-
-.review-item{
-    background:#0b1120;
-    padding:.7rem;
-    border-radius:8px;
-    margin-bottom:.5rem;
-    font-size:.8rem;
-}
-
-/* CARRITO */
-
-.cart-bar{
-    position:fixed;
-    bottom:0;
-    left:0;
-    right:0;
-    background:var(--card-dark);
-    border-top:1px solid var(--card-border);
-    padding:.8rem 1rem;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:10px;
-    z-index:100;
-    box-shadow:0 -4px 15px rgba(0,0,0,.4);
-}
-
-.btn-checkout{
-    background:var(--success);
-    color:white;
-    border:0;
-    padding:.75rem 1.3rem;
-    border-radius:10px;
-    font-weight:800;
-    cursor:pointer;
-}
-
-/* MODAL */
-
-.modal{
-    display:none;
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.88);
-    z-index:500;
-    justify-content:center;
-    align-items:center;
-    padding:1rem;
-}
-
-.modal-content{
-    background:var(--card-dark);
-    width:100%;
-    max-width:420px;
-    border-radius:16px;
-    padding:1.5rem;
-    text-align:center;
-    border:1px solid var(--card-border);
-}
-
-.btn-mp,
-.btn-paypal,
-.btn-whatsapp{
-    width:100%;
-    padding:.85rem;
-    border:0;
-    border-radius:10px;
-    font-weight:800;
-    font-size:.95rem;
-    cursor:pointer;
-    margin-bottom:.6rem;
-    color:white;
-}
-
-.btn-mp{
-    background:var(--mercadopago);
-}
-
-.btn-paypal{
-    background:var(--paypal);
-}
-
-.btn-whatsapp{
-    background:#25d366;
-}
-
-.btn-close{
-    background:none;
-    border:0;
-    color:var(--text-muted);
-    cursor:pointer;
-    padding:10px;
-}
-
-.empty{
-    text-align:center;
-    color:var(--text-muted);
-    padding:20px;
-}
-
-@media(max-width:400px){
-
-    header h1{
-        font-size:1.05rem;
-    }
-
-    .card-title,
-    .service-name{
-        font-size:.82rem;
-    }
-
-    .card-price{
-        min-width:78px;
-    }
-
-    .price-ars{
-        font-size:.82rem;
-    }
-
-    .service-short{
-        display:none;
-    }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OmniFix Reparaciones - Cruz del Eje</title>
+
+    <style>
+        :root {
+            --bg-dark: #0b1120;
+            --card-dark: #131c31;
+            --card-border: #1e293b;
+            --accent: #f59e0b;
+            --text-light: #ffffff;
+            --text-muted: #94a3b8;
+            --success: #10b981;
+            --mercadopago: #009ee3;
+            --paypal: #0070ba;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.5;
+            padding-bottom: 90px;
+        }
+
+        header {
+            background: var(--card-dark);
+            padding: 1.2rem 1rem;
+            text-align: center;
+            border-bottom: 2px solid #000;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .logo-circle {
+            width: 50px;
+            height: 50px;
+            background: #131c31;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--accent);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+        }
+
+        header h1 {
+            font-size: 1.35rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            color: white;
+        }
+
+        .badges {
+            background: #d97706;
+            color: #111;
+            padding: 6px;
+            text-align: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .sub-badges {
+            background: var(--card-dark);
+            padding: 7px;
+            text-align: center;
+            font-size: 0.75rem;
+            color: #34d399;
+            border-bottom: 1px solid var(--card-border);
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .action-banners {
+            display: flex;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .banner-btn {
+            flex: 1;
+            background: var(--card-dark);
+            text-align: center;
+            padding: 9px 5px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            text-decoration: none;
+        }
+
+        .banner-btn:first-child {
+            border-right: 1px solid var(--card-border);
+            color: #38bdf8;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        .section-title {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: var(--accent);
+            margin: 0.8rem 0;
+            font-weight: 800;
+        }
+
+        /* =========================
+           CATEGORÍAS Y SERVICIOS
+        ========================= */
+
+        .category-card,
+        .service-card {
+            width: 100%;
+            background: var(--card-dark);
+            border: 1px solid var(--card-border);
+            border-radius: 14px;
+            padding: 0.9rem 1rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.2);
+            transition: 0.15s;
+            color: white;
+        }
+
+        .category-card:hover,
+        .service-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-1px);
+        }
+
+        .category-card:active,
+        .service-card:active {
+            background: #1a2642;
+            transform: scale(0.99);
+        }
+
+        .card-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .icon-box {
+            width: 56px;
+            height: 56px;
+            background: #0b1120;
+            border: 1px solid #2a3650;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .icon-box svg {
+            width: 32px;
+            height: 32px;
+        }
+
+        .card-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: white;
+            line-height: 1.3;
+        }
+
+        .card-price {
+            text-align: right;
+            min-width: 95px;
+        }
+
+        .price-ars {
+            font-weight: 800;
+            color: var(--accent);
+            font-size: 0.95rem;
+            display: block;
+        }
+
+        .price-usd {
+            font-size: 0.72rem;
+            color: #34d399;
+            display: block;
+            font-weight: 600;
+        }
+
+        .arrow {
+            color: var(--accent);
+            font-size: 1.2rem;
+            margin-left: 12px;
+            font-weight: bold;
+        }
+
+        /* =========================
+           VOLVER
+        ========================= */
+
+        .back-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            background: var(--card-dark);
+            padding: 0.8rem 1rem;
+            border-radius: 10px;
+            border: 1px solid var(--card-border);
+        }
+
+        .btn-back {
+            background: none;
+            border: none;
+            color: var(--accent);
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        /* =========================
+           DETALLE
+        ========================= */
+
+        .detail-box {
+            background: var(--card-dark);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .detail-icon {
+            width: 80px;
+            height: 80px;
+            background: #0b1120;
+            border: 2px solid var(--accent);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+        }
+
+        .detail-icon svg {
+            width: 45px;
+            height: 45px;
+        }
+
+        .detail-box h2 {
+            font-size: 1.1rem;
+            margin-bottom: 0.7rem;
+        }
+
+        .detail-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 1.2rem;
+            text-align: left;
+            line-height: 1.5;
+        }
+
+        .total-box {
+            background: #0b1120;
+            border: 1px solid var(--card-border);
+            border-radius: 10px;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            text-align: right;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 0.8rem;
+            background: #0b1120;
+            border: 1px solid var(--card-border);
+            border-radius: 10px;
+            color: white;
+            font-size: 0.9rem;
+            outline: none;
+        }
+
+        .form-input:focus {
+            border-color: var(--accent);
+        }
+
+        .form-input::placeholder {
+            color: #64748b;
+        }
+
+        .qty-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #0b1120;
+            border: 1px solid var(--card-border);
+            border-radius: 10px;
+            padding: 0.5rem 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .qty-btn {
+            background: var(--card-dark);
+            color: var(--accent);
+            border: 1px solid var(--card-border);
+            width: 38px;
+            height: 38px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .btn-agregar {
+            width: 100%;
+            background: var(--accent);
+            color: #0b1120;
+            border: none;
+            padding: 0.85rem;
+            border-radius: 10px;
+            font-weight: 800;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        /* =========================
+           OPINIONES
+        ========================= */
+
+        .review-box {
+            background: var(--card-dark);
+            border: 1px solid var(--card-border);
+            border-radius: 14px;
+            padding: 1.2rem;
+            margin-top: 1.5rem;
+        }
+
+        .review-title {
+            text-align: center;
+            color: var(--accent);
+            font-size: 0.95rem;
+            margin-bottom: 0.4rem;
+            font-weight: bold;
+        }
+
+        .interactive-stars {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 0.8rem;
+            cursor: pointer;
+            color: #475569;
+        }
+
+        .interactive-stars span {
+            margin: 0 2px;
+        }
+
+        .interactive-stars span.rated {
+            color: var(--accent);
+        }
+
+        .btn-submit {
+            background: var(--accent);
+            color: #0b1120;
+            border: none;
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .saved-reviews {
+            margin-top: 1rem;
+            text-align: left;
+            border-top: 1px solid var(--card-border);
+            padding-top: 0.8rem;
+        }
+
+        .review-item {
+            background: #0b1120;
+            padding: 0.7rem;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            font-size: 0.8rem;
+        }
+
+        /* =========================
+           MODAL
+        ========================= */
+
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.85);
+            z-index: 200;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        .modal-content {
+            background: var(--card-dark);
+            width: 100%;
+            max-width: 420px;
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid var(--card-border);
+        }
+
+        .btn-mp,
+        .btn-paypal,
+        .btn-maps-modal {
+            width: 100%;
+            padding: 0.85rem;
+            border: none;
+            border-radius: 10px;
+            font-weight: 800;
+            font-size: 0.95rem;
+            cursor: pointer;
+            margin-bottom: 0.6rem;
+        }
+
+        .btn-mp {
+            background: var(--mercadopago);
+            color: white;
+        }
+
+        .btn-paypal {
+            background: var(--paypal);
+            color: white;
+        }
+
+        .btn-maps-modal {
+            background: #25d366;
+            color: white;
+            text-decoration: none;
+            display: block;
+        }
+
+        /* =========================
+           CARRITO
+        ========================= */
+
+        .cart-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--card-dark);
+            border-top: 1px solid var(--card-border);
+            padding: 0.8rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            z-index: 100;
+            box-shadow: 0 -4px 15px rgba(0,0,0,0.4);
+        }
+
+        .btn-checkout {
+            background: var(--success);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.3rem;
+            border-radius: 10px;
+            font-weight: 800;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 400px) {
+            header h1 {
+                font-size: 1.05rem;
+            }
+
+            .card-title {
+                font-size: 0.82rem;
+            }
+
+            .card-price {
+                min-width: 80px;
+            }
+
+            .price-ars {
+                font-size: 0.85rem;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
 <header>
     <div class="logo-container">
-
         <div class="logo-circle">
             <svg width="28" height="28" viewBox="0 0 24 24"
                  fill="none" stroke="#f59e0b" stroke-width="2">
@@ -544,7 +531,6 @@ header h1{
         </div>
 
         <h1>OMNIFIX REPARACIONES</h1>
-
     </div>
 </header>
 
@@ -559,258 +545,418 @@ header h1{
 
 <div class="action-banners">
 
-    <a href="https://maps.app.goo.gl/xCGTk8NVPKTzx6h38"
-       target="_blank"
-       class="banner-btn">
+    <a
+        href="https://maps.app.goo.gl/xCGTk8NVPKTzx6h38"
+        target="_blank"
+        class="banner-btn">
         📍 Ver Ubicación en Maps
     </a>
 
-    <button class="banner-btn" onclick="scrollToReview()">
+    <button
+        class="banner-btn"
+        onclick="scrollToReview()">
         ⭐ Dejar Opinión
     </button>
 
 </div>
 
-
 <div class="container">
 
-<!-- =========================
-     INICIO
-========================= -->
+    <!-- =========================
+         PANTALLA PRINCIPAL
+    ========================== -->
 
-<div id="home-view">
+    <div id="home-view">
 
-    <div class="section-title">
-        Categorías de Servicios
-    </div>
+        <div class="section-title">
+            Categorías de Servicios
+        </div>
 
+        <!-- CELULARES -->
 
-    <button type="button"
+        <button
+            type="button"
             class="category-card"
             onclick="selectCategory('Celulares')">
 
-        <div class="card-left">
+            <div class="card-left">
 
-            <div class="icon-box">
-                📱
+                <div class="icon-box">
+                    <svg viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="#f59e0b"
+                         stroke-width="1.8">
+
+                        <rect x="6" y="2"
+                              width="12"
+                              height="20"
+                              rx="2"/>
+
+                        <line x1="10"
+                              y1="18"
+                              x2="14"
+                              y2="18"/>
+
+                    </svg>
+                </div>
+
+                <span class="card-title">
+                    CELULARES Y TABLETS
+                </span>
+
             </div>
 
-            <span class="card-title">
-                CELULARES Y TABLETS
-            </span>
+            <span class="arrow">➔</span>
 
-        </div>
-
-        <span class="arrow">➔</span>
-
-    </button>
+        </button>
 
 
-    <button type="button"
+        <!-- COMPUTADORAS -->
+
+        <button
+            type="button"
             class="category-card"
             onclick="selectCategory('Computadoras')">
 
-        <div class="card-left">
+            <div class="card-left">
 
-            <div class="icon-box">
-                💻
+                <div class="icon-box">
+
+                    <svg viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="#f59e0b"
+                         stroke-width="1.8">
+
+                        <rect x="3" y="5"
+                              width="18"
+                              height="12"
+                              rx="2"/>
+
+                        <path d="M2 19h20"/>
+
+                    </svg>
+
+                </div>
+
+                <span class="card-title">
+                    COMPUTADORAS Y LAPTOPS
+                </span>
+
             </div>
 
-            <span class="card-title">
-                COMPUTADORAS Y LAPTOPS
-            </span>
+            <span class="arrow">➔</span>
 
-        </div>
-
-        <span class="arrow">➔</span>
-
-    </button>
+        </button>
 
 
-    <button type="button"
+        <!-- AURICULARES -->
+
+        <button
+            type="button"
             class="category-card"
             onclick="selectCategory('Auriculares')">
 
-        <div class="card-left">
+            <div class="card-left">
 
-            <div class="icon-box">
-                🎧
+                <div class="icon-box">
+
+                    <svg viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="#f59e0b"
+                         stroke-width="1.8">
+
+                        <path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
+
+                        <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/>
+
+                        <path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
+
+                    </svg>
+
+                </div>
+
+                <span class="card-title">
+                    AURICULARES Y AUDIO
+                </span>
+
             </div>
 
-            <span class="card-title">
-                AURICULARES Y AUDIO
-            </span>
+            <span class="arrow">➔</span>
 
-        </div>
-
-        <span class="arrow">➔</span>
-
-    </button>
+        </button>
 
 
-    <button type="button"
+        <!-- CONSOLAS -->
+
+        <button
+            type="button"
             class="category-card"
             onclick="selectCategory('Consolas')">
 
-        <div class="card-left">
+            <div class="card-left">
 
-            <div class="icon-box">
-                🎮
+                <div class="icon-box">
+
+                    <svg viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="#34d399"
+                         stroke-width="1.8">
+
+                        <rect x="2"
+                              y="6"
+                              width="20"
+                              height="12"
+                              rx="4"/>
+
+                        <circle cx="8"
+                                cy="12"
+                                r="1.5"
+                                fill="#34d399"/>
+
+                        <circle cx="16"
+                                cy="11"
+                                r="1"
+                                fill="#f59e0b"/>
+
+                        <circle cx="16"
+                                cy="14"
+                                r="1"
+                                fill="#f59e0b"/>
+
+                    </svg>
+
+                </div>
+
+                <span class="card-title">
+                    CONSOLAS Y JOYSTICKS
+                </span>
+
             </div>
 
-            <span class="card-title">
-                CONSOLAS Y JOYSTICKS
-            </span>
+            <span class="arrow">➔</span>
 
-        </div>
-
-        <span class="arrow">➔</span>
-
-    </button>
+        </button>
 
 
-    <button type="button"
+        <!-- OTROS -->
+
+        <button
+            type="button"
             class="category-card"
             onclick="selectCategory('Otros')">
 
-        <div class="card-left">
+            <div class="card-left">
 
-            <div class="icon-box">
-                🔌
+                <div class="icon-box">
+
+                    <svg viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="#f59e0b"
+                         stroke-width="1.8">
+
+                        <path d="M6 3v6"/>
+                        <path d="M18 3v6"/>
+
+                        <path d="M4 9h16v3a8 8 0 0 1-16 0V9z"/>
+
+                        <path d="M12 17v4"/>
+
+                    </svg>
+
+                </div>
+
+                <span class="card-title">
+                    OTROS DISPOSITIVOS
+                </span>
+
             </div>
 
-            <span class="card-title">
-                OTROS DISPOSITIVOS
-            </span>
+            <span class="arrow">➔</span>
 
-        </div>
-
-        <span class="arrow">➔</span>
-
-    </button>
-
-
-    <!-- OPINIONES -->
-
-    <div class="review-box" id="review-section">
-
-        <div class="review-title">
-            ⭐ Deja tu Calificación y Opinión
-        </div>
-
-        <div class="interactive-stars" id="star-container">
-
-            <span onclick="setRating(1)">★</span>
-            <span onclick="setRating(2)">★</span>
-            <span onclick="setRating(3)">★</span>
-            <span onclick="setRating(4)">★</span>
-            <span onclick="setRating(5)">★</span>
-
-        </div>
-
-        <input id="review-name"
-               class="form-input"
-               type="text"
-               placeholder="Tu Nombre">
-
-        <input id="review-text"
-               class="form-input"
-               type="text"
-               placeholder="Escribe tu opinión sobre el servicio">
-
-        <button class="btn-submit"
-                onclick="submitReview()">
-            Publicar Opinión
         </button>
 
-        <div class="saved-reviews">
 
-            <strong style="color:var(--accent);font-size:.85rem;">
-                Opiniones de Clientes:
-            </strong>
+        <!-- =========================
+             OPINIONES
+        ========================== -->
 
-            <div id="reviews-list"></div>
+        <div
+            class="review-box"
+            id="review-section">
+
+            <div class="review-title">
+                ⭐ Deja tu Calificación y Opinión
+            </div>
+
+            <div
+                class="interactive-stars"
+                id="star-container">
+
+                <span onclick="setRating(1)">★</span>
+                <span onclick="setRating(2)">★</span>
+                <span onclick="setRating(3)">★</span>
+                <span onclick="setRating(4)">★</span>
+                <span onclick="setRating(5)">★</span>
+
+            </div>
+
+            <input
+                type="text"
+                id="review-name"
+                class="form-input"
+                placeholder="Tu Nombre">
+
+            <input
+                type="text"
+                id="review-text"
+                class="form-input"
+                placeholder="Escribe tu opinión sobre el servicio...">
+
+            <button
+                class="btn-submit"
+                onclick="submitReview()">
+
+                Publicar Opinión
+
+            </button>
+
+            <div class="saved-reviews">
+
+                <div style="
+                    font-size:0.85rem;
+                    font-weight:bold;
+                    color:var(--accent);
+                    margin-bottom:0.4rem;">
+
+                    Opiniones de Clientes:
+
+                </div>
+
+                <div id="reviews-list"></div>
+
+            </div>
 
         </div>
 
     </div>
 
-</div>
 
+    <!-- =========================
+         VISTA DINÁMICA
+    ========================== -->
 
-<!-- =========================
-     VISTA DINÁMICA
-========================= -->
-
-<div id="dynamic-view" style="display:none;"></div>
+    <div
+        id="dynamic-view"
+        style="display:none;">
+    </div>
 
 </div>
 
 
 <!-- =========================
      CARRITO
-========================= -->
+========================== -->
 
-<div id="cart-bar"
-     class="cart-bar"
-     style="display:none;">
+<div
+    class="cart-bar"
+    id="cart-bar"
+    style="display:none;">
 
     <div>
 
-        <span style="font-size:.7rem;color:var(--text-muted);display:block;">
+        <span style="
+            font-size:0.75rem;
+            color:var(--text-muted);
+            display:block;">
+
             Seleccionado:
+
         </span>
 
-        <span id="cart-total-text"
-              style="font-weight:bold;color:var(--accent);">
+        <span
+            id="cart-total-text"
+            style="
+                font-weight:bold;
+                color:var(--accent);
+                font-size:0.85rem;">
+
             0 servicios
+
         </span>
 
     </div>
 
-    <button class="btn-checkout"
-            onclick="openPaymentModal()">
-        💳 Solicitar
+    <button
+        class="btn-checkout"
+        onclick="openPaymentModal()">
+
+        💳 Pagar / Solicitar
+
     </button>
 
 </div>
 
 
 <!-- =========================
-     MODAL
-========================= -->
+     MODAL DE PAGO
+========================== -->
 
-<div id="payment-modal"
-     class="modal">
+<div
+    class="modal"
+    id="payment-modal">
 
-    <div class="modal-content">
+    <div
+        class="modal-content"
+        id="modal-body-content">
 
-        <h3 style="color:var(--accent);margin-bottom:.5rem;">
-            Solicitar Reparación
+        <h3 style="
+            color:var(--accent);
+            margin-bottom:0.5rem;
+            font-size:1.2rem;">
+
+            Elige Medio de Pago
+
         </h3>
 
-        <p id="modal-total-display"
-           style="font-size:.8rem;color:var(--text-muted);margin-bottom:1rem;">
+        <p
+            id="modal-total-display"
+            style="
+                font-size:0.8rem;
+                color:var(--text-muted);
+                margin-bottom:1rem;">
+
+            Total calculado
+
         </p>
 
-        <button class="btn-whatsapp"
-                onclick="sendWhatsApp()">
-            📲 Solicitar por WhatsApp
+        <button
+            class="btn-mp"
+            onclick="checkoutAction('Mercado Pago')">
+
+            💙 Pagar con Mercado Pago
+
         </button>
 
-        <button class="btn-mp"
-                onclick="paymentMessage('Mercado Pago')">
-            💙 Mercado Pago
+        <button
+            class="btn-paypal"
+            onclick="checkoutAction('PayPal')">
+
+            💙 Pagar con PayPal (USD)
+
         </button>
 
-        <button class="btn-paypal"
-                onclick="paymentMessage('PayPal')">
-            💙 PayPal
-        </button>
+        <button
+            onclick="closePaymentModal()"
+            style="
+                background:none;
+                border:none;
+                color:var(--text-muted);
+                margin-top:10px;
+                cursor:pointer;
+                font-size:0.85rem;">
 
-        <button class="btn-close"
-                onclick="closePaymentModal()">
             Cancelar
+
         </button>
 
     </div>
@@ -821,7 +967,7 @@ header h1{
 <script>
 
 /* =====================================================
-   SERVICIOS
+   DATOS DE LOS SERVICIOS
 ===================================================== */
 
 const services = {
@@ -829,66 +975,45 @@ const services = {
     Celulares: [
 
         {
-            name:"Cambio de Pantalla / Módulo completo",
-            desc:"Reemplazo de pantalla táctil y display LCD/OLED roto, quebrado o sin imagen.",
-            ars:25000,
-            usd:25
+            name: "Cambio de Pantalla / Módulo completo",
+            desc: "Reemplazo de pantalla táctil y display roto o sin imagen.",
+            ars: 25000,
+            usd: 25
         },
 
         {
-            name:"Cambio de Pin / Puerto de Carga",
-            desc:"Reparación o reemplazo del conector de carga cuando el teléfono no carga correctamente.",
-            ars:18000,
-            usd:18
+            name: "Cambio de Pin / Puerto de Carga",
+            desc: "Solución a problemas de carga, falsos contactos o puerto flojo.",
+            ars: 18000,
+            usd: 18
         },
 
         {
-            name:"Cambio de Batería Original/Genérica",
-            desc:"Reemplazo de batería agotada, inflada o con poca autonomía.",
-            ars:20000,
-            usd:20
+            name: "Cambio de Batería Original/Genérica",
+            desc: "Batería nueva con prueba de rendimiento y autonomía óptima.",
+            ars: 20000,
+            usd: 20
         },
 
         {
-            name:"Cambio de Tapa Trasera",
-            desc:"Reemplazo de tapa trasera rota o dañada.",
-            ars:18000,
-            usd:18
+            name: "Cambio de Tapa Trasera",
+            desc: "Sustitución de carcasa o tapa trasera dañada.",
+            ars: 18000,
+            usd: 18
         },
 
         {
-            name:"Cambio de Cristales / Lentes de Cámara",
-            desc:"Reemplazo del cristal protector de las cámaras.",
-            ars:12000,
-            usd:12
+            name: "Reparación de Auricular / Micrófono",
+            desc: "Solución para cuando no te escuchan o escuchas bajo.",
+            ars: 15000,
+            usd: 15
         },
 
         {
-            name:"Reparación de Auricular / Micrófono",
-            desc:"Solución a problemas de sonido, micrófono o auricular interno.",
-            ars:15000,
-            usd:15
-        },
-
-        {
-            name:"Formateo, Software o Desbloqueo",
-            desc:"Formateo, instalación, optimización y solución de problemas de software.",
-            ars:15000,
-            usd:15
-        },
-
-        {
-            name:"Limpieza de Conectores",
-            desc:"Limpieza profesional de conectores y componentes externos.",
-            ars:8000,
-            usd:8
-        },
-
-        {
-            name:"Reparación de Botones",
-            desc:"Reparación de botones de encendido, volumen u otros.",
-            ars:14000,
-            usd:14
+            name: "Formateo, Software o Desbloqueo",
+            desc: "Optimización del sistema, limpieza de virus y problemas de software.",
+            ars: 15000,
+            usd: 15
         }
 
     ],
@@ -897,66 +1022,38 @@ const services = {
     Computadoras: [
 
         {
-            name:"Instalación de Sistema Operativo + Optimización",
-            desc:"Instalación del sistema y optimización general del equipo.",
-            ars:20000,
-            usd:20
+            name: "Instalación de Sistema Operativo + Optimización",
+            desc: "Instalación y optimización para mejorar el rendimiento del equipo.",
+            ars: 20000,
+            usd: 20
         },
 
         {
-            name:"Mantenimiento Preventivo",
-            desc:"Limpieza interna, coolers y cambio de pasta térmica.",
-            ars:30000,
-            usd:30
+            name: "Mantenimiento Preventivo",
+            desc: "Limpieza profunda, limpieza de coolers y cambio de pasta térmica.",
+            ars: 30000,
+            usd: 30
         },
 
         {
-            name:"Formateo + Windows 11 / 10 + Office",
-            desc:"Formateo completo e instalación del sistema operativo y programas básicos.",
-            ars:22000,
-            usd:22
+            name: "Cambio de Disco HDD a SSD ultrarrápido",
+            desc: "Reemplazo del disco mecánico por un SSD para mejorar notablemente la velocidad.",
+            ars: 28000,
+            usd: 28
         },
 
         {
-            name:"Cambio de Disco HDD a SSD",
-            desc:"Instalación de SSD para mejorar considerablemente la velocidad.",
-            ars:28000,
-            usd:28
+            name: "Cambio de Pantalla o Teclado de Notebook",
+            desc: "Reemplazo de pantalla o teclado compatible con tu modelo.",
+            ars: 35000,
+            usd: 35
         },
 
         {
-            name:"Cambio de Pantalla de Notebook",
-            desc:"Reemplazo de pantalla dañada o sin imagen.",
-            ars:35000,
-            usd:35
-        },
-
-        {
-            name:"Cambio de Teclado de Notebook",
-            desc:"Reemplazo de teclado roto o con teclas defectuosas.",
-            ars:20000,
-            usd:20
-        },
-
-        {
-            name:"Reparación / Reconstrucción de Bisagras",
-            desc:"Reparación de bisagras y estructura de la notebook.",
-            ars:32000,
-            usd:32
-        },
-
-        {
-            name:"Armado de PC Gamer / Escritorio",
-            desc:"Armado y configuración de PC según los componentes elegidos.",
-            ars:40000,
-            usd:40
-        },
-
-        {
-            name:"Limpieza y Optimización General",
-            desc:"Limpieza y optimización del sistema para mejorar el rendimiento.",
-            ars:18000,
-            usd:18
+            name: "Reparación / Reconstrucción de Bisagras",
+            desc: "Reparación de estructura plástica, bisagras y anclajes dañados.",
+            ars: 32000,
+            usd: 32
         }
 
     ],
@@ -965,45 +1062,17 @@ const services = {
     Auriculares: [
 
         {
-            name:"Cambio de Parlante / Bocina Interna",
-            desc:"Reemplazo del parlante interno cuando se escucha mal o no funciona.",
-            ars:14000,
-            usd:14
+            name: "Cambio de Parlante / Bocina Interna",
+            desc: "Solución a sonido distorsionado, bajo o sin volumen.",
+            ars: 14000,
+            usd: 14
         },
 
         {
-            name:"Cambio de Placa Lógica / Circuito Bluetooth",
-            desc:"Reparación o reemplazo de componentes electrónicos internos.",
-            ars:16000,
-            usd:16
-        },
-
-        {
-            name:"Cambio de Microbatería Interna",
-            desc:"Cambio de batería interna del auricular o estuche.",
-            ars:15000,
-            usd:15
-        },
-
-        {
-            name:"Cambio de Pin / Conector de Carga",
-            desc:"Reemplazo del conector de carga del estuche.",
-            ars:12000,
-            usd:12
-        },
-
-        {
-            name:"Reparación de Ficha Jack 3.5mm / Cable",
-            desc:"Reparación de cables o conectores de audio.",
-            ars:10000,
-            usd:10
-        },
-
-        {
-            name:"Limpieza y Reparación de Contactos",
-            desc:"Limpieza y recuperación de contactos de carga.",
-            ars:9000,
-            usd:9
+            name: "Cambio de Microbatería Interna",
+            desc: "Cambio de batería interna de auricular o estuche.",
+            ars: 15000,
+            usd: 15
         }
 
     ],
@@ -1012,19 +1081,975 @@ const services = {
     Consolas: [
 
         {
-            name:"Limpieza Profunda + Pasta Térmica",
-            desc:"Servicio para PS4, PS5, Xbox y otras consolas.",
-            ars:35000,
-            usd:35
+            name: "Limpieza Profunda + Pasta Térmica",
+            desc: "Servicio para PS4, PS5 y Xbox. Ayuda a reducir temperatura y ruido.",
+            ars: 35000,
+            usd: 35
         },
 
         {
-            name:"Reparación de Joystick: Drift Analógico",
-            desc:"Reparación de movimiento involuntario de los sticks.",
-            ars:18000,
-            usd:18
-        },
+            name: "Reparación de Joystick: Drift Analógico",
+            desc: "Reparación del movimiento involuntario de los joysticks.",
+            ars: 18000,
+            usd: 18
+        }
+
+    ],
+
+
+    Otros: [
 
         {
-            name:"Cambio de Puerto HDMI",
-            desc:"Reemplazo del p
+            name: "Diagnóstico General y Presupuesto",
+            desc: "Revisión técnica para identificar fallas y determinar la reparación necesaria.",
+            ars: 8000,
+            usd: 8
+        }
+
+    ]
+
+};
+
+
+/* =====================================================
+   VARIABLES
+===================================================== */
+
+let currentCategory = null;
+let selectedService = null;
+let selectedIndex = null;
+let quantity = 1;
+let currentRating = 0;
+
+const phoneTaller = "5493549589088";
+
+
+/* =====================================================
+   FORMATO DE PRECIOS
+===================================================== */
+
+function formatARS(number) {
+
+    return number.toLocaleString("es-AR");
+
+}
+
+
+/* =====================================================
+   SELECCIONAR CATEGORÍA
+===================================================== */
+
+function selectCategory(category) {
+
+    if (!services[category]) {
+
+        console.error("Categoría inexistente:", category);
+        return;
+
+    }
+
+    currentCategory = category;
+    selectedService = null;
+    selectedIndex = null;
+    quantity = 1;
+
+    const home = document.getElementById("home-view");
+    const dynamic = document.getElementById("dynamic-view");
+    const cart = document.getElementById("cart-bar");
+
+    home.style.display = "none";
+    dynamic.style.display = "block";
+
+    cart.style.display = "none";
+
+    renderServices();
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+
+/* =====================================================
+   MOSTRAR SERVICIOS DE LA CATEGORÍA
+===================================================== */
+
+function renderServices() {
+
+    const dynamic = document.getElementById("dynamic-view");
+
+    if (!currentCategory || !services[currentCategory]) {
+        goHome();
+        return;
+    }
+
+    let html = `
+
+        <div class="back-bar">
+
+            <button
+                class="btn-back"
+                type="button"
+                onclick="goHome()">
+
+                ← Volver
+
+            </button>
+
+            <span style="
+                font-weight:800;
+                font-size:0.85rem;
+                color:var(--accent);">
+
+                ${currentCategory.toUpperCase()}
+
+            </span>
+
+        </div>
+
+        <div class="section-title">
+
+            Selecciona una reparación
+
+        </div>
+
+    `;
+
+
+    services[currentCategory].forEach(function(service, index) {
+
+        html += `
+
+            <button
+                type="button"
+                class="service-card"
+                onclick="openDetail(${index})">
+
+                <div class="card-left">
+
+                    <div class="icon-box">
+
+                        <span style="
+                            font-size:1.7rem;">
+
+                            🔧
+
+                        </span>
+
+                    </div>
+
+                    <div class="card-title">
+
+                        ${service.name}
+
+                    </div>
+
+                </div>
+
+                <div style="
+                    display:flex;
+                    align-items:center;">
+
+                    <div class="card-price">
+
+                        <span class="price-ars">
+
+                            $${formatARS(service.ars)}
+
+                        </span>
+
+                        <span class="price-usd">
+
+                            USD $${service.usd}
+
+                        </span>
+
+                    </div>
+
+                    <span class="arrow">
+
+                        ➔
+
+                    </span>
+
+                </div>
+
+            </button>
+
+        `;
+
+    });
+
+
+    dynamic.innerHTML = html;
+
+}
+
+
+/* =====================================================
+   ABRIR DETALLE DE REPARACIÓN
+===================================================== */
+
+function openDetail(index) {
+
+    if (!currentCategory) {
+        return;
+    }
+
+    if (!services[currentCategory]) {
+        return;
+    }
+
+    if (!services[currentCategory][index]) {
+        return;
+    }
+
+    selectedIndex = index;
+    selectedService = services[currentCategory][index];
+
+    quantity = 1;
+
+    renderDetail();
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+
+/* =====================================================
+   MOSTRAR DETALLE
+===================================================== */
+
+function renderDetail() {
+
+    const dynamic = document.getElementById("dynamic-view");
+
+    if (!selectedService) {
+        renderServices();
+        return;
+    }
+
+    const totalARS = selectedService.ars * quantity;
+    const totalUSD = selectedService.usd * quantity;
+
+
+    dynamic.innerHTML = `
+
+        <div class="back-bar">
+
+            <button
+                class="btn-back"
+                type="button"
+                onclick="backToServices()">
+
+                ← Volver
+
+            </button>
+
+            <span style="
+                font-weight:800;
+                font-size:0.85rem;
+                color:var(--accent);">
+
+                DETALLE
+
+            </span>
+
+        </div>
+
+
+        <div class="detail-box">
+
+            <div class="detail-icon">
+
+                <span style="
+                    font-size:2.2rem;">
+
+                    🔧
+
+                </span>
+
+            </div>
+
+
+            <h2>
+
+                ${selectedService.name}
+
+            </h2>
+
+
+            <p class="detail-desc">
+
+                ${selectedService.desc}
+
+            </p>
+
+
+            <div class="total-box">
+
+                <span
+                    id="live-ars"
+                    class="price-ars"
+                    style="font-size:1.2rem;">
+
+                    $${formatARS(totalARS)}
+
+                </span>
+
+                <span
+                    id="live-usd"
+                    class="price-usd">
+
+                    USD $${totalUSD}
+
+                </span>
+
+            </div>
+
+
+            <input
+                type="text"
+                id="client-name"
+                class="form-input"
+                placeholder="Tu Nombre y Apellido">
+
+
+            <input
+                type="text"
+                id="client-device"
+                class="form-input"
+                placeholder="Ej: Samsung A15, Notebook Lenovo...">
+
+
+            <input
+                type="text"
+                id="client-obs"
+                class="form-input"
+                placeholder="Observaciones adicionales...">
+
+
+            <div style="
+                text-align:left;
+                font-size:0.8rem;
+                color:var(--text-muted);
+                margin-bottom:0.4rem;
+                font-weight:600;">
+
+                Cantidad:
+
+            </div>
+
+
+            <div class="qty-container">
+
+                <button
+                    type="button"
+                    class="qty-btn"
+                    onclick="changeQty(-1)">
+
+                    −
+
+                </button>
+
+
+                <span
+                    id="qty-val"
+                    style="
+                        font-weight:bold;
+                        font-size:1.1rem;
+                        color:white;">
+
+                    ${quantity}
+
+                </span>
+
+
+                <button
+                    type="button"
+                    class="qty-btn"
+                    onclick="changeQty(1)">
+
+                    +
+
+                </button>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="btn-agregar"
+                onclick="addToCart()">
+
+                Seleccionar y Calcular Pago
+
+            </button>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =====================================================
+   VOLVER A SERVICIOS
+===================================================== */
+
+function backToServices() {
+
+    selectedService = null;
+    selectedIndex = null;
+    quantity = 1;
+
+    document.getElementById("cart-bar").style.display = "none";
+
+    renderServices();
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+
+/* =====================================================
+   VOLVER AL INICIO
+===================================================== */
+
+function goHome() {
+
+    currentCategory = null;
+    selectedService = null;
+    selectedIndex = null;
+    quantity = 1;
+
+    document.getElementById("dynamic-view").style.display = "none";
+    document.getElementById("home-view").style.display = "block";
+    document.getElementById("cart-bar").style.display = "none";
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+
+/* =====================================================
+   CAMBIAR CANTIDAD
+===================================================== */
+
+function changeQty(amount) {
+
+    if (!selectedService) {
+        return;
+    }
+
+    quantity += amount;
+
+    if (quantity < 1) {
+        quantity = 1;
+    }
+
+    const qty = document.getElementById("qty-val");
+    const ars = document.getElementById("live-ars");
+    const usd = document.getElementById("live-usd");
+
+    if (qty) {
+        qty.innerText = quantity;
+    }
+
+    if (ars) {
+        ars.innerText =
+            "$" + formatARS(selectedService.ars * quantity);
+    }
+
+    if (usd) {
+        usd.innerText =
+            "USD $" + (selectedService.usd * quantity);
+    }
+
+}
+
+
+/* =====================================================
+   AGREGAR / SOLICITAR
+===================================================== */
+
+function addToCart() {
+
+    if (!selectedService) {
+        return;
+    }
+
+    const name =
+        document.getElementById("client-name")?.value.trim();
+
+    if (!name) {
+
+        alert("Por favor, completa tu nombre.");
+
+        document.getElementById("client-name")?.focus();
+
+        return;
+
+    }
+
+
+    const totalARS =
+        selectedService.ars * quantity;
+
+    const totalUSD =
+        selectedService.usd * quantity;
+
+
+    document.getElementById("cart-bar").style.display = "flex";
+
+    document.getElementById("cart-total-text").innerText =
+        `${quantity}x ${selectedService.name} — $${formatARS(totalARS)}`;
+
+
+    openPaymentModal();
+
+}
+
+
+/* =====================================================
+   ABRIR MODAL
+===================================================== */
+
+function openPaymentModal() {
+
+    if (!selectedService) {
+        return;
+    }
+
+    const totalARS =
+        selectedService.ars * quantity;
+
+    const totalUSD =
+        selectedService.usd * quantity;
+
+
+    document.getElementById("modal-total-display").innerText =
+        `Total: $${formatARS(totalARS)} (USD $${totalUSD})`;
+
+
+    document.getElementById("payment-modal").style.display = "flex";
+
+}
+
+
+/* =====================================================
+   CERRAR MODAL
+===================================================== */
+
+function closePaymentModal() {
+
+    document.getElementById("payment-modal").style.display = "none";
+
+}
+
+
+/* =====================================================
+   CHECKOUT / WHATSAPP
+===================================================== */
+
+function checkoutAction(method) {
+
+    if (!selectedService) {
+        return;
+    }
+
+
+    const name =
+        document.getElementById("client-name")?.value.trim()
+        || "Cliente";
+
+
+    const device =
+        document.getElementById("client-device")?.value.trim()
+        || "Dispositivo no especificado";
+
+
+    const obs =
+        document.getElementById("client-obs")?.value.trim()
+        || "Ninguna";
+
+
+    const totalARS =
+        selectedService.ars * quantity;
+
+
+    const totalUSD =
+        selectedService.usd * quantity;
+
+
+    const msg =
+        `Hola OmniFix! Soy ${name}. ` +
+        `Mi equipo es: ${device}. ` +
+        `Servicio: ${quantity}x ${selectedService.name}. ` +
+        `Observaciones: ${obs}. ` +
+        `Total: $${formatARS(totalARS)} ` +
+        `(USD $${totalUSD}). ` +
+        `Método de pago: ${method}. ` +
+        `Quiero coordinar para llevar el equipo al taller en Casa Blanca, Cruz del Eje.`;
+
+
+    document.getElementById("modal-body-content").innerHTML = `
+
+        <h3 style="
+            color:var(--success);
+            margin-bottom:0.5rem;
+            font-size:1.2rem;">
+
+            ¡Pedido Registrado! 🎉
+
+        </h3>
+
+
+        <p style="
+            font-size:0.8rem;
+            color:var(--text-muted);
+            margin-bottom:1rem;">
+
+            Se abrirá WhatsApp para enviar los datos del pedido a OmniFix.
+
+        </p>
+
+
+        <a
+            href="https://maps.app.goo.gl/xCGTk8NVPKTzx6h38"
+            target="_blank"
+            class="btn-maps-modal">
+
+            📍 Ver Ubicación en Maps
+
+        </a>
+
+
+        <button
+            type="button"
+            onclick="finishOrder()"
+            style="
+                background:var(--accent);
+                color:#0b1120;
+                border:none;
+                width:100%;
+                padding:0.75rem;
+                border-radius:10px;
+                font-weight:bold;
+                margin-top:10px;
+                cursor:pointer;">
+
+            Volver al inicio
+
+        </button>
+
+    `;
+
+
+    window.open(
+        `https://wa.me/${phoneTaller}?text=${encodeURIComponent(msg)}`,
+        "_blank"
+    );
+
+}
+
+
+/* =====================================================
+   FINALIZAR PEDIDO
+===================================================== */
+
+function finishOrder() {
+
+    closePaymentModal();
+
+    goHome();
+
+}
+
+
+/* =====================================================
+   ESTRELLAS
+===================================================== */
+
+function setRating(starCount) {
+
+    currentRating = starCount;
+
+    const stars =
+        document.querySelectorAll("#star-container span");
+
+
+    stars.forEach(function(star, index) {
+
+        star.classList.toggle(
+            "rated",
+            index < starCount
+        );
+
+    });
+
+}
+
+
+/* =====================================================
+   GUARDAR OPINIÓN
+===================================================== */
+
+function submitReview() {
+
+    const name =
+        document.getElementById("review-name")?.value.trim();
+
+
+    const text =
+        document.getElementById("review-text")?.value.trim()
+        || "Excelente servicio.";
+
+
+    if (currentRating === 0) {
+
+        alert("Selecciona una cantidad de estrellas.");
+
+        return;
+
+    }
+
+
+    if (!name) {
+
+        alert("Ingresa tu nombre.");
+
+        return;
+
+    }
+
+
+    let storedReviews = [];
+
+    try {
+
+        storedReviews =
+            JSON.parse(
+                localStorage.getItem("omni_reviews") || "[]"
+            );
+
+    } catch (error) {
+
+        storedReviews = [];
+
+    }
+
+
+    storedReviews.unshift({
+
+        name: name,
+        rating: currentRating,
+        text: text
+
+    });
+
+
+    localStorage.setItem(
+        "omni_reviews",
+        JSON.stringify(storedReviews)
+    );
+
+
+    alert("¡Opinión guardada con éxito!");
+
+
+    currentRating = 0;
+
+
+    document.getElementById("review-name").value = "";
+    document.getElementById("review-text").value = "";
+
+
+    setRating(0);
+
+    loadReviews();
+
+}
+
+
+/* =====================================================
+   CARGAR OPINIONES
+===================================================== */
+
+function loadReviews() {
+
+    const list =
+        document.getElementById("reviews-list");
+
+
+    if (!list) {
+        return;
+    }
+
+
+    let reviews = [];
+
+    try {
+
+        reviews =
+            JSON.parse(
+                localStorage.getItem("omni_reviews") || "[]"
+            );
+
+    } catch (error) {
+
+        reviews = [];
+
+    }
+
+
+    if (reviews.length === 0) {
+
+        list.innerHTML = `
+            <p style="
+                color:var(--text-muted);
+                font-size:0.75rem;">
+
+                Sé el primero en dejar tu opinión.
+
+            </p>
+        `;
+
+        return;
+
+    }
+
+
+    let html = "";
+
+
+    reviews.forEach(function(review) {
+
+        const stars =
+            "★".repeat(review.rating);
+
+
+        html += `
+
+            <div class="review-item">
+
+                <strong>
+                    ${escapeHTML(review.name)}
+                </strong>
+
+                <span style="
+                    color:var(--accent);">
+
+                    ${stars}
+
+                </span>
+
+                <br>
+
+                ${escapeHTML(review.text)}
+
+            </div>
+
+        `;
+
+    });
+
+
+    list.innerHTML = html;
+
+}
+
+
+/* =====================================================
+   SEGURIDAD PARA OPINIONES
+===================================================== */
+
+function escapeHTML(text) {
+
+    return String(text)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+/* =====================================================
+   IR A OPINIONES
+===================================================== */
+
+function scrollToReview() {
+
+    if (
+        document.getElementById("home-view").style.display === "none"
+    ) {
+
+        goHome();
+
+        setTimeout(function() {
+
+            document
+                .getElementById("review-section")
+                ?.scrollIntoView({
+                    behavior: "smooth"
+                });
+
+        }, 100);
+
+    } else {
+
+        document
+            .getElementById("review-section")
+            ?.scrollIntoView({
+                behavior: "smooth"
+            });
+
+    }
+
+}
+
+
+/* =====================================================
+   CERRAR MODAL AL TOCAR FUERA
+===================================================== */
+
+document
+    .getElementById("payment-modal")
+    .addEventListener("click", function(event) {
+
+        if (event.target === this) {
+            closePaymentModal();
+        }
+
+    });
+
+
+/* =====================================================
+   INICIO
+===================================================== */
+
+window.addEventListener("DOMContentLoaded", function() {
+
+    loadReviews();
+
+    goHome();
+
+});
+
+</script>
+
+</body>
+</html>

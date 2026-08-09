@@ -34,7 +34,7 @@
         .container { max-width: 600px; margin: 0 auto; padding: 1rem; }
         .section-title { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1.2px; color: var(--accent); margin: 0.8rem 0; font-weight: 800; }
         
-        .category-card, .service-card { background: var(--card-dark); border: 1px solid var(--card-border); border-radius: 14px; padding: 0.9rem 1rem; margin-bottom: 0.75rem; display: flex; align-items: center; justify-content: space-between; cursor: pointer; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.2); pointer-events: auto; }
+        .category-card, .service-card { background: var(--card-dark); border: 1px solid var(--card-border); border-radius: 14px; padding: 0.9rem 1rem; margin-bottom: 0.75rem; display: flex; align-items: center; justify-content: space-between; cursor: pointer; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.2); }
         .category-card:active, .service-card:active { background: #1a2642; }
         
         .card-left { display: flex; align-items: center; gap: 14px; flex: 1; pointer-events: none; }
@@ -104,11 +104,11 @@
     </div>
 
     <div class="container" id="main-container">
-        <!-- Vista de Categorías -->
+        <!-- Vista de Categorías con eventos de escucha táctil directos -->
         <div id="home-view">
             <div class="section-title">Categorías de Servicios</div>
             
-            <div class="category-card" onclick="selectCategory('Celulares')">
+            <div class="category-card" data-cat="Celulares">
                 <div class="card-left">
                     <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.8"><rect x="6" y="2" width="12" height="20" rx="2"/><line x1="10" y1="18" x2="14" y2="18"/><line x1="9" y1="6" x2="15" y2="12" stroke="#10b981" stroke-width="2"/></svg></div>
                     <span class="card-title">CELULARES Y TABLETS</span>
@@ -116,7 +116,7 @@
                 <span class="arrow">➔</span>
             </div>
 
-            <div class="category-card" onclick="selectCategory('Computadoras')">
+            <div class="category-card" data-cat="Computadoras">
                 <div class="card-left">
                     <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.8"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M2 19h20"/></svg></div>
                     <span class="card-title">COMPUTADORAS Y LAPTOPS</span>
@@ -124,7 +124,7 @@
                 <span class="arrow">➔</span>
             </div>
 
-            <div class="category-card" onclick="selectCategory('Auriculares')">
+            <div class="category-card" data-cat="Auriculares">
                 <div class="card-left">
                     <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.8"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg></div>
                     <span class="card-title">AURICULARES Y AUDIO</span>
@@ -132,7 +132,7 @@
                 <span class="arrow">➔</span>
             </div>
 
-            <div class="category-card" onclick="selectCategory('Consolas')">
+            <div class="category-card" data-cat="Consolas">
                 <div class="card-left">
                     <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="1.8"><rect x="2" y="6" width="20" height="12" rx="4"/><circle cx="8" cy="12" r="1.5" fill="#34d399"/><circle cx="16" cy="11" r="1" fill="#f59e0b"/><circle cx="16" cy="14" r="1" fill="#f59e0b"/></svg></div>
                     <span class="card-title">CONSOLAS Y JOYSTICKS</span>
@@ -140,7 +140,7 @@
                 <span class="arrow">➔</span>
             </div>
 
-            <div class="category-card" onclick="selectCategory('Otros')">
+            <div class="category-card" data-cat="Otros">
                 <div class="card-left">
                     <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.8"><path d="M6 3v6M18 3v6M4 9h16v3a8 8 0 0 1-16 0V9zM12 17v4"/></svg></div>
                     <span class="card-title">OTROS DISPOSITIVOS</span>
@@ -239,6 +239,17 @@
             listEl.innerHTML = reviewsHtml;
         }
 
+        // Asignación universal de eventos táctiles para asegurar entrada a categorías
+        document.addEventListener("DOMContentLoaded", function() {
+            loadReviews();
+            document.querySelectorAll('.category-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    let catId = this.getAttribute('data-cat');
+                    selectCategory(catId);
+                });
+            });
+        });
+
         function selectCategory(catId) {
             currentCategory = catId;
             selectedService = null;
@@ -280,15 +291,4 @@
             selectedService = null;
             document.getElementById('dynamic-view').style.display = 'none';
             document.getElementById('home-view').style.display = 'block';
-            document.getElementById('cart-bar').style.display = 'none';
-            window.scrollTo(0,0);
-        }
-
-        function openDetail(idx) {
-            selectedService = services[currentCategory][idx];
-            quantity = 1;
-            const dynView = document.getElementById('dynamic-view');
-            let totalArs = selectedService.ars * quantity;
-            let totalUsd = selectedService.usd * quantity;
-            
-     
+            document.getElementById('cart-b

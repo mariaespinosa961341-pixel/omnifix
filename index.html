@@ -126,7 +126,7 @@
             width: 100%;
         }
 
-        /* Tarjeta de Estudiante */
+        /* Tarjeta de Información */
         .card {
             background-color: var(--white);
             border-radius: 15px;
@@ -143,9 +143,9 @@
             transform: translateY(-5px);
         }
 
-        .avatar-container {
-            width: 90px;
-            height: 90px;
+        .icon-container {
+            width: 80px;
+            height: 80px;
             background-color: var(--bg-color);
             border-radius: 50%;
             display: flex;
@@ -153,36 +153,22 @@
             align-items: center;
             margin-bottom: 15px;
             border: 3px solid var(--primary-dark);
+            font-size: 2rem;
         }
 
-        .avatar-icon {
-            width: 50px;
-            height: 50px;
-            fill: var(--primary-dark);
-        }
-
-        .student-name {
+        .card-title {
             font-size: 1.3rem;
             font-weight: bold;
             color: var(--primary-dark);
-            margin: 5px 0;
-        }
-
-        .category-tag {
-            background-color: var(--bg-color);
-            color: var(--primary-dark);
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 15px;
+            margin: 5px 0 15px 0;
         }
 
         .description {
             font-size: 0.95rem;
             color: #555;
             margin-bottom: 20px;
-            line-height: 1.4;
+            line-height: 1.5;
+            text-align: left;
         }
 
         .btn-voice {
@@ -197,6 +183,7 @@
             align-items: center;
             gap: 8px;
             transition: background-color 0.2s;
+            margin-top: auto;
         }
 
         .btn-voice:hover {
@@ -228,53 +215,46 @@
     <!-- Pantalla de Bienvenida con el Escudo del IPET 104 -->
     <div id="welcome-screen">
         <div class="welcome-content">
-            <!-- Imagen del escudo cargada directo por URL de GitHub o usando el archivo -->
-            <img src="logo.jpg" alt="Escudo IPET 104 Arturo Capdevila" class="school-logo" onerror="this.src='https://i.imgur.com/7b78b8I.png'">
+            <img src="logo.jpg" alt="Escudo IPET 104" class="school-logo" onerror="this.src='https://i.imgur.com/7b78b8I.png'">
             <h1>IPET N° 104 "Arturo Capdevila"</h1>
             <h3>Cruz del Eje, Córdoba</h3>
-            <p>Proyecto Escolar: Investigación del Puente Negro</p>
-            <button class="btn-enter" onclick="entrarAlProyecto()">🚀 Entrar al Proyecto</button>
+            <p>Proyecto Escolar: Historia del Puente Negro</p>
+            <button class="btn-enter" onclick="entrarAlProyecto()">🚀 Ver Información</button>
         </div>
     </div>
 
-    <!-- Contenido Principal -->
+    <!-- Contenido Principal con Categorías del Puente Negro -->
     <div id="main-content">
         <header>
             <h2>El Puente Negro</h2>
-            <p>Selecciona una categoría de los estudiantes para leer y escuchar la información</p>
+            <p>Selecciona una categoría para leer la información detallada y escuchar la voz explicativa</p>
         </header>
 
         <div class="container">
-            <!-- Estudiante 1 -->
+            <!-- Categoría 1: Historia y Origen -->
             <div class="card">
-                <div class="avatar-container">
-                    <svg class="avatar-icon" viewBox="0 0 24 24">
-                        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-                    </svg>
+                <div class="icon-container">
+                    📜
                 </div>
-                <div class="student-name">María Espino</div>
-                <div class="category-tag">Historia y Origen</div>
+                <div class="card-title">Historia y Origen</div>
                 <div class="description">
-                    El Puente Negro es un monumento histórico fundamental de nuestra región de Cruz del Eje, construido a principios del siglo XX para el paso del ferrocarril y la conectividad.
+                    El Puente Negro es una de las construcciones históricas más emblemáticas de Cruz del Eje. Su origen se remonta al desarrollo del sistema ferroviario a principios del siglo XX, cumpliendo un rol fundamental en la integración económica, el transporte de pasajeros y la comunicación de la región con el resto de la provincia.
                 </div>
-                <button class="btn-voice" onclick="leerTexto('El Puente Negro es un monumento histórico fundamental de nuestra región de Cruz del Eje, construido a principios del siglo XX para el paso del ferrocarril y la conectividad.')">
+                <button class="btn-voice" onclick="leerTexto('El Puente Negro es una de las construcciones históricas más emblemáticas de Cruz del Eje. Su origen se remonta al desarrollo del sistema ferroviario a principios del siglo XX, cumpliendo un rol fundamental en la integración económica, el transporte de pasajeros y la comunicación de la región con el resto de la provincia.')">
                     🔊 Escuchar Voz
                 </button>
             </div>
 
-            <!-- Estudiante 2 -->
+            <!-- Categoría 2: Arquitectura y Estructura -->
             <div class="card">
-                <div class="avatar-container">
-                    <svg class="avatar-icon" viewBox="0 0 24 24">
-                        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-                    </svg>
+                <div class="icon-container">
+                    🌉
                 </div>
-                <div class="student-name">Colaborador 2</div>
-                <div class="category-tag">Arquitectura y Estructura</div>
+                <div class="card-title">Arquitectura y Estructura</div>
                 <div class="description">
-                    Su estructura destaca por el uso masivo de acero industrial y vigas de celosía dispuestas para soportar grandes cargas de peso a lo largo de las décadas.
+                    Constructivamente, destaca por el uso característico de hierro y acero remachado de la era industrial. Su diseño de vigas metálicas en celosía fue ideado para soportar grandes cargas estructurales y resistir las crecidas de agua, convirtiéndose en un símbolo de la ingeniería de la época.
                 </div>
-                <button class="btn-voice" onclick="leerTexto('Su estructura destaca por el uso masivo de acero industrial y vigas de celosía dispuestas para soportar grandes cargas de peso a lo largo de las décadas.')">
+                <button class="btn-voice" onclick="leerTexto('Constructivamente, destaca por el uso característico de hierro y acero remachado de la era industrial. Su diseño de vigas metálicas en celosía fue ideado para soportar grandes cargas estructurales y resistir las crecidas de agua, convirtiéndose en un símbolo de la ingeniería de la época.')">
                     🔊 Escuchar Voz
                 </button>
             </div>
@@ -302,7 +282,7 @@
             if ('speechSynthesis' in window) {
                 window.speechSynthesis.cancel();
                 const utterance = new SpeechSynthesisUtterance(texto);
-                utterance.lang = 'es-AR'; // Acento latino/argentino si está disponible
+                utterance.lang = 'es-AR'; // Acento latino/argentino
                 utterance.rate = 1.0;
                 window.speechSynthesis.speak(utterance);
             } else {

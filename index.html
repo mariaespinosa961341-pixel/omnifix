@@ -42,7 +42,14 @@
             text-align: center;
             padding: 20px;
             box-sizing: border-box;
-            transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+            transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+        }
+
+        /* Oculta la pantalla de bienvenida con animación */
+        #welcome-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
         }
 
         .school-logo {
@@ -88,27 +95,23 @@
             transition: transform 0.2s, background-color 0.2s;
         }
 
-        .btn-enter:hover {
-            transform: scale(1.05);
-            background-color: #ffdd33;
+        .btn-enter:active {
+            transform: scale(0.95);
         }
 
-        /* Contenido Principal con Animación de Entrada */
+        /* Contenido Principal */
         #main-content {
             display: none;
             width: 100%;
             max-width: 900px;
             padding: 20px;
             box-sizing: border-box;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
 
-        #main-content.show {
+        /* Clase de animación para mostrar las categorías */
+        #main-content.visible {
             display: block;
-            opacity: 1;
-            transform: translateY(0);
+            animation: entradaCategorias 0.8s ease-out forwards;
         }
 
         header {
@@ -190,7 +193,7 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            transition: background-color 0.2s, transform 0.1s;
+            transition: background-color 0.2s;
             margin-top: auto;
         }
 
@@ -210,16 +213,28 @@
             margin-bottom: 20px;
         }
 
+        /* Animaciones */
         @keyframes pulseLogo {
             0% { transform: scale(1); }
             50% { transform: scale(1.05); }
             100% { transform: scale(1); }
         }
+
+        @keyframes entradaCategorias {
+            0% {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
     </style>
 </head>
 <body>
 
-    <!-- Pantalla de Presentación -->
+    <!-- Pantalla de Bienvenida -->
     <div id="welcome-screen">
         <div class="welcome-content">
             <img src="imagenipt104.jpg" alt="Escudo IPET 104" class="school-logo" onerror="this.src='https://images.vexels.com/media/users/3/142718/isolated/preview/1afa9cd201f92e80356ee7f1a3a41151-icono-de-la-escuela-building.png'">
@@ -230,7 +245,7 @@
         </div>
     </div>
 
-    <!-- Contenido Principal con las Categorías -->
+    <!-- Contenido Principal -->
     <div id="main-content">
         <header>
             <h2>El Puente Negro</h2>
@@ -238,7 +253,7 @@
         </header>
 
         <div class="container">
-            <!-- Categoría 1: Historia -->
+            <!-- Categoría 1 -->
             <div class="card">
                 <div class="icon-container">📜</div>
                 <div class="card-title">La historia detrás del Puente Negro</div>
@@ -251,7 +266,7 @@
                 </button>
             </div>
 
-            <!-- Categoría 2: Arquitectura -->
+            <!-- Categoría 2 -->
             <div class="card">
                 <div class="icon-container">🌉</div>
                 <div class="card-title">Arquitectura y Estructura del Puente Negro</div>
@@ -270,24 +285,30 @@
         </footer>
     </div>
 
-    <!-- Script de Animación y Control de Audio -->
     <script>
-        let audioActual = null;
+        var audioActual = null;
 
         function entrarAlProyecto() {
-            const welcome = document.getElementById('welcome-screen');
-            const main = document.getElementById('main-content');
-
-            // Efecto de desvanecimiento de la pantalla de bienvenida
-            welcome.style.opacity = '0';
-            welcome.style.transform = 'scale(1.05)';
+            // Oculta la pantalla de bienvenida con transición
+            var welcome = document.getElementById('welcome-screen');
+            var main = document.getElementById('main-content');
             
-            setTimeout(() => {
-                welcome.style.display = 'none';
-                main.classList.add('show');
-                window.scrollTo(0, 0);
-            }, 600);
+            welcome.className = 'hidden';
+            main.className = 'visible';
+            window.scrollTo(0, 0);
         }
 
-        function reproduc
-            
+        function reproducirAudio(archivo) {
+            if (audioActual) {
+                audioActual.pause();
+                audioActual.currentTime = 0;
+            }
+
+            audioActual = new Audio(archivo);
+            audioActual.play().catch(function(error) {
+                alert("No se pudo reproducir '" + archivo + "'. Comprueba que esté subido a GitHub con ese nombre exacto.");
+            });
+        }
+    </script>
+</body>
+</html>

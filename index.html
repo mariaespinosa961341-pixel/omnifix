@@ -6,8 +6,8 @@
     <title>Proyecto Escolar - IPET N° 104 y Puente Negro</title>
     <style>
         :root {
-            --bg-color: #d0f0ed; /* Turquesa claro */
-            --primary-dark: #006666; /* Turquesa oscuro / iconos */
+            --bg-color: #d0f0ed;
+            --primary-dark: #006666;
             --accent-color: #008080;
             --text-main: #2b3e3e;
             --white: #ffffff;
@@ -25,7 +25,7 @@
             min-height: 100vh;
         }
 
-        /* Pantalla de Bienvenida */
+        /* Pantalla de Presentación y Bienvenida */
         #welcome-screen {
             position: fixed;
             top: 0;
@@ -42,16 +42,18 @@
             text-align: center;
             padding: 20px;
             box-sizing: border-box;
+            transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
         }
 
         .school-logo {
-            width: 130px;
-            height: 130px;
+            width: 140px;
+            height: 140px;
             object-fit: contain;
             border-radius: 50%;
             border: 4px solid #ffcc00;
             margin-bottom: 20px;
             box-shadow: 0 0 25px rgba(255, 204, 0, 0.4);
+            animation: pulseLogo 2s infinite ease-in-out;
         }
 
         .welcome-content h1 {
@@ -86,17 +88,27 @@
             transition: transform 0.2s, background-color 0.2s;
         }
 
-        .btn-enter:active {
-            transform: scale(0.95);
+        .btn-enter:hover {
+            transform: scale(1.05);
+            background-color: #ffdd33;
         }
 
-        /* Contenido Principal */
+        /* Contenido Principal con Animación de Entrada */
         #main-content {
             display: none;
             width: 100%;
             max-width: 900px;
             padding: 20px;
             box-sizing: border-box;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        #main-content.show {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
         }
 
         header {
@@ -108,5 +120,174 @@
         header h2 {
             color: var(--primary-dark);
             margin-bottom: 5px;
-            font-size: 
+            font-size: 2.2rem;
+        }
+
+        header p {
+            font-size: 1rem;
+            color: var(--accent-color);
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            width: 100%;
+        }
+
+        .card {
+            background-color: var(--white);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0, 102, 102, 0.15);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: transform 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .icon-container {
+            width: 70px;
+            height: 70px;
+            background-color: var(--bg-color);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 15px;
+            border: 3px solid var(--primary-dark);
+            font-size: 1.8rem;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary-dark);
+            margin: 5px 0 15px 0;
+        }
+
+        .description {
+            font-size: 0.95rem;
+            color: #444;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            text-align: left;
+        }
+
+        .btn-voice {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.2s, transform 0.1s;
+            margin-top: auto;
+        }
+
+        .btn-voice:hover {
+            background-color: var(--accent-color);
+        }
+
+        .btn-voice:active {
+            transform: scale(0.95);
+        }
+
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+        }
+
+        @keyframes pulseLogo {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Pantalla de Presentación -->
+    <div id="welcome-screen">
+        <div class="welcome-content">
+            <img src="imagenipt104.jpg" alt="Escudo IPET 104" class="school-logo" onerror="this.src='https://images.vexels.com/media/users/3/142718/isolated/preview/1afa9cd201f92e80356ee7f1a3a41151-icono-de-la-escuela-building.png'">
+            <h1>IPET N° 104 "Arturo Capdevila"</h1>
+            <h3>Cruz del Eje, Córdoba</h3>
+            <p>Proyecto Escolar: Investigación del Puente Negro</p>
+            <button class="btn-enter" onclick="entrarAlProyecto()">🚀 Ver Información</button>
+        </div>
+    </div>
+
+    <!-- Contenido Principal con las Categorías -->
+    <div id="main-content">
+        <header>
+            <h2>El Puente Negro</h2>
+            <p>Selecciona una categoría para leer la información y escuchar el audio explicativo</p>
+        </header>
+
+        <div class="container">
+            <!-- Categoría 1: Historia -->
+            <div class="card">
+                <div class="icon-container">📜</div>
+                <div class="card-title">La historia detrás del Puente Negro</div>
+                <div class="description">
+                    El Puente Negro es, sin duda, una de las postales más representativas y con mayor peso histórico en Cruz del Eje. Su origen va de la mano con la llegada del sistema ferroviario a principios del siglo XX, una época en la que el tren marcó el pulso del desarrollo económico y social de toda la región.<br><br>
+                    Esta imponente estructura metálica no solo servía para el transporte de pasajeros, sino que cumplía un papel fundamental: conectar la producción y la economía local con el resto de la provincia de Córdoba. Hoy en día, perdura como un símbolo de aquella época dorada en la que el riel era el auténtico motor de crecimiento de nuestra ciudad.
+                </div>
+                <button class="btn-voice" onclick="reproducirAudio('historia.mp3')">
+                    🔊 Escuchar Voz
+                </button>
+            </div>
+
+            <!-- Categoría 2: Arquitectura -->
+            <div class="card">
+                <div class="icon-container">🌉</div>
+                <div class="card-title">Arquitectura y Estructura del Puente Negro</div>
+                <div class="description">
+                    Constructivamente, el Puente Negro destaca por el uso característico del hierro y el acero remachado, propios de la era industrial.<br><br>
+                    Su diseño de vigas metálicas en celosía fue ideado estratégicamente para soportar grandes cargas estructurales y resistir las crecidas de agua, convirtiéndose en un auténtico símbolo de la ingeniería de la época.
+                </div>
+                <button class="btn-voice" onclick="reproducirAudio('arquitectura.mp3')">
+                    🔊 Escuchar Voz
+                </button>
+            </div>
+        </div>
+
+        <footer>
+            <p>IPET N° 104 Arturo Capdevila - Cruz del Eje, Córdoba (2026)</p>
+        </footer>
+    </div>
+
+    <!-- Script de Animación y Control de Audio -->
+    <script>
+        let audioActual = null;
+
+        function entrarAlProyecto() {
+            const welcome = document.getElementById('welcome-screen');
+            const main = document.getElementById('main-content');
+
+            // Efecto de desvanecimiento de la pantalla de bienvenida
+            welcome.style.opacity = '0';
+            welcome.style.transform = 'scale(1.05)';
+            
+            setTimeout(() => {
+                welcome.style.display = 'none';
+                main.classList.add('show');
+                window.scrollTo(0, 0);
+            }, 600);
+        }
+
+        function reproduc
             

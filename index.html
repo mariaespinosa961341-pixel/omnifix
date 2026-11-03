@@ -25,7 +25,7 @@
             min-height: 100vh;
         }
 
-        /* Pantalla de Animación de Bienvenida con el Logo del IPET 104 */
+        /* Pantalla de Animación de Bienvenida con tu imagen "imagenipt104.jpg" */
         #welcome-screen {
             position: fixed;
             top: 0;
@@ -111,7 +111,7 @@
         header h2 {
             color: var(--primary-dark);
             margin-bottom: 5px;
-            font-size: 2rem;
+            font-size: 2.2rem;
         }
 
         header p {
@@ -121,7 +121,7 @@
 
         .container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
             width: 100%;
         }
@@ -165,9 +165,9 @@
 
         .description {
             font-size: 0.95rem;
-            color: #555;
+            color: #444;
             margin-bottom: 20px;
-            line-height: 1.5;
+            line-height: 1.6;
             text-align: left;
         }
 
@@ -212,22 +212,22 @@
 </head>
 <body>
 
-    <!-- Pantalla de Bienvenida con el Escudo del IPET 104 -->
+    <!-- Pantalla de Bienvenida con tu logo "imagenipt104.jpg" -->
     <div id="welcome-screen">
         <div class="welcome-content">
-            <img src="logo.jpg" alt="Escudo IPET 104" class="school-logo" onerror="this.src='https://i.imgur.com/7b78b8I.png'">
+            <img src="imagenipt104.jpg" alt="Escudo IPET 104" class="school-logo" onerror="this.src='https://i.imgur.com/7b78b8I.png'">
             <h1>IPET N° 104 "Arturo Capdevila"</h1>
             <h3>Cruz del Eje, Córdoba</h3>
-            <p>Proyecto Escolar: Historia del Puente Negro</p>
+            <p>Proyecto Escolar: Investigación del Puente Negro</p>
             <button class="btn-enter" onclick="entrarAlProyecto()">🚀 Ver Información</button>
         </div>
     </div>
 
-    <!-- Contenido Principal con Categorías del Puente Negro -->
+    <!-- Contenido Principal con las Categorías e Información Exacta -->
     <div id="main-content">
         <header>
             <h2>El Puente Negro</h2>
-            <p>Selecciona una categoría para leer la información detallada y escuchar la voz explicativa</p>
+            <p>Selecciona una categoría para leer la información y escuchar la voz explicativa</p>
         </header>
 
         <div class="container">
@@ -236,11 +236,12 @@
                 <div class="icon-container">
                     📜
                 </div>
-                <div class="card-title">Historia y Origen</div>
+                <div class="card-title">La historia detrás del Puente Negro</div>
                 <div class="description">
-                    El Puente Negro es una de las construcciones históricas más emblemáticas de Cruz del Eje. Su origen se remonta al desarrollo del sistema ferroviario a principios del siglo XX, cumpliendo un rol fundamental en la integración económica, el transporte de pasajeros y la comunicación de la región con el resto de la provincia.
+                    El Puente Negro es, sin duda, una de las postales más representativas y con mayor peso histórico en Cruz del Eje. Su origen va de la mano con la llegada del sistema ferroviario a principios del siglo XX, una época en la que el tren marcó el pulso del desarrollo económico y social de toda la región.<br><br>
+                    Esta imponente estructura metálica no solo servía para el transporte de pasajeros, sino que cumplía un papel fundamental: conectar la producción y la economía local con el resto de la provincia de Córdoba. Hoy en día, perdura como un símbolo de aquella época dorada en la que el riel era el auténtico motor de crecimiento de nuestra ciudad.
                 </div>
-                <button class="btn-voice" onclick="leerTexto('El Puente Negro es una de las construcciones históricas más emblemáticas de Cruz del Eje. Su origen se remonta al desarrollo del sistema ferroviario a principios del siglo XX, cumpliendo un rol fundamental en la integración económica, el transporte de pasajeros y la comunicación de la región con el resto de la provincia.')">
+                <button class="btn-voice" onclick="leerTexto('La historia detrás del Puente Negro. El Puente Negro es, sin duda, una de las postales más representativas y con mayor peso histórico en Cruz del Eje. Su origen va de la mano con la llegada del sistema ferroviario a principios del siglo XX, una época en la que el tren marcó el pulso del desarrollo económico y social de toda la región. Esta imponente estructura metálica no solo servía para el transporte de pasajeros, sino que cumplía un papel fundamental: conectar la producción y la economía local con el resto de la provincia de Córdoba. Hoy en día, perdura como un símbolo de aquella época dorada en la que el riel era el auténtico motor de crecimiento de nuestra ciudad.')">
                     🔊 Escuchar Voz
                 </button>
             </div>
@@ -250,11 +251,12 @@
                 <div class="icon-container">
                     🌉
                 </div>
-                <div class="card-title">Arquitectura y Estructura</div>
+                <div class="card-title">Arquitectura y Estructura del Puente Negro</div>
                 <div class="description">
-                    Constructivamente, destaca por el uso característico de hierro y acero remachado de la era industrial. Su diseño de vigas metálicas en celosía fue ideado para soportar grandes cargas estructurales y resistir las crecidas de agua, convirtiéndose en un símbolo de la ingeniería de la época.
+                    Constructivamente, el Puente Negro destaca por el uso característico del hierro y el acero remachado, propios de la era industrial.<br><br>
+                    Su diseño de vigas metálicas en celosía fue ideado estratégicamente para soportar grandes cargas estructurales y resistir las crecidas de agua, convirtiéndose en un auténtico símbolo de la ingeniería de la época.
                 </div>
-                <button class="btn-voice" onclick="leerTexto('Constructivamente, destaca por el uso característico de hierro y acero remachado de la era industrial. Su diseño de vigas metálicas en celosía fue ideado para soportar grandes cargas estructurales y resistir las crecidas de agua, convirtiéndose en un símbolo de la ingeniería de la época.')">
+                <button class="btn-voice" onclick="leerTexto('Arquitectura y Estructura del Puente Negro. Constructivamente, el Puente Negro destaca por el uso característico del hierro y el acero remachado, propios de la era industrial. Su diseño de vigas metálicas en celosía fue ideado estratégicamente para soportar grandes cargas estructurales y resistir las crecidas de agua, convirtiéndose en un auténtico símbolo de la ingeniería de la época.')">
                     🔊 Escuchar Voz
                 </button>
             </div>
@@ -278,17 +280,5 @@
             }, 500);
         }
 
-        function leerTexto(texto) {
-            if ('speechSynthesis' in window) {
-                window.speechSynthesis.cancel();
-                const utterance = new SpeechSynthesisUtterance(texto);
-                utterance.lang = 'es-AR'; // Acento latino/argentino
-                utterance.rate = 1.0;
-                window.speechSynthesis.speak(utterance);
-            } else {
-                alert("Tu dispositivo no soporta la función de voz.");
-            }
-        }
-    </script>
-</body>
-</html>
+        function leerTexto(
+            

@@ -68,7 +68,6 @@
             margin: 20px 0;
         }
 
-        /* Cuadros pequeños solo para los botones de voz */
         .card {
             background-color: white;
             border-radius: 12px;
@@ -80,7 +79,7 @@
 
         .card img {
             width: 100%;
-            max-height: 200px;
+            max-height: 220px;
             object-fit: cover;
             border-radius: 8px;
             margin-bottom: 12px;
@@ -97,7 +96,6 @@
             margin-top: 10px;
         }
 
-        /* Información larga fuera de los cuadros */
         .info-container {
             background-color: white;
             border-radius: 12px;
@@ -140,21 +138,25 @@
             <p>Escucha los audios en los cuadros superiores o desliza hacia abajo para leer toda la investigación oficial</p>
         </header>
 
-        <!-- Cuadro 1: Historia (Solo imagen, título y botón de voz) -->
+        <!-- Cuadro 1: Historia (Usa foto3.jpg y foto4.jpg) -->
         <div class="card">
-            <img src="foto3.jpg" alt="Historia" onerror="this.style.display='none'">
+            <img src="foto3.jpg" alt="Historia 1" onerror="this.style.display='none'">
+            <img src="foto4.jpg" alt="Historia 2" onerror="this.style.display='none'">
             <h3 style="color: #006666; margin: 5px 0;">La historia y el origen</h3>
             <button class="btn-voice" onclick="audio('historia.mp3')">🔊 Escuchar Audio (Historia)</button>
         </div>
 
-        <!-- Cuadro 2: Arquitectura (Solo imagen, título y botón de voz) -->
+        <!-- Cuadro 2: Arquitectura (Usa foto1.jpg, foto2.jpg, foto5.jpg, foto6.jpg) -->
         <div class="card">
-            <img src="foto1.jpg" alt="Arquitectura" onerror="this.style.display='none'">
+            <img src="foto1.jpg" alt="Arquitectura 1" onerror="this.style.display='none'">
+            <img src="foto2.jpg" alt="Arquitectura 2" onerror="this.style.display='none'">
+            <img src="foto5.jpg" alt="Arquitectura 3" onerror="this.style.display='none'">
+            <img src="foto6.jpg" alt="Arquitectura 4" onerror="this.style.display='none'">
             <h3 style="color: #006666; margin: 5px 0;">Arquitectura y estructura</h3>
             <button class="btn-voice" onclick="audio('arquitectura.mp3')">🔊 Escuchar Audio (Arquitectura)</button>
         </div>
 
-        <!-- Toda la información larga fuera de los cuadros, abajo de todo -->
+        <!-- Información larga abajo -->
         <div class="info-container">
             <h2>La historia y el origen: El latido de una época dorada</h2>
             <p>Para comprender la verdadera dimensión del Puente Negro, es necesario viajar mentalmente a los primeros años del siglo XX, una época en la que el territorio argentino experimentaba una transformación radical impulsada por la llegada masiva del sistema ferroviario. En Cruz del Eje, al igual que en puntos estratégicos de todo el país, el tren no significaba simplemente un medio de transporte: era el auténtico motor del progreso, la clave que dictaba el ritmo de la economía, el comercio y la vida cotidiana de miles de habitantes.</p>
@@ -189,7 +191,4 @@
             reproductor.play().catch(function(e) {
                 alert("Sube el archivo de audio '" + archivo + "' a tu repositorio de GitHub.");
             });
-        }
-    </script>
-</body>
-</html>
+            

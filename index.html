@@ -45,7 +45,6 @@
             transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
         }
 
-        /* Oculta la pantalla de bienvenida con animación */
         #welcome-screen.hidden {
             opacity: 0;
             visibility: hidden;
@@ -103,12 +102,11 @@
         #main-content {
             display: none;
             width: 100%;
-            max-width: 900px;
+            max-width: 950px;
             padding: 20px;
             box-sizing: border-box;
         }
 
-        /* Clase de animación para mostrar las categorías */
         #main-content.visible {
             display: block;
             animation: entradaCategorias 0.8s ease-out forwards;
@@ -133,8 +131,8 @@
 
         .container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
             width: 100%;
         }
 
@@ -150,51 +148,39 @@
             transition: transform 0.2s ease;
         }
 
-        .card:hover {
-            transform: translateY(-5px);
-        }
-
-        .icon-container {
-            width: 70px;
-            height: 70px;
-            background-color: var(--bg-color);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        .card-img {
+            width: 100%;
+            max-height: 190px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 2px solid var(--primary-dark);
             margin-bottom: 15px;
-            border: 3px solid var(--primary-dark);
-            font-size: 1.8rem;
         }
 
         .card-title {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             font-weight: bold;
             color: var(--primary-dark);
             margin: 5px 0 15px 0;
         }
 
-        .description {
-            font-size: 0.95rem;
-            color: #444;
-            margin-bottom: 20px;
-            line-height: 1.6;
-            text-align: left;
-        }
-
+        /* Botón de voz ubicado justo debajo del título y antes del texto */
         .btn-voice {
             background-color: var(--primary-dark);
             color: var(--white);
             border: none;
-            padding: 10px 20px;
+            padding: 12px 24px;
             border-radius: 25px;
             font-size: 0.95rem;
+            font-weight: 600;
             cursor: pointer;
-            display: flex;
+            display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 8px;
-            transition: background-color 0.2s;
-            margin-top: auto;
+            transition: background-color 0.2s, transform 0.1s;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 10px rgba(0, 102, 102, 0.2);
         }
 
         .btn-voice:hover {
@@ -205,6 +191,25 @@
             transform: scale(0.95);
         }
 
+        /* Texto completo debajo del botón de voz */
+        .description {
+            font-size: 0.95rem;
+            color: #333;
+            line-height: 1.65;
+            text-align: left;
+            border-top: 1px solid #e0f2f1;
+            padding-top: 15px;
+        }
+
+        .description p {
+            margin-top: 0;
+            margin-bottom: 12px;
+        }
+
+        .description p:last-child {
+            margin-bottom: 0;
+        }
+
         footer {
             margin-top: 40px;
             text-align: center;
@@ -213,7 +218,6 @@
             margin-bottom: 20px;
         }
 
-        /* Animaciones */
         @keyframes pulseLogo {
             0% { transform: scale(1); }
             50% { transform: scale(1.05); }
@@ -249,34 +253,39 @@
     <div id="main-content">
         <header>
             <h2>El Puente Negro</h2>
-            <p>Selecciona una categoría para leer la información y escuchar el audio explicativo</p>
+            <p>Presiona el botón de voz en cada categoría para escuchar el relato y lee la historia completa debajo</p>
         </header>
 
         <div class="container">
-            <!-- Categoría 1 -->
+            <!-- Categoría 1: Historia -->
             <div class="card">
-                <div class="icon-container">📜</div>
-                <div class="card-title">La historia detrás del Puente Negro</div>
-                <div class="description">
-                    El Puente Negro es, sin duda, una de las postales más representativas y con mayor peso histórico en Cruz del Eje. Su origen va de la mano con la llegada del sistema ferroviario a principios del siglo XX, una época en la que el tren marcó el pulso del desarrollo económico y social de toda la región.<br><br>
-                    Esta imponente estructura metálica no solo servía para el transporte de pasajeros, sino que cumplía un papel fundamental: conectar la producción y la economía local con el resto de la provincia de Córdoba. Hoy en día, perdura como un símbolo de aquella época dorada en la que el riel era el auténtico motor de crecimiento de nuestra ciudad.
-                </div>
+                <img src="foto3.jpg" alt="Historia del Puente Negro" class="card-img" onerror="this.style.display='none'">
+                <div class="card-title">La historia y el origen: El latido de una época dorada</div>
+                
                 <button class="btn-voice" onclick="reproducirAudio('historia.mp3')">
-                    🔊 Escuchar Voz
+                    🔊 Escuchar Voz (Historia)
                 </button>
+
+                <div class="description">
+                    <p>Para comprender la verdadera dimensión del Puente Negro, es necesario viajar mentalmente a los primeros años del siglo XX, una época en la que el territorio argentino experimentaba una transformación radical impulsada por la llegada masiva del sistema ferroviario. En Cruz del Eje, al igual que en puntos estratégicos de todo el país, el tren no significaba simplemente un medio de transporte: era el auténtico motor del progreso, la clave que dictaba el ritmo de la economía, el comercio y la vida cotidiana de miles de habitantes.</p>
+                    <p>El origen de esta construcción se encuentra ligado directamente a la necesidad de vertebrar el territorio y conectar de forma eficiente la producción regional con los grandes centros urbanos de la provincia de Córdoba y del país. El Puente Negro nació para cumplir un rol fundamental en la infraestructura de transporte, permitiendo el paso seguro de formaciones ferroviarias cargadas tanto de pasajeros como de la producción local a través de accidentes geográficos complejos. Con el correr de las décadas, este paso elevado dejó de ser una simple vía de tránsito de hierro para convertirse en un símbolo imborrable de identidad local, un auténtico monumento vivo que nos recuerda aquellos años en los que el sonido del silbato del tren marcaba el pulso diario de la ciudad.</p>
+                </div>
             </div>
 
-            <!-- Categoría 2 -->
+            <!-- Categoría 2: Arquitectura -->
             <div class="card">
-                <div class="icon-container">🌉</div>
-                <div class="card-title">Arquitectura y Estructura del Puente Negro</div>
-                <div class="description">
-                    Constructivamente, el Puente Negro destaca por el uso característico del hierro y el acero remachado, propios de la era industrial.<br><br>
-                    Su diseño de vigas metálicas en celosía fue ideado estratégicamente para soportar grandes cargas estructurales y resistir las crecidas de agua, convirtiéndose en un auténtico símbolo de la ingeniería de la época.
-                </div>
+                <img src="foto1.jpg" alt="Arquitectura del Puente Negro" class="card-img" onerror="this.style.display='none'">
+                <div class="card-title">Arquitectura y estructura: La genialidad de la ingeniería de la era industrial</div>
+                
                 <button class="btn-voice" onclick="reproducirAudio('arquitectura.mp3')">
-                    🔊 Escuchar Voz
+                    🔊 Escuchar Voz (Arquitectura)
                 </button>
+
+                <div class="description">
+                    <p>Si su historia conmueve, su arquitectura y diseño técnico maravillan a cualquiera que se detenga a observarlo con atención. Constructivamente, el Puente Negro destaca de manera absoluta por el uso característico del hierro forjado y el acero remachado, materiales que definieron por completo la estética y la robustez de la arquitectura industrial de finales del siglo XIX y principios del siglo XX.</p>
+                    <p>El corazón de su diseño estructural descansa en un sistema de vigas metálicas dispuestas en celosía —un entramado geométrico de barras entrelazadas en forma de triángulos—. Esta configuración técnica no fue elegida al azar: la celosía posee una capacidad extraordinaria para repartir las cargas de manera uniforme, permitiendo soportar el peso monumental y las vibraciones constantes de las pesadas locomotoras de la época sin sufrir deformaciones.</p>
+                    <p>Asimismo, la estructura fue ideada estratégicamente para desafiar y resistir con solidez las fuertes crecidas de agua de la región, soportando las exigencias climáticas más duras gracias a la precisión de sus ensamblajes y a sus sólidos pilares de apoyo. Cada remache, cada barra de acero y cada ángulo de su diseño reflejan la maestría de una ingeniería de vanguardia que priorizaba la durabilidad y la funcionalidad extrema. Hoy en día, contemplar el Puente Negro es hacer un viaje al pasado, valorando una obra maestra de la metalurgia que, a pesar del paso del tiempo, sigue erguida como testimonio mudo de una época donde las estructuras se construían para perdurar eternamente.</p>
+                </div>
             </div>
         </div>
 
@@ -289,7 +298,6 @@
         var audioActual = null;
 
         function entrarAlProyecto() {
-            // Oculta la pantalla de bienvenida con transición
             var welcome = document.getElementById('welcome-screen');
             var main = document.getElementById('main-content');
             
@@ -306,7 +314,7 @@
 
             audioActual = new Audio(archivo);
             audioActual.play().catch(function(error) {
-                alert("No se pudo reproducir '" + archivo + "'. Comprueba que esté subido a GitHub con ese nombre exacto.");
+                alert("Asegúrate de haber subido el archivo '" + archivo + "' a tu repositorio de GitHub.");
             });
         }
     </script>

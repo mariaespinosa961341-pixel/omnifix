@@ -129,11 +129,13 @@
             color: var(--accent-color);
         }
 
+        /* Contenedor de las Tarjetas Superiores */
         .container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 25px;
             width: 100%;
+            margin-bottom: 40px;
         }
 
         .card {
@@ -146,6 +148,10 @@
             align-items: center;
             text-align: center;
             transition: transform 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
         }
 
         .card-img {
@@ -164,7 +170,6 @@
             margin: 5px 0 15px 0;
         }
 
-        /* Botón de voz ubicado justo debajo del título y antes del texto */
         .btn-voice {
             background-color: var(--primary-dark);
             color: var(--white);
@@ -179,8 +184,8 @@
             justify-content: center;
             gap: 8px;
             transition: background-color 0.2s, transform 0.1s;
-            margin-bottom: 20px;
             box-shadow: 0 3px 10px rgba(0, 102, 102, 0.2);
+            margin-top: auto;
         }
 
         .btn-voice:hover {
@@ -191,23 +196,30 @@
             transform: scale(0.95);
         }
 
-        /* Texto completo debajo del botón de voz */
-        .description {
-            font-size: 0.95rem;
-            color: #333;
-            line-height: 1.65;
-            text-align: left;
-            border-top: 1px solid #e0f2f1;
-            padding-top: 15px;
+        /* Sección de Información Detallada (Abajo del todo) */
+        .info-section {
+            background-color: var(--white);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 102, 102, 0.15);
+            margin-top: 20px;
         }
 
-        .description p {
+        .info-section h3 {
+            color: var(--primary-dark);
+            font-size: 1.5rem;
+            border-bottom: 2px solid var(--bg-color);
+            padding-bottom: 10px;
             margin-top: 0;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
         }
 
-        .description p:last-child {
-            margin-bottom: 0;
+        .info-section p {
+            font-size: 1rem;
+            color: #333;
+            line-height: 1.7;
+            margin-bottom: 15px;
+            text-align: justify;
         }
 
         footer {
@@ -238,85 +250,5 @@
 </head>
 <body>
 
-    <!-- Pantalla de Bienvenida -->
-    <div id="welcome-screen">
-        <div class="welcome-content">
-            <img src="imagenipt104.jpg" alt="Escudo IPET 104" class="school-logo" onerror="this.src='https://images.vexels.com/media/users/3/142718/isolated/preview/1afa9cd201f92e80356ee7f1a3a41151-icono-de-la-escuela-building.png'">
-            <h1>IPET N° 104 "Arturo Capdevila"</h1>
-            <h3>Cruz del Eje, Córdoba</h3>
-            <p>Proyecto Escolar: Investigación del Puente Negro</p>
-            <button class="btn-enter" onclick="entrarAlProyecto()">🚀 Ver Información</button>
-        </div>
-    </div>
-
-    <!-- Contenido Principal -->
-    <div id="main-content">
-        <header>
-            <h2>El Puente Negro</h2>
-            <p>Presiona el botón de voz en cada categoría para escuchar el relato y lee la historia completa debajo</p>
-        </header>
-
-        <div class="container">
-            <!-- Categoría 1: Historia -->
-            <div class="card">
-                <img src="foto3.jpg" alt="Historia del Puente Negro" class="card-img" onerror="this.style.display='none'">
-                <div class="card-title">La historia y el origen: El latido de una época dorada</div>
-                
-                <button class="btn-voice" onclick="reproducirAudio('historia.mp3')">
-                    🔊 Escuchar Voz (Historia)
-                </button>
-
-                <div class="description">
-                    <p>Para comprender la verdadera dimensión del Puente Negro, es necesario viajar mentalmente a los primeros años del siglo XX, una época en la que el territorio argentino experimentaba una transformación radical impulsada por la llegada masiva del sistema ferroviario. En Cruz del Eje, al igual que en puntos estratégicos de todo el país, el tren no significaba simplemente un medio de transporte: era el auténtico motor del progreso, la clave que dictaba el ritmo de la economía, el comercio y la vida cotidiana de miles de habitantes.</p>
-                    <p>El origen de esta construcción se encuentra ligado directamente a la necesidad de vertebrar el territorio y conectar de forma eficiente la producción regional con los grandes centros urbanos de la provincia de Córdoba y del país. El Puente Negro nació para cumplir un rol fundamental en la infraestructura de transporte, permitiendo el paso seguro de formaciones ferroviarias cargadas tanto de pasajeros como de la producción local a través de accidentes geográficos complejos. Con el correr de las décadas, este paso elevado dejó de ser una simple vía de tránsito de hierro para convertirse en un símbolo imborrable de identidad local, un auténtico monumento vivo que nos recuerda aquellos años en los que el sonido del silbato del tren marcaba el pulso diario de la ciudad.</p>
-                </div>
-            </div>
-
-            <!-- Categoría 2: Arquitectura -->
-            <div class="card">
-                <img src="foto1.jpg" alt="Arquitectura del Puente Negro" class="card-img" onerror="this.style.display='none'">
-                <div class="card-title">Arquitectura y estructura: La genialidad de la ingeniería de la era industrial</div>
-                
-                <button class="btn-voice" onclick="reproducirAudio('arquitectura.mp3')">
-                    🔊 Escuchar Voz (Arquitectura)
-                </button>
-
-                <div class="description">
-                    <p>Si su historia conmueve, su arquitectura y diseño técnico maravillan a cualquiera que se detenga a observarlo con atención. Constructivamente, el Puente Negro destaca de manera absoluta por el uso característico del hierro forjado y el acero remachado, materiales que definieron por completo la estética y la robustez de la arquitectura industrial de finales del siglo XIX y principios del siglo XX.</p>
-                    <p>El corazón de su diseño estructural descansa en un sistema de vigas metálicas dispuestas en celosía —un entramado geométrico de barras entrelazadas en forma de triángulos—. Esta configuración técnica no fue elegida al azar: la celosía posee una capacidad extraordinaria para repartir las cargas de manera uniforme, permitiendo soportar el peso monumental y las vibraciones constantes de las pesadas locomotoras de la época sin sufrir deformaciones.</p>
-                    <p>Asimismo, la estructura fue ideada estratégicamente para desafiar y resistir con solidez las fuertes crecidas de agua de la región, soportando las exigencias climáticas más duras gracias a la precisión de sus ensamblajes y a sus sólidos pilares de apoyo. Cada remache, cada barra de acero y cada ángulo de su diseño reflejan la maestría de una ingeniería de vanguardia que priorizaba la durabilidad y la funcionalidad extrema. Hoy en día, contemplar el Puente Negro es hacer un viaje al pasado, valorando una obra maestra de la metalurgia que, a pesar del paso del tiempo, sigue erguida como testimonio mudo de una época donde las estructuras se construían para perdurar eternamente.</p>
-                </div>
-            </div>
-        </div>
-
-        <footer>
-            <p>IPET N° 104 Arturo Capdevila - Cruz del Eje, Córdoba (2026)</p>
-        </footer>
-    </div>
-
-    <script>
-        var audioActual = null;
-
-        function entrarAlProyecto() {
-            var welcome = document.getElementById('welcome-screen');
-            var main = document.getElementById('main-content');
-            
-            welcome.className = 'hidden';
-            main.className = 'visible';
-            window.scrollTo(0, 0);
-        }
-
-        function reproducirAudio(archivo) {
-            if (audioActual) {
-                audioActual.pause();
-                audioActual.currentTime = 0;
-            }
-
-            audioActual = new Audio(archivo);
-            audioActual.play().catch(function(error) {
-                alert("Asegúrate de haber subido el archivo '" + archivo + "' a tu repositorio de GitHub.");
-            });
-        }
-    </script>
-</body>
-</html>
+    <!-- Pantalla
+    

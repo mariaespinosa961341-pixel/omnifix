@@ -68,6 +68,7 @@
             margin: 20px 0;
         }
 
+        /* Cuadros pequeños solo para los botones de voz */
         .card {
             background-color: white;
             border-radius: 12px;
@@ -93,26 +94,32 @@
             border-radius: 20px;
             font-size: 1rem;
             cursor: pointer;
-            margin: 15px 0;
+            margin-top: 10px;
         }
 
-        .info-box {
+        /* Información larga fuera de los cuadros */
+        .info-container {
             background-color: white;
             border-radius: 12px;
-            padding: 25px;
-            margin-top: 25px;
+            padding: 30px;
+            margin-top: 30px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            text-align: left;
         }
 
-        .info-box h3 {
+        .info-container h2 {
             color: #006666;
+            border-bottom: 2px solid #d0f0ed;
+            padding-bottom: 8px;
             margin-top: 0;
+            font-size: 1.4rem;
         }
 
-        .info-box p {
-            line-height: 1.6;
+        .info-container p {
+            line-height: 1.7;
             color: #333;
+            font-size: 1.05rem;
+            text-align: justify;
+            margin-bottom: 20px;
         }
     </style>
 </head>
@@ -129,39 +136,38 @@
     <!-- Contenido Principal -->
     <div id="main-content">
         <header>
-            <h2 style="color: #006666;">El Puente Negro</h2>
-            <p>Selecciona una categoría para escuchar el audio o baja para leer la investigación</p>
+            <h2 style="color: #006666; font-size: 2rem;">El Puente Negro</h2>
+            <p>Escucha los audios en los cuadros superiores o desliza hacia abajo para leer toda la investigación oficial</p>
         </header>
 
-        <!-- Tarjeta Historia -->
+        <!-- Cuadro 1: Historia (Solo imagen, título y botón de voz) -->
         <div class="card">
             <img src="foto3.jpg" alt="Historia" onerror="this.style.display='none'">
             <h3 style="color: #006666; margin: 5px 0;">La historia y el origen</h3>
-            <button class="btn-voice" onclick="audio('historia.mp3')">🔊 Escuchar Audio</button>
+            <button class="btn-voice" onclick="audio('historia.mp3')">🔊 Escuchar Audio (Historia)</button>
         </div>
 
-        <!-- Tarjeta Arquitectura -->
+        <!-- Cuadro 2: Arquitectura (Solo imagen, título y botón de voz) -->
         <div class="card">
             <img src="foto1.jpg" alt="Arquitectura" onerror="this.style.display='none'">
             <h3 style="color: #006666; margin: 5px 0;">Arquitectura y estructura</h3>
-            <button class="btn-voice" onclick="audio('arquitectura.mp3')">🔊 Escuchar Audio</button>
+            <button class="btn-voice" onclick="audio('arquitectura.mp3')">🔊 Escuchar Audio (Arquitectura)</button>
         </div>
 
-        <!-- Texto largo abajo -->
-        <div class="info-box">
-            <h3>La historia y el origen: El latido de una época dorada</h3>
-            <p>Para comprender la verdadera dimensión del Puente Negro, es necesario viajar mentalmente a los primeros años del siglo XX, una época en la que el territorio argentino experimentaba una transformación radical impulsada por la llegada masiva del sistema ferroviario. En Cruz del Eje, el tren no significaba simplemente un medio de transporte: era el auténtico motor del progreso y de la vida cotidiana.</p>
-            <p>El origen de esta construcción se encuentra ligado directamente a la necesidad de conectar de forma eficiente la producción regional con los grandes centros urbanos. Con el correr de las décadas, este paso elevado se convirtió en un símbolo imborrable de identidad local y un monumento vivo de nuestra ciudad.</p>
+        <!-- Toda la información larga fuera de los cuadros, abajo de todo -->
+        <div class="info-container">
+            <h2>La historia y el origen: El latido de una época dorada</h2>
+            <p>Para comprender la verdadera dimensión del Puente Negro, es necesario viajar mentalmente a los primeros años del siglo XX, una época en la que el territorio argentino experimentaba una transformación radical impulsada por la llegada masiva del sistema ferroviario. En Cruz del Eje, al igual que en puntos estratégicos de todo el país, el tren no significaba simplemente un medio de transporte: era el auténtico motor del progreso, la clave que dictaba el ritmo de la economía, el comercio y la vida cotidiana de miles de habitantes.</p>
+            <p>El origen de esta construcción se encuentra ligado directamente a la necesidad de vertebrar el territorio y conectar de forma eficiente la producción regional con los grandes centros urbanos de la provincia de Córdoba y del país. El Puente Negro nació para cumplir un rol fundamental en la infraestructura de transporte, permitiendo el paso seguro de formaciones ferroviarias cargadas tanto de pasajeros como de la producción local a través de accidentes geográficos complejos. Con el correr de las décadas, este paso elevado dejó de ser una simple vía de tránsito de hierro para convertirse en un símbolo imborrable de identidad local, un auténtico monumento vivo que nos recuerda aquellos años en los que el sonido del silbato del tren marcaba el pulso diario de la ciudad.</p>
+
+            <h2 style="margin-top: 40px;">Arquitectura y estructura: La genialidad de la ingeniería de la era industrial</h2>
+            <p>Si su historia conmueve, su arquitectura y diseño técnico maravillan a cualquiera que se detenga a observarlo con atención. Constructivamente, el Puente Negro destaca de manera absoluta por el uso característico del hierro forjado y el acero remachado, materiales que definieron por completo la estética y la robustez de la arquitectura industrial de finales del siglo XIX y principios del siglo XX.</p>
+            <p>El corazón de su diseño estructural descansa en un sistema de vigas metálicas dispuestas en celosía —un entramado geométrico de barras entrelazadas en forma de triángulos—. Esta configuración técnica no fue elegida al azar: la celosía posee una capacidad extraordinaria para repartir las cargas de manera uniforme, permitiendo soportar el peso monumental y las vibraciones constantes de las pesadas locomotoras de la época sin sufrir deformaciones.</p>
+            <p>Asimismo, la estructura fue ideada estratégicamente para desafiar y resistir con solidez las fuertes crecidas de agua de la región, soportando las exigencias climáticas más duras gracias a la precisión de sus ensamblajes y a sus sólidos pilares de apoyo. Cada remache, cada barra de acero y cada ángulo de su diseño reflejan la maestría de una ingeniería de vanguardia que priorizaba la durabilidad y la funcionalidad extrema. Hoy en día, contemplar el Puente Negro es hacer un viaje al pasado, valorando una obra maestra de la metalurgia que, a pesar del paso del tiempo, sigue erguida como testimonio mudo de una época donde las estructuras se construían para perdurar eternamente.</p>
         </div>
 
-        <div class="info-box">
-            <h3>Arquitectura y estructura: La genialidad de la ingeniería</h3>
-            <p>Constructivamente, el Puente Negro destaca de manera absoluta por el uso característico del hierro forjado y el acero remachado, materiales que definieron la arquitectura industrial de la época.</p>
-            <p>Su diseño de vigas metálicas en celosía fue ideado estratégicamente para repartir cargas de manera uniforme, permitiendo soportar el peso monumental y las vibraciones constantes de las locomotoras, además de resistir las crecidas de agua. Es una obra maestra de la ingeniería que perdura en el tiempo.</p>
-        </div>
-
-        <footer style="text-align: center; margin: 30px 0; color: #006666;">
-            <p>IPET N° 104 - Cruz del Eje, Córdoba (2026)</p>
+        <footer style="text-align: center; margin: 40px 0; color: #006666;">
+            <p>IPET N° 104 Arturo Capdevila - Cruz del Eje, Córdoba (2026)</p>
         </footer>
     </div>
 
@@ -181,7 +187,7 @@
             }
             reproductor = new Audio(archivo);
             reproductor.play().catch(function(e) {
-                alert("Sube el archivo " + archivo + " a tu repositorio de GitHub.");
+                alert("Sube el archivo de audio '" + archivo + "' a tu repositorio de GitHub.");
             });
         }
     </script>
